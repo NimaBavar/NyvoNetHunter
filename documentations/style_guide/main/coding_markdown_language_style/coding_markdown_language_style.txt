@@ -1,0 +1,66 @@
+NyvoStudio MarkDown file style guide:
+
+    1. Every Markdown file must contain at least one header.
+
+    2. Headers should not be bolded , italic ETC, they Must be displayed in simple text.
+
+    3. All headers should be highest priority header ( # ), Usage of other headers is not allowed.
+
+    4. All english language sentence rules will apply to headers ( Example : Sentence must start with the uppercased first character ).
+
+    5. All header's except for Table of content, should be a question sentence.
+
+    6. The header text's must be simple and descriptive , Do not use complex word's .
+
+    7. Every header must contain a text after ( Inside ) answering the question that was asked in the header , Which Is refrenced as __SubHeader__.
+
+    9. __SubHeader__'s must answer the question's straight forward.
+
+    8. __SubHeader__'s should never contain extra sentence's other than the one's that are answering the question.
+
+    9. Just like header's , __SubHeader__'s should never be bold , italic , ETC . They must be in simple text.
+
+    10. Using complex word's in __SubHeader__'s for the sake of better explanation , Is always allowed.
+
+    11. Using complex word's in __SubHeader__'s while the explaining the subject itself is not a complex operation , Is not allowed.
+
+    12. All markdown file's used in a repository or project serving as README should contain A __table_of_contents__.    
+
+    13. __table_of_contents__ should always contain a text after ( Inside ) .
+   
+    14. The text inside __table_of_contents__ Should refer and mention all the item's inside the repository or project , And their specified path.
+
+    15. __table_of_content__'s should always have a header with the simple text of : Table of contents.  
+
+    16. There should be no explanatory text ( sentence's ) inside a __table_of_content__'s. 
+   
+    17. All text's in __table_of_content__'s should match and be applid the english language rules ( Do not use snake case , ETC , Except for file path's ).
+    
+    18. All file path's inside __table_of_contents__ should be sorted with a text called __topper__ on top of each element's that Are considered In one group.
+        - Example ( Informations , Algorithms )
+
+    19. __topper__'s should not contain any of the assigend characters ( ; " ' ).
+
+    20. __topper__'s should not be italic or bold , They must be written In simple text.
+
+    21. __topper__'s most contain A black cricle at their back ( created with - in .md ).
+
+    22. __topper__'s text most be seperated by one character from the black circle at their back.
+
+    23. __topper__'s text most be followed up with a colon at the end.
+
+    24. __toppers__'s colon must be sticked to them ( No space character ).
+
+    25. Inside the __topper__ , There must be different file name's , Followed with a -> , And the file path.
+
+    26. File name's inside the __topper__ must have a black vertical line at their back . ( created with > in .md ).
+
+    28. Every line must contain only one file name and it's path.
+
+    29. Each file name-path pair' are called __element__'s.
+
+    30. Each __topper__ and all the __element's__ inside them are a group which Is called __topper_element_pair__
+
+    31. There should be no blank line's between each __element__ inside A __topper__.
+
+    32. There should be no blank line between the __topper_elemtn_pair__'s.

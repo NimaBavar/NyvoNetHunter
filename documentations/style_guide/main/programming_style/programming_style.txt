@@ -1,0 +1,17 @@
+NyvoStudio coding style guide:
+
+    1. All programmer's who use python , Should follow the PEP8 style guide.
+
+    2. Programmer's who use other language's , Should follow their language style guide , But must still keep up with the blank line rule's of PEP8.
+
+    3. When is it okay to break the rules? : If you ever felt like when attending to the rule's 
+        - The coding still isn't clean enugh And Clean code makes refactoring difficult or when you have to decide between clean code and Better accessibility ,
+        - You have the right to ignore the guide and use your personal style . You have to do the best for balancing the accessibility And clean code , 
+        - If not possible , Choose the accessbility over clean code.
+
+    4. All code's Must be written In Microsoft Code editor's.
+
+    5. All codes must pass the pylint CI review before merging to the main branch.
+
+    6. All codes must be reformatted by the psf/black reformatter before merging to the main branch,
+     

@@ -1,0 +1,11 @@
+NyvoStudio filing style guide :
+
+    1. All file names should be in snake_case : ( All letter's are in lowercase , Instead of space _ Is used. ). 
+
+    2. File names should start With a Verb , And at the second part's there should be A name or piece of information.
+
+    3. File names should be descriptive And self explanatory.
+
+    4. Do not use Complex filenames , All names should be kept simple.
+
+
