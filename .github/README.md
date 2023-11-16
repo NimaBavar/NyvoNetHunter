@@ -3,6 +3,7 @@
 > - [**What is NyvoAI project?**](#what-is-nyvoai-project)
 > - [**What is the purpose of this project?**](#what-is-the-purpose-of-this-project)
 > - [**What are the license and copyright laws of this project?**](#what-are-the-license-and-copyright-laws-of-this-project)
+> - [**Where I can read the security policy guidelines of this project?**]()
 ---
 
 
@@ -42,8 +43,15 @@
 > | *Warranty* | ⛔ |
 
 > **This license allows for the freedom to use NyvoAI for commercial purposes, modify its source code, distribute copies, utilize patented technologies, and use it for personal purposes. These permissions are outlined in the GNU Affero General Public License version 3.0.**
-
 ---
+
+
+<br>
+
+
+## Where I can read the security policy guidelines of this project
+---
+> You can  find our security guidelines [Here](NotImplemented)
 
 
 <br>
