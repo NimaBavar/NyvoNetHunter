@@ -74,7 +74,7 @@
 ---
 > **You can find and view our security guidelines at the corresponding [URL](NotImplemented).**
 
-> **We strongly encourage you to carefully review this information to acquire a more in-depth comprehension of our security practices and the precise measures we have implemented for the protection of our users' data**
+> **We strongly encourage you to carefully review this information to acquire a more in-depth comprehension of our security practices and the precise measures we have implemented for the protection of our users' data.**
 ---
 
 
