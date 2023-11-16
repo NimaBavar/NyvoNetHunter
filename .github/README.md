@@ -83,5 +83,5 @@
 
 ---
 > [!NOTE]
-> **By: KhodeNima ( Nima Bavar ), under** [**NyvoStudio.**](https://github.com/NyvoStudio)
+> **By: KhodeNima ( Nima Bavar ), under** [**NyvoStudio**](https://github.com/NyvoStudio)**.**
 ---
