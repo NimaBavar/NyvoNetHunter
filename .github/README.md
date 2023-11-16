@@ -72,7 +72,7 @@
 
 ## Where I can read the security policy guidelines of this project
 ---
-> **You can find and view our security guidelines at the corresponding [URL](NotImplemented).**
+> **You can find and view our security guidelines at the corresponding [URL](https://github.com/KhodeNima/NyvoAI/security/policy).**
 
 > **We strongly encourage you to carefully review this information to acquire a more in-depth comprehension of our security report guideline.**
 ---
