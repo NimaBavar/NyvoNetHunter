@@ -19,7 +19,7 @@
 > - [**What is NyvoAI project?**](#what-is-nyvoai-project)
 > - [**What is the purpose of this project?**](#what-is-the-purpose-of-this-project)
 > - [**What are the license and copyright laws of this project?**](#what-are-the-license-and-copyright-laws-of-this-project)
-> - [**Where I can read the security policy guidelines of this project?**]()
+> - [**Where can I read the security policy guidelines of this project?**](#where-can-i-read-the-security-policy-guidelines-of-this-project)
 ---
 
 
@@ -72,7 +72,7 @@
 <br>
 
 
-## Where I can read the security policy guidelines of this project
+## Where can I read the security policy guidelines of this project
 ---
 > **You can find and view our security guidelines at the corresponding [URL](https://github.com/KhodeNima/NyvoAI/security/policy).**
 
