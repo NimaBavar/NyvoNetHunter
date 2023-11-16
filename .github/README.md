@@ -38,8 +38,8 @@
 > | *Distribution*   | ✔️ |
 > | *Patent use*    | ✔️ |
 > | *Private use*   | ✔️ |
-> | *Liability* | ❎ |
-> | *Warranty* | ❎ |
+> | *Liability* | ⛔ |
+> | *Warranty* | ⛔ |
 
 > **This license allows for the freedom to use NyvoAI for commercial purposes, modify its source code, distribute copies, utilize patented technologies, and use it for personal purposes. These permissions are outlined in the GNU Affero General Public License version 3.0.**
 
