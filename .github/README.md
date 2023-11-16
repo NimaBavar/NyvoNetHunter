@@ -1,6 +1,7 @@
-![project_logo](https://github.com/KhodeNima/NyvoAI/blob/Main.Project/documentations/project_logo_ideas/12.png)
 
----
+
+<img src="https://github.com/KhodeNima/NyvoAI/blob/Main.Project/documentations/project_logo_ideas/12.png" alt="project_logo.png" width="200" />
+
 
 <br>
 
