@@ -1,6 +1,6 @@
 
 
-<img src="https://github.com/KhodeNima/NyvoAI/blob/Main.Project/documentations/project_logo_ideas/12.png" alt="project_logo.png" width="200" />
+<img src="https://github.com/KhodeNima/NyvoAI/blob/Main.Project/documentations/project_logo_ideas/12.png" alt="project_logo.png" width="200" /> <img src="https://img.shields.io/badge/ByNyvoStudio%20And%20Nima%20Bavar-black?style=flat&logoColor=black" />
 
 
 <br>
