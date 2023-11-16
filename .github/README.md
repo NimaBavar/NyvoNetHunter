@@ -26,7 +26,7 @@
 
 ## What is NyvoAI project?
 ---
-> **NyvoAI is a desktop application that aims to gather a diverse range of beneficial Artificial Intelligence (AI) tools in one platform.**
+> **NyvoAI is an intuitive and highly innovative desktop application that aims to collate an extensive array of cutting-edge Artificial Intelligence (AI) tools in a single accessible platform. With the ultimate aim of simplifying and optimising the process of utilizing AI and its associated technologies, NyvoAI's platform has been meticulously designed to foster efficient and effective interactions. From a diversified selection of interactive visualizations and user-friendly interfaces, to the provision of seamless integration with complementary third-party software, NyvoAI serves as an invaluable resource for diverse sets of users.**
 ---
 
 
@@ -74,7 +74,7 @@
 ---
 > **You can find and view our security guidelines at the corresponding [URL](NotImplemented).**
 
-> **We encourage you to review this information carefully to gain a better understanding of our security practices and the steps we take to safeguard our userdata.**
+> **We strongly encourage you to carefully review this information to acquire a more in-depth comprehension of our security practices and the precise measures we have implemented for the protection of our users' data**
 ---
 
 
