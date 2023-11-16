@@ -32,17 +32,24 @@
 ---
 > **NyvoAI project is licensed under the [GNU Affero General Public License version 3.0](), granting our dear users the following permissions and regulations:**
 
-> | **Permissions** | CheckBox |
-> | ------------- | ------ |
-> | *Commercial use* | ✔️ |
-> | *Modification*  | ✔️ |
-> | *Distribution*   | ✔️ |
-> | *Patent use*    | ✔️ |
-> | *Private use*   | ✔️ |
-> | *Liability* | ⛔ |
-> | *Warranty* | ⛔ |
+> | **Permissions**     | CheckBox |
+> | -------------       |  ------  |
+> |   *Commercial use*  |    ✔️   |
+> |   *Modification*    |    ✔️   |
+> |   *Distribution*    |    ✔️   |
+> |   *Patent use*      |    ✔️   |
+> |   *Private use*     |    ✔️   |
+
 
 > **This license allows for the freedom to use NyvoAI for commercial purposes, modify its source code, distribute copies, utilize patented technologies, and use it for personal purposes. These permissions are outlined in the GNU Affero General Public License version 3.0.**
+> **As per the GNU Affero General Public License version 3.0, the following permissions are not officially guaranteed by this license:**
+
+> | **Permissions** | **Checkbox** |
+> | --------------- | ------------ |
+> |   *Liability*   |      ❌      |
+> |   *Warranty*    |      ❌      |
+
+> **This means that our users accept that we do not assume any liability for the use or misuse of NyvoAI, nor do we provide any warranties or guarantees with regards to the application's functionality, performance, or reliability.**
 ---
 
 
@@ -51,7 +58,9 @@
 
 ## Where I can read the security policy guidelines of this project
 ---
-> You can  find our security guidelines [Here](NotImplemented)
+> **You can find and view our security guidelines at the corresponding [URL](NotImplemented).**
+> **We encourage you to review this information carefully to gain a better understanding of our security practices and the steps we take to safeguard our userdata.**
+> ---
 
 
 <br>
