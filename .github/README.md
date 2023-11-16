@@ -29,15 +29,15 @@
 
 ## What are the license and copyright laws of this project?
 ---
-> **NyvoAI project is licensed under the GNU Affero General Public License version 3.0, granting our dear users the following permissions:**
+> **NyvoAI project is licensed under the [GNU Affero General Public License version 3.0](), granting our dear users the following permissions and regulations:**
 
-> | **Permissions** |
-> | ------------- |
-> | *Commercial use* |
-> | *Modification*  |
-> | *Distribution*   |
-> | *Patent use*    |
-> | *Private use*   |
+> | **Permissions** | CheckBox |
+> | ------------- | ------ |
+> | *Commercial use* | ✔️ |
+> | *Modification*  | ✔️ |
+> | *Distribution*   | ✔️ |
+> | *Patent use*    | ✔️ |
+> | *Private use*   | ✔️ |
 
 > **This license allows for the freedom to use NyvoAI for commercial purposes, modify its source code, distribute copies, utilize patented technologies, and use it for personal purposes. These permissions are outlined in the GNU Affero General Public License version 3.0.**
 
