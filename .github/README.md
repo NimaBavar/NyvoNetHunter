@@ -1,12 +1,14 @@
-
+---
 <p align="center">
-  <img src="https://img.shields.io/badge/By-NyvoStudio%20And%20Nima%20Bavar-black?style=flat&logoColor=black" alt="badge.png" />
+  <img src="https://img.shields.io/badge/By-NyvoStudio%20And%20Nima%20Bavar-black?style=flat&logoColor=black" alt="badge" />
 
 </p>
 
 <p align="center">
-  <img src="https://github.com/KhodeNima/NyvoAI/blob/Main.Project/documentations/project_logo_ideas/12.png" alt="logo.png" width="250" />
+  <img src="https://github.com/KhodeNima/NyvoAI/blob/Main.Project/documentations/project_logo_ideas/12.png" alt="logo" width="200" />
 </p>
+
+---
 
 
 <br>
