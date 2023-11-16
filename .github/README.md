@@ -59,8 +59,9 @@
 ## Where I can read the security policy guidelines of this project
 ---
 > **You can find and view our security guidelines at the corresponding [URL](NotImplemented).**
+
 > **We encourage you to review this information carefully to gain a better understanding of our security practices and the steps we take to safeguard our userdata.**
-> ---
+---
 
 
 <br>
