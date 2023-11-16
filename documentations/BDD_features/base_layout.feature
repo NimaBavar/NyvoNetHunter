@@ -7,7 +7,7 @@ Scenario: User launches the app
   Given the User launches the app
     When Python is allready installed 
       And all requirements are satisfied
-          """Scenario implemented"""
+        """Scenario implemented"""
 
     
     But if requirements are not satisfied or python is not installed
