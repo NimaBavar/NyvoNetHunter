@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="https://img.shields.io/badge/By-NyvoStudio%20And%20Nima%20Bavar,%20Amirali%20Yazdani-black?style=flat&logoColor=black" alt="badge" />
+  <img src="https://img.shields.io/badge/By-NyvoStudio%20And%20Nima%20Bavar-black?style=flat&logoColor=black" alt="badge" />
 
 </p>
 
