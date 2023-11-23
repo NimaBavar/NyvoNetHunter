@@ -4,6 +4,6 @@
 """
 
 
-__version__ = "1.3.1"
+__version__ = "2.3.1"
 __author__ = "KhodeNima ( Nima Bavar )"
 __built_date__ = "2023/11/13"
