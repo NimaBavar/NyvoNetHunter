@@ -83,9 +83,11 @@
 ---
  > **This Project and all the programming spaces contained , Use the below third party tool's for improving the tasks aligend:**
 
->  | Tool | Usage |
->  |-------|-------|
->  | psf/black | Maintaining the code readability |
+>  |   Tool                       |                                       Usage                                       |
+>  |   -------                    |                                      -------                                      |
+>  | psf/black                    | Maintaining the code readability                                                  |
+>  | PyQt5 Package                | Implementing the Graphical User Interface of the project                          |
+>  | Qt Designer package          | Implementing the Graphical User Interface ofthe project                           |
 
 <br>
 
