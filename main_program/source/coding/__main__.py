@@ -8,37 +8,15 @@ BY: NyvoStudio, KhodeNima ( Nima Bavar )
 """
 
 
-try:
-    from PyQt5.QtWidgets import QDialog, QApplication
-    from PyQt5 import QtCore, QtGui, QtWidgets
-    import requests
-    import sys
-    
-except ImportError:
-    from os import system as cmd_input
-    import importlib
-    import time
-    import sys
-    
-    cmd_input("cls")
-    
-    required_modules = ["requests", "PyQt5"]
-    installed_modules = sys.modules.keys()
-    
-    for module in installed_modules:
-        need_to_install = [module for module in required_modules if not module in installed_modules]
-    
-        
-    for module in need_to_install:
-        print("\33[31m Installing modules... \33[0m")
-        
-        cmd_input(f"pip install {module}")
-        importlib.import_module(module)
-        cmd_input("cls")
-        
-        
-    time.sleep(10)
-        
+from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
+from PyQt5.QtWidgets import QApplication, QDialog
+from PyQt5.QtCore import QByteArray
+from PyQt5.QtCore import QEventLoop
+from PyQt5.QtTest import QTest
+from PyQt5 import QtCore, QtGui
+from PyQt5 import QtWidgets
+import sys
+     
     
 
 class Ui_Dialog(object):
@@ -272,6 +250,8 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         self.horizontalSlider.sliderMoved['int'].connect(self.lcdNumber.update) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        
+        self.progressBar.setValue(0)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -289,38 +269,69 @@ class Ui_Dialog(object):
 
 class NyvoaiApp(QDialog):
 
+    my_api_key = "mWNfs+SWsyZk+Wx6r5AyGw==cFD5QGOQyTJo3Xzb"
+
     def make_api_call(self, ip: str) -> str:
     
-        api_url = "https://api.api-ninjas.com/v1/iplookup?address="
-        api_key = {
-            "X-Api-Key" : "mWNfs+SWsyZk+Wx6r5AyGw==cFD5QGOQyTJo3Xzb", # ! HAVE FUN WITH THE API KEY LADS!
-            
-        }
+        api_url = QtCore.QUrl(f"https://api.api-ninjas.com/v1/iplookup?address={ip}")
+        api_key_sign = QByteArray("X-Api-Key".encode())
+        api_key_value = QByteArray(NyvoaiApp.my_api_key.encode())
         
     
         if not isinstance(ip, str):
-            raise ValueError("Invalid argument type passed for the parameter prompt | Expected: (str) |")
+            raise ValueError("Invalid argument type passed for the parameter ip | Expected: (str) |")
             
-    
-        response = requests.get(url=f"{api_url}{ip}", headers=api_key)
-        return response.text
-    
-    
-    def show_lineedit_result(self):
-    
-        self.ui.label_2.setText(self.make_api_call(self.ui.lineEdit.text()))
+        
+        ip = f"ip={ip}"
+        ip = QByteArray(ip.encode())
+        request_details = QNetworkRequest(api_url)
+        request_details.setRawHeader(api_key_sign, api_key_value)
+        
+        self.network_sender = QNetworkAccessManager()
 
+        response = self.network_sender.get(request_details)
+        response.downloadProgress.connect(self.fill_progressbar_animation)
+        
+        api_event_loop = QEventLoop()
+        response.finished.connect(api_event_loop.quit)
+        api_event_loop.exec_()
+        
+        return str(response.readAll())
+        
+    def set_progressbar_value(self, amount: int):
+    
+        if amount > 100:
+            raise TypeError(f"The progress bar fill amount cannot be more than 100.")
+            
+        if not isinstance(amount, (int, float)):
+            parameter_type = type(amount).__name__
+            raise TypeError(f"Expected argument type for the parameter (amount): str | Not {parameter_type}")
+    
+    
+        self.ui.progressBar.setValue(amount)
+        
+    def set_lineedit_result(self):
+        self.ui.label_2.clear()
+        self.ui.label_2.setText(self.make_api_call(self.ui.lineEdit.text()))
+        self.ui.lineEdit.clear()
+        
+    def fill_progressbar_animation(self) -> None:
+    
+        for number in range(1, 101):
+            QTest.qWait(15)
+            self.set_progressbar_value(number)
+        
+    
+        
     def __init__(self):
 
         super().__init__()
         self.ui = Ui_Dialog()
-
         self.ui.setupUi(self)
-        self.api_image = None
-        
-        self.ui.pushButton.clicked.connect(self.show_lineedit_result)
-        
+
+        self.ui.pushButton.clicked.connect(self.set_lineedit_result)
         self.show()
+    
 
         
 if __name__ == "__main__":
