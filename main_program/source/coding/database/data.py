@@ -4,11 +4,14 @@
 """
 
 
-from packages import ip_address
-from packages import cmd_input
+from packages import (
+    cmd_input, 
+    ip_address, 
+    extract_url
+    
+)
 
-
-__version__ = "4.8.3"
+__version__ = "4.9.4"
 __author__ = "KhodeNima ( Nima Bavar )"
 __built_date__ = "2023/11/13"
 
@@ -29,7 +32,7 @@ class DirectRunError(Exception):
         if message_is_not_valid:
             message_argument_type = type(message).__name__
             raise ValueError(
-                f"Expected argument type passed for the parameter (error_message): (str) | Not: ({message_argument_type})"
+                f"Expected argument type passed for the parameter ( error_message ): ( str ) | Not: ( {message_argument_type} )"
             )
 
         self.__error_message = message
@@ -39,7 +42,7 @@ def is_valid_ip(ip: str) -> bool:
     if not isinstance(ip, str):
         ip_argument_type = type(ip).__name__
         raise ValueError(
-            f"Expected argument type passed for the parameter (ip): (str) | Not: ({ip_argument_type})"
+            f"Expected argument type passed for the parameter ( ip ): ( str ) | Not: ( {ip_argument_type} )"
         )
 
     try:
@@ -54,7 +57,7 @@ def is_valid_ipv4(ip: str) -> bool:
     if not isinstance(ip, str):
         ip_argument_type = type(ip).__name__
         raise ValueError(
-            f"Expected argument type passed for the parameter (ip): (str) | Not: ({ip_argument_type})"
+            f"Expected argument type passed for the parameter ( ip ): ( str ) | Not: ( {ip_argument_type} )"
         )
 
     if not is_valid_ip(ip):
@@ -73,7 +76,7 @@ def is_valid_ipv6(ip: str):
     if not isinstance(ip, str):
         ip_argument_type = type(ip).__name__
         raise ValueError(
-            f"Expected argument type passed for the parameter (ip): (str) | Not: ({ip_argument_type})"
+            f"Expected argument type passed for the parameter ( ip ): ( str ) | Not: ( {ip_argument_type} )"
         )
 
     if not is_valid_ip(ip):
@@ -86,6 +89,16 @@ def is_valid_ipv6(ip: str):
         return True
 
     return False
+    
+    
+def is_valid_url(url: str) -> bool:
+    
+    
+    if not isinstance(url, str):
+        url_argument_type = type(url).__name__
+        raise ValueError(f"Expected argument type passed for the parameter ( url ): ( str ) | not {url_argument_type}")
+        
+    
 
 
 def clean_terminal() -> None:
@@ -94,7 +107,7 @@ def clean_terminal() -> None:
 
 module_is_runned_directly = __name__ == "__main__"
 
-if not module_is_runned_directly:
+if module_is_runned_directly:
     clean_terminal()
     raise DirectRunError(
         "Database modules are not intended to run directly. They are produced for import usage only."
