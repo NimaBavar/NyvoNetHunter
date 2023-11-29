@@ -7,11 +7,11 @@
 from packages import (
     cmd_input, 
     ip_address, 
-    extract_url
+    extract_url,
     
 )
 
-__version__ = "4.9.4"
+__version__ = "4.9.6"
 __author__ = "KhodeNima ( Nima Bavar )"
 __built_date__ = "2023/11/13"
 
@@ -98,8 +98,9 @@ def is_valid_url(url: str) -> bool:
         url_argument_type = type(url).__name__
         raise ValueError(f"Expected argument type passed for the parameter ( url ): ( str ) | not {url_argument_type}")
         
+    if url.startswith("https://") and url.endswith:
+        ...
     
-
 
 def clean_terminal() -> None:
     cmd_input("cls")
@@ -112,3 +113,5 @@ if module_is_runned_directly:
     raise DirectRunError(
         "Database modules are not intended to run directly. They are produced for import usage only."
     )
+    
+    
