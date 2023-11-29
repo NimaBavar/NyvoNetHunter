@@ -13,13 +13,14 @@ from ipaddress import ip_address
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtTest import QTest
 from PyQt5 import QtWidgets
+from tldextract import extract as extract_url
 import json
 import sys
 
 
 module_is_runned_directly = __name__ == "__main__"
 
-if not module_is_runned_directly:
+if module_is_runned_directly:
     raise PermissionError(
         "Database modules are not intended to run directly. They are produced for import usage only."
     )

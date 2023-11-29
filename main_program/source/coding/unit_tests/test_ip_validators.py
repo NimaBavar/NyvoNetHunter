@@ -4,7 +4,7 @@ The unit test module for ip validation functions in the ( data.py ) module.
 """
 
 
-def setup_import_path() -> None:
+def setup_database_import_path() -> None:
 
     import pathlib
     import sys
@@ -15,8 +15,7 @@ def setup_import_path() -> None:
     sys.path.append(f"{current_path_variable}/main_program/source/coding")
     sys.path.append(f"{current_path_variable}/main_program/source/coding/database")
     
-
-setup_import_path()
+setup_database_import_path()
 
 
 from database.data import (
