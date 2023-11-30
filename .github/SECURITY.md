@@ -23,8 +23,7 @@
   > | ------ | ------ |
   > | 1.| Maintaining legal, ethical, and regulatory requirements. |
   > | 2.| Locate the misuse of applications, networks, data, and computer systems. |
-  > | 3.| Briefing the data privacy circumstances |
-  > | 4.| Organizing the structure of the project. |
+  > | 3.| Organizing the structure of the project. |
 
 ---
 <br>
@@ -80,7 +79,7 @@
 
 ## Third Party tools:
 ---
- > **This Project and all the programming spaces contained , Use the below third party tool's for improving the tasks aligend:**
+ > **This Project and all the programming spaces contained , Use the below main third party tool's for improving the tasks aligend:**
 
 >  |   Tool                       |                                       Usage                                       |
 >  |   -------                    |                                      -------                                      |
@@ -97,19 +96,10 @@
 <br>
 
 
-<br>
-
-   > [!NOTE]
-   > All the data's received from the user's are completely safe and encrypted and we are committed to maintaining the accuracy, confidentiality, and security of your personally 
-   > identifiable information
----
-<br>
-
-
 ## Conventions and style rules:
 ---
 
-   >  **By any situation , All the employees of this project must follow the [styling rules of NyvoStudio](https://github.com/NyvoStudio/StyleGuide/tree/Main.project/styling_guide) which are:**
+   >  **By any situation , All the employees of this project must follow the [styling idioms of NyvoStudio](https://github.com/NyvoStudio/StyleGuide/tree/Main.project/styling_guide) which are:**
 
   > - Filing style.
   > - Text organizing style.
@@ -127,13 +117,7 @@
   > **To report any possible security vulnerability, legal concern, harassment, or misguidance of code of conduct by an employee, we kindly request that you reach out to the NyvoStudio team through the following methods:**
 
   > - NyvoStudio mail box : **nyvostudio@gmail.com**
-  > - Reporting on this repository by [**Creating a new issue**](https://github.com/KhodeNima/NyvoAI/security/advisories/new)
+  > - Reporting on this repository by [**Creating a new issue**](https://github.com/KhodeNima/NyvoNetHunter/security/advisories/new)
   > - Reporting on nyvostudio discord server : **Coming soon...**
 
 <br>
-
-> [!WARNING]
-> **Under any circumstance or situation , Do not contact the founder , co-founder , or/and employees of this project direcly by their personal mail inbox or message inbox.**
-
----
-<br> 
