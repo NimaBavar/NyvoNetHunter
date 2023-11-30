@@ -8,7 +8,6 @@
  >  - [Supported verions](#supported-versions)
  >  - [Security and copyright](#security-and-copyright)
  >  - [Third party tools](#third-party-tools)
- >  - [Data privacy](#data-privacy)
  >  - [Conventions and style rules](#conventions-and-style-rules)
  >  - [Reporting guideline](#reporting)
 ---
@@ -98,15 +97,6 @@
 <br>
 
 
-## Data privacy:
----
-   > **Datas collected from the users during the usage period are:**
-
-   > | Data | Used in | Applied and stored when | Deleted when |
-   > |------|------ |---------- | ------ |
-   > | Username | Creating the user account in the database | Using the application and/or accepting privacy policies | Account Account deletion |
-   > | Password | Creating the user account in the database | Using the application and/or accepting privacy policies | Account deletion |
-   > | Text inputs        |  Generating AI output                     | Using the application and/or Accepting privacy policies | App deletion     |
 <br>
 
    > [!NOTE]
