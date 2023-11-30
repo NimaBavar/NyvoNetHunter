@@ -129,7 +129,7 @@ QPushButton:disabled {
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP example: 144.145.146.147 ( IP addresses maximum octet digit is 255 )&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP example: &lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;144.145.146.147&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;. &lt;/span&gt;( IP addresses maximum octet digit is 255 )&lt;/p&gt;&lt;p&gt;URL example: &lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;https://github.com&lt;/span&gt; OR &lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;https://discord.com&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>

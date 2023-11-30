@@ -8,24 +8,19 @@ BY: NyvoStudio, KhodeNima ( Nima Bavar )
 """
 
 
+from database.data import (
+    Connectable, 
+    is_valid_ip, 
+    is_valid_url, 
+    is_valid_ipv4,
+    is_valid_ipv6,
+)
 from database.ui_window_dialog import Ui_Dialog
 from database.packages import *
 
 
 class NyvoNetHunterApp(QDialog):
-    api_key = "mWNfs+SWsyZk+Wx6r5AyGw==cFD5QGOQyTJo3Xzb"
-
-    def make_api_call(self, ip: str) -> str:
-        api_url = QtCore.QUrl(f"https://api.api-ninjas.com/v1/iplookup?address={ip}")
-        api_key_sign = QByteArray("X-Api-Key".encode())
-        api_key_value = QByteArray(NyvoNetHunterApp.api_key.encode())
-
-        if not isinstance(ip, str):
-            raise ValueError(
-                "Invalid argument type passed for the parameter ( ip ) | Expected: (str) |"
-            )
-
-        raise NotImplementedError()
+    
 
     def set_progressbar_value(self, amount: int):
         if amount > 100:
