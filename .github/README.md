@@ -19,7 +19,7 @@
 
 ## Table of contents
 ---
-> - [**What is NyvoAI project?**](#what-is-nyvoai-project)
+> - [**What is NyvoNetHunter project?**](#what-is-nyvonethunter-project)
 > - [**What is the purpose of this project?**](#what-is-the-purpose-of-this-project)
 > - [**What are the license and copyright laws of this project?**](#what-are-the-license-and-copyright-laws-of-this-project)
 > - [**Where can I read the security policy guidelines of this project?**](#where-can-i-read-the-security-policy-guidelines-of-this-project)
@@ -29,7 +29,7 @@
 <br>
 
 
-## What is NyvoAI project?
+## What is NyvonetHunter project?
 ---
 > **NyvoAI is an intuitive and highly innovative desktop application that aims to collate an extensive array of cutting-edge Artificial Intelligence (AI) tools in a single accessible platform. With the ultimate aim of simplifying and optimising the process of utilizing AI and its associated technologies, NyvoAI's platform has been meticulously designed to foster efficient and effective interactions. From a diversified selection of interactive visualizations and user-friendly interfaces, to the provision of seamless integration with complementary third-party software, NyvoAI serves as an invaluable resource for diverse sets of users.**
 ---
