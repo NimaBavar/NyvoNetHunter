@@ -7,16 +7,17 @@
 from packages import (
     cmd_input, 
     ip_address, 
-    extract_url,
-    
+    requests,
 )
 
-__version__ = "4.9.6"
+__version__ = "4.12.8"
 __author__ = "KhodeNima ( Nima Bavar )"
 __built_date__ = "2023/11/13"
 
 
 class DirectRunError(Exception):
+    """Improper direct run of a module
+    """
     def __init__(self, error_message: str):
         self.error_message = error_message
 
@@ -36,9 +37,10 @@ class DirectRunError(Exception):
             )
 
         self.__error_message = message
-
-
+    
+        
 def is_valid_ip(ip: str) -> bool:
+
     if not isinstance(ip, str):
         ip_argument_type = type(ip).__name__
         raise ValueError(
@@ -90,18 +92,28 @@ def is_valid_ipv6(ip: str):
 
     return False
     
-    
+
 def is_valid_url(url: str) -> bool:
-    
-    
+
     if not isinstance(url, str):
         url_argument_type = type(url).__name__
-        raise ValueError(f"Expected argument type passed for the parameter ( url ): ( str ) | not {url_argument_type}")
+        raise ValueError(f"Expected argument type passed for the parameter ( url ): (str) | Not: ( {url_argument_type} )")
         
-    if url.startswith("https://") and url.endswith:
-        ...
+    tries_count = 1
     
-
+    for number in range(0, 3):
+        try:
+            response = requests.get(url=url)
+            return True
+            
+        except:
+            if tries_count == 2:
+                return False
+            
+            url = f"https://{url}" 
+            tries_count += 1
+    
+    
 def clean_terminal() -> None:
     cmd_input("cls")
 
@@ -113,5 +125,3 @@ if module_is_runned_directly:
     raise DirectRunError(
         "Database modules are not intended to run directly. They are produced for import usage only."
     )
-    
-    

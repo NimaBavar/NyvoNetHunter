@@ -13,7 +13,7 @@ from ipaddress import ip_address
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtTest import QTest
 from PyQt5 import QtWidgets
-from tldextract import extract as extract_url
+import requests
 import json
 import sys
 
