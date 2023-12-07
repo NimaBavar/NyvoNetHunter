@@ -3,6 +3,7 @@
 ---
 """
 
+
 def setup_database_import_path() -> None:
     from sys import path as module_paths
     import pathlib
@@ -27,7 +28,7 @@ from packages import (
     ABC,
 )
 
-__version__ = "5.13.9"
+__version__ = "5.15.11"
 __author__ = "KhodeNima ( Nima Bavar )"
 __built_date__ = "2023/11/13"
 
@@ -48,9 +49,9 @@ class DirectRunError(Exception):
         message_is_not_valid = not message_is_string
 
         if message_is_not_valid:
-            message_argument_type = type(message).__name__
+            error_message_argument_type = type(message).__name__
             raise ValueError(
-                f"Expected argument type passed for the parameter ( error_message ): ( str ) | Not: ( {message_argument_type} )"
+                f"Expected argument type passed for the parameter ( error_message ): ( str ) | Not: ( {error_message_argument_type} )"
             )
 
         self.__error_message = message
@@ -76,80 +77,99 @@ class Connectable(ABC):
 
 
 class NyvoNetHunterIpAddress(Connectable):
-    def __init__(self, endpoint: str):
-        self.endpoint = endpoint
+    def __init__(self, ip_address: str):
+        self.endpoint = ip_address
 
     @property
     def endpoint(self) -> str:
-        return self.__endpoint
+        return self.__ip_address
 
     @endpoint.setter
-    def endpoint(self, __endpoint):
-        
-        if not isinstance(__endpoint, str):
-            endpoint_argument_type = type(__endpoint).__name__
-            raise ValueError(f"Expected argument type passed for the parameter ( endpoint ): ( str ) | Not: {endpoint_argument_type}")
-            
-        if not is_valid_ip(__endpoint):
+    def endpoint(self, __ip_address):
+        if not isinstance(__ip_address, str):
+            endpoint_argument_type = type(__ip_address).__name__
+            raise ValueError(
+                f"Expected argument type passed for the parameter ( endpoint ): ( str ) | Not: {endpoint_argument_type}"
+            )
+
+        if not is_valid_ip(__ip_address):
             raise TypeError("Invalid Ip address passed.")
-    
-        self.__endpoint = __endpoint
-        
+
+        self.__ip_address = __ip_address
+
 
 class NyvoNetHunterUrl(Connectable):
     def __init__(self, endpoint: str):
         self.endpoint = endpoint
-        
-    
+
     @property
     def endpoint(self) -> str:
         return self.__endpoint
-        
-    
+
     @endpoint.setter
     def endpoint(self, __endpoint) -> str:
-    
         if not isinstance(__endpoint, str):
             endpoint_argument_type = type(__endpoint).__name__
-            raise ValueError(f"Expected argument type passed for the parameter ( endpoint ): ( str ) | Not: {endpoint_argument_type}")
-            
+            raise ValueError(
+                f"Expected argument type passed for the parameter ( endpoint ): ( str ) | Not: {endpoint_argument_type}"
+            )
+
         if not is_valid_url(__endpoint):
             raise TypeError("Invalid url passed.")
-            
-        self.__endpoint = __endpoint
 
-def find_endpoint_type(self, connectable: Connectable) -> Literal["ip", "url"]:
+        self.__endpoint = __endpoint
+        
+        
+def generate_valid_connectable(endpoint: str) -> Connectable:
+
+    if not isinstance(endpoint, str):
+        endpoint_argument_type = type(endpoint).__name__
+        raise ValueError(f"Expected argument type passed for the parameter ( endpoint ): str | Not: {endpoint_argument_type}")
+        
+    endpoint_type = find_endpoint_type(endpoint)
+    
+    try:
+        if endpoint_type == "ip":
+            generated_connectable = NyvoNetHunterIpAddress(endpoint)
+        
+        if endpoint_type == "url":
+            generated_connectable = NyvoNetHunterUrl(endpoint)
+    
+    except Exception as e:
+        raise e
+        
+    return generated_connectable
+
+
+def find_endpoint_type(connectable: [Connectable, str]) -> Literal["ip", "url"]:
     """
     Returns:
         str: ( `ip` ), ( `url` )
     """
-    
-    if not isinstance(connectable, Connectable):
+
+    if not isinstance(connectable, (Connectable, str)):
         connectable_argument_type = type(connectable).__name__
         raise ValueError(
-            f"Expected argument type passed for the parameter ( connectable ): Connectable | Not: ( {connectable_argument_type} )"
+            f"Expected argument types passed for the parameter ( connectable, str ): Connectable | Not: ( {connectable_argument_type} )"
         )
-            
-    if isinstance(str, Connectable):
+
+    if isinstance(connectable, str):
         connectable_endpoint = connectable
-            
-    connectable_endpoint = connectable.endpoint
-        
+
+    else:
+        connectable_endpoint = connectable.endpoint
+
     endpoint_is_ip_address = is_valid_ip(connectable_endpoint)
     endpoint_is_url = is_valid_url(connectable_endpoint)
-        
+
     if not endpoint_is_ip_address and not endpoint_is_url:
         raise TypeError("The connectable endpoint type is not communicatable")
-            
-    if endpoint_is_ip_address and endpoint_is_url:
-        assert "Validation error"
-            
+
     if endpoint_is_ip_address:
         return "ip"
-            
+
     if endpoint_is_url:
         return "url"
-
 
 
 def is_valid_ip(ip: str) -> bool:
@@ -206,52 +226,63 @@ def is_valid_ipv6(ip: str):
 
 
 def is_valid_url(url: str) -> bool:
-
     if not isinstance(url, str):
         url_argument_type = type(url).__name__
         raise ValueError(
             f"Expected argument type passed for the parameter ( url ): (str) | Not: ( {url_argument_type} )"
         )
-        
+
     url_contains_schema = url.startswith("https://") or url.startswith("http://")
-    
+
     if not url_contains_schema:
         url = f"http://{url}"
 
     extracted_url_segments = extract_url(url).__dict__
     extracted_segments_list = [segment for segment in extracted_url_segments.values()]
-    
+
     url_has_domain_name = bool(extracted_segments_list[1])
     url_has_top_level_domain = bool(extracted_segments_list[2])
-    
+
     url_is_valid = all([url_has_domain_name, url_has_top_level_domain])
-    
+
     if url_is_valid:
         return True
-        
+
     return False
-    
-def make_api_call(connectable: Connectable) -> str:
+
+
+def exmine_endpoint_location(connectable: Connectable) -> str:
+
     api_key = "mWNfs+SWsyZk+Wx6r5AyGw==cFD5QGOQyTJo3Xzb"
-        
-    connectable_endpoint = connectable.endpoint
-    connectable_endpoint_type = find_endpoint_type(connectable_endpoint)
-        
-        
-    api_key = QByteArray("X-Api-Key".encode())
-    api_key_value = QByteArray(api_key.encode())
-
-    api_key_header = {api_key: api_key_value}
-
-    if not isinstance(connectable, str):
+    ip_lookup_api_url = "https://api.api-ninjas.com/v1/iplookup?address="
+    url_lookup_api_url = "https://api.api-ninjas.com/v1/urllookup?url="
+    
+    if not isinstance(connectable, Connectable):
         connectable_argument_type = type(connectable).__name__
         raise ValueError(
-            "Expected argument type passed for the parameter ( connectable ): Connectable | Not: ( Connectable ) |"
+            f"Expected argument type passed for the parameter ( connectable ): Connectable | Not: ( {connectable_argument_type} )"
         )
 
-    if connectable_endpoint_type:
-         ...
+    try:
+        connectable_endpoint_type = find_endpoint_type(connectable=connectable)
         
+    except:
+        raise AssertionError("...")
+
+    api_key_sign = "X-Api-Key"
+    api_key_value = api_key
+    api_key_header = {api_key_sign: api_key_value}
+        
+    
+    if connectable_endpoint_type == "ip":
+        response = requests.get(f"{ip_lookup_api_url}{connectable.endpoint}", headers=api_key_header)
+        
+    if connectable_endpoint_type == "url":
+        response = requests.get(f"{url_lookup_api_url}{connectable.endpoint}", headers=api_key_header)
+        
+    if response.ok:
+        return response.text
+
 
 def clean_terminal() -> None:
     cmd_input("cls")

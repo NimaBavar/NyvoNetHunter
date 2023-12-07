@@ -250,13 +250,13 @@ QGraphicsView:disabled {
 }</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="callstatusLabel">
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>110</y>
+     <y>100</y>
      <width>121</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -395,7 +395,7 @@ QProgressBar:disabled {
     <number>24</number>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="responseLabel">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -466,7 +466,7 @@ QGraphicsView:disabled {
 }</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox">
+  <widget class="QCheckBox" name="countryCheckBox">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -621,7 +621,7 @@ QLabel:disabled {
     <string>          Examine options</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_2">
+  <widget class="QCheckBox" name="regionCheckBox">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -718,7 +718,7 @@ QCheckBoxchecked ~ .svg-icon {
     <string>Region</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_3">
+  <widget class="QCheckBox" name="cityCheckBox">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -815,7 +815,7 @@ QCheckBoxchecked ~ .svg-icon {
     <string>City</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_4">
+  <widget class="QCheckBox" name="zipcodeCheckBox">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -912,7 +912,7 @@ QCheckBoxchecked ~ .svg-icon {
     <string>Zip code</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_5">
+  <widget class="QCheckBox" name="timezoneCheckBox">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -1009,7 +1009,7 @@ QCheckBoxchecked ~ .svg-icon {
     <string>Time zone</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_6">
+  <widget class="QCheckBox" name="ispCheckBox">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -1109,7 +1109,7 @@ QCheckBoxchecked ~ .svg-icon {
     <string>ISP</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_7">
+  <widget class="QCheckBox" name="locationCheckBox">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -1209,7 +1209,7 @@ QCheckBoxchecked ~ .svg-icon {
     <string>Show map location</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_8">
+  <widget class="QCheckBox" name="latitudeCheckBox">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -1309,7 +1309,7 @@ QCheckBoxchecked ~ .svg-icon {
     <string>latitude</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_9">
+  <widget class="QCheckBox" name="longitudeCheckBox">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -1464,7 +1464,33 @@ QLabel:disabled {
 }</string>
    </property>
    <property name="text">
-    <string>          Connection Status</string>
+    <string>         Connection Status</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>40</y>
+     <width>71</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>40</y>
+     <width>51</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
    </property>
   </widget>
  </widget>
