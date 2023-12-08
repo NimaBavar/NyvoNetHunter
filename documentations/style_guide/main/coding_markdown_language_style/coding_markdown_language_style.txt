@@ -2,7 +2,7 @@ NyvoStudio MarkDown file style guide:
 
     1. Every Markdown file must contain at least one header.
 
-    2. Headers should not be bolded , italic, ETC, they Must be displayed in plain text.
+    2. Headers should not be bolded , italic ETC, they Must be displayed in simple text.
 
     3. All headers should be highest priority header ( # ), Usage of other headers is not allowed.
 
