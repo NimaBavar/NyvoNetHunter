@@ -35,8 +35,8 @@ class test_endpoint_type_checker(TestCase):
         self.invalid_endpoint_2 = "im.an_invalid_endpoing.com"
 
     def test_invalid_endpoint_type(self):
-        self.assertRaises(ValueError, find_endpoint_type, self.invalid_endpoint_1)
-        self.assertRaises(ValueError, find_endpoint_type, self.invalid_endpoint_2)
+        self.assertRaises(TypeError, find_endpoint_type, args=self.invalid_endpoint_1)
+        self.assertRaises(TypeError, find_endpoint_type, args=self.invalid_endpoint_2)
 
     def test_url_endpoint_type(self):
         self.assertEqual(find_endpoint_type(self.valid_url_connectable_1), "url")

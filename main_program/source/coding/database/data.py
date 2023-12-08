@@ -25,10 +25,11 @@ from packages import (
     cmd_input,
     requests,
     Literal,
+    QThread,
     ABC,
 )
 
-__version__ = "5.15.11"
+__version__ = "5.16.12"
 __author__ = "KhodeNima ( Nima Bavar )"
 __built_date__ = "2023/11/13"
 
@@ -251,7 +252,7 @@ def is_valid_url(url: str) -> bool:
     return False
 
 
-def exmine_endpoint_location(connectable: Connectable) -> str:
+def examine_endpoint(connectable: Connectable) -> str:
 
     api_key = "mWNfs+SWsyZk+Wx6r5AyGw==cFD5QGOQyTJo3Xzb"
     ip_lookup_api_url = "https://api.api-ninjas.com/v1/iplookup?address="
@@ -263,11 +264,16 @@ def exmine_endpoint_location(connectable: Connectable) -> str:
             f"Expected argument type passed for the parameter ( connectable ): Connectable | Not: ( {connectable_argument_type} )"
         )
 
+
     try:
         connectable_endpoint_type = find_endpoint_type(connectable=connectable)
         
-    except:
-        raise AssertionError("...")
+    except (TypeError, ValueError) as exception:
+        error_type = type(exception)
+        error_message = repr(exception)
+        
+        raise error_type(error_message)
+        
 
     api_key_sign = "X-Api-Key"
     api_key_value = api_key
@@ -282,7 +288,7 @@ def exmine_endpoint_location(connectable: Connectable) -> str:
         
     if response.ok:
         return response.text
-
+        
 
 def clean_terminal() -> None:
     cmd_input("cls")

@@ -10,9 +10,9 @@ BY: NyvoStudio, KhodeNima ( Nima Bavar )
 
 from database.data import (
     generate_valid_connectable,
-    exmine_endpoint_location,
     NyvoNetHunterIpAddress,
     NyvoNetHunterUrl,
+    examine_endpoint,
     is_valid_ipv4,
     is_valid_ipv6,
     is_valid_url,
@@ -24,29 +24,30 @@ from database.packages import *
 
 
 class NyvoNetHunterApp(QDialog):
-    
+
 
     def set_progressbar_value(self, amount: int):
+    
         if amount > 100:
             raise TypeError(f"The progress bar fill amount cannot be more than 100.")
 
         if not isinstance(amount, (int, float)):
-            parameter_type = type(amount).__name__
+            amount_argument_type = type(amount).__name__
             raise TypeError(
-                f"Expected argument type for the parameter ( amount ): int | Not {parameter_type}"
+                f"Expected argument type for the parameter ( amount ): int | Not {amount_argument_type}"
             )
 
         self.ui.progressBar.setValue(amount)
 
-    def set_lineedit_result(self):
+    def show_input_result(self):
+    
+
         line_edit_input = self.ui.lineEdit.text()
         
         if not line_edit_input:
             self.ui.responseLabel.setText("Please provide a valid IP or URL.")
             return
         
-        self.ui.responseLabel.clear()
-        self.ui.lineEdit.clear()
         
         checked_examine_options = self.get_requested_examine_options()
         no_examine_option_is_checked = len(checked_examine_options) == 0
@@ -54,14 +55,14 @@ class NyvoNetHunterApp(QDialog):
             self.ui.responseLabel.setText("Please choose at least one examine option.")
             return 
             
-        self.ui.callstatusLabel.setText("Examining.")
         
         try:
-            
-            self.connectable = generate_valid_connectable(line_edit_input)
-            examine_result = loads(exmine_endpoint_location(self.connectable))
-            
-            if examine_result and not examine_result["is_valid"] == True:
+        
+            self.connectable_object = generate_valid_connectable(line_edit_input)
+            backend_examine_result = loads(examine_endpoint(self.connectable_object))
+
+        
+            if backend_examine_result and not backend_examine_result["is_valid"] == True:
                 self.ui.responseLabel.setText("IP or URL address does not exist in the web.")
                 return
             
@@ -76,21 +77,42 @@ class NyvoNetHunterApp(QDialog):
             option_index = option_index + 1
             
             try:
-                examine_text += f"{option_index}. {option}: {examine_result[option]}\n\n"
+                examine_text += f"{option_index}. {option}: {backend_examine_result[option]}\n\n"
             
             except KeyError:
                 examine_text += f"{option_index}. {option}: Not found.\n\n"
             
-
-        self.ui.responseLabel.setText(examine_text)
-        self.ui.callstatusLabel.setText("Awaiting input.")
+        
+        examine_text += f"Examined endpoint: {self.ui.lineEdit.text()}"
             
+        self.ui.responseLabel.clear()
+        self.ui.lineEdit.clear()
+        
+        self.ui.responseLabel.setText(examine_text)
 
-    def fill_progressbar_animation(self) -> None:
-        ...
+    def api_examining_animation(self) -> None:
+        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode( ), parent=self)
+        
+        progressbar_percent_animation.setDuration(10000)
+        progressbar_percent_animation.setStartValue(0)
+        progressbar_percent_animation.setEndValue(100)
+        
+        if self.api_status_thread.isRunning():
+            self.ui.progressBar.valueChanged.connect(self.api_status_thread.exit)
+            self.ui.callstatusLabel.setText("Examining...")
+            progressbar_percent_animation.start()
+        
 
-    def empty_progressbar_animation(self) -> None:
-        ...
+    def api_responded_animation(self) -> None:
+       progressbar_percent_aniamtion = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
+       
+       progressbar_percent_aniamtion.setDuration(500)
+       progressbar_percent_aniamtion.setStartValue(100)
+       progressbar_percent_aniamtion.setEndValue(0)
+       
+       if not self.api_status_thread.isRunning():
+            self.ui.callstatusLabel.setText("Awaiting input...")
+            progressbar_percent_aniamtion.start()
         
     def get_requested_examine_options(self):
         
@@ -126,7 +148,15 @@ class NyvoNetHunterApp(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        self.ui.pushButton.clicked.connect(self.set_lineedit_result)
+        self.api_status_thread = QThread()
+        self.api_status_thread.started.connect(self.api_examining_animation)
+        
+        self.api_status_thread.finished.connect(self.api_responded_animation)
+        
+        self.ui.pushButton.clicked.connect(self.api_status_thread.start)
+        self.ui.pushButton.clicked.connect(self.show_input_result)
+        
+        
         self.show()
 
 
