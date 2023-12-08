@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/KhodeNima/NyvoNetHunter/blob/Main.Project/main_program/source/ui_design/resources/pictures/icon.png" alt="logo" width="200" />
+  <img src="https://github.com/KhodeNima/NyvoNetHunter/blob/Main.Project/documentations/logo_ideas/2.png" alt="logo" width="200" />
 </p>
 
 
