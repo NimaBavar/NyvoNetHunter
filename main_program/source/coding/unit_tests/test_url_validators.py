@@ -4,7 +4,7 @@ The unit test module for url validator functions in the ( data.py ) module.
 """
 
 
-def setup_database_import_path() -> None:
+def setup_database_import_paths() -> None:
     from sys import path as module_paths
     import pathlib
 
@@ -14,7 +14,7 @@ def setup_database_import_path() -> None:
     module_paths.append(f"{project_root_directory}/main_program/source/coding")
 
 
-setup_database_import_path()
+setup_database_import_paths()
 
 
 from database.data import is_valid_url, clean_terminal

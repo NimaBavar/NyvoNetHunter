@@ -13,6 +13,7 @@ from PyQt5.QtCore import QEventLoop
 from PyQt5.QtCore import QByteArray
 from os import system as cmd_input
 from ipaddress import ip_address
+from PyQt5.QtCore import QThread
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtTest import QTest
 from PyQt5 import QtWidgets
