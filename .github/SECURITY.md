@@ -73,7 +73,7 @@
 <br>
 
  > [!WARNING]
- > These laws are currently active and any Abuse , Mislead , Breaking will follow legal penalty and prosecution
+ > These laws are currently active and any Abuse , Mislead , Breaking will follow legal penalty and prosecution.
 ---
 <br>
 
