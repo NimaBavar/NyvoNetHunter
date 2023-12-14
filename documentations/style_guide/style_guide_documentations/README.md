@@ -4,8 +4,8 @@
 
 <br>
 
-*Thank you for using our Style Guide Repository.*
+*Thank you for using our Style Guide.*
 
 ---
 
-> By : KhodeNima ( Nima Bavar ), NyvoStudios software engineer and team manager.
+> By : KhodeNima ( Nima Bavar ), NyvoStudio's software engineer and team manager.

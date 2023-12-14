@@ -1,96 +1,86 @@
 # language: en
 
-Feature: The apps base layout algorithm.
+Feature: The apps fundamental features.
 
 
-Background:
+Background: The app must be launched at first.
 
 
-  Scenario: User launches the app
-    When the User launches the app
-      Then launch the app.
+Rule: The user is unable to use the app features without a valid internet connection.
 
-
-  Scenario: The requirements are not satisfied Or/And Python is not installed
-    When the requirements are not satisfied or Python is not installed
-      When the user accepted and gave permission to install the requirements
-        Then install the requirements
-          But do not launch the app.
-
+  Example: Ali cannot dig an URL address without internet connection.
+    Given Ali does not have a valid internet connection
+    Then all the app features will be locked.
     
-      But if the user rejected and denied the permission required for installing the requirements
-        Then Warn the user
-          And close the app launcher.
 
-    
-  Scenario: All of the requirements are satisfied and Python is installed
-    When all of the the requirements are satisfied
-      Then show the acount management panel.
+Rule: The user cannot examine a network endpoint without choosing at least one examine option.
 
+  Example: Ali cannot examine an URL address without chosing at least one examine option
+    Given all examine options are unchecked
+    When Ali tries to examine the information of: "https://google.com"
+    Then he will be informed with an error message on the response screen.
     
-  Scenario: The User decides to quit
-    When the User clicks the close button
-      When all safety checking operations succeded
-        Then close the application.
+
+Rule: The user cannot examine the informations of an invalid IP or URL address
+
+  Example: Ali cannot examine an invalid URL address
+    When Ali tries to examine the information of: "I'm an invalid IP address!"
+    Then he will be informed with an error message on the response screen.
+    
+
+Rule: The user cannot see the in-map location of an endpoint if the required informations couldn't be found.
   
+  Example: Ali cannot see the in-map location of an URL address if the lattitude and the longitude are not found
+    Given the "Show map location" option is checked
+    When Ali tries to examine the information of: "https://github.com/KhodeNima"
+    But the lattitude and longitude couldn't be found
+    
+    Then Ali will be informed with an error message on the map screen.
+    
 
-  Scenario: Not internet connection is found
-    When the user does not have any internet connection
-      Then suspend the app until the internet connection becomes accessible.
+Rule: The user cannot rapidly examine an endpoint
 
+  Example: Ali cannot examine the URL "https://github.com/KhodeNima" three times in less than 10 second
+    When Ali examines the URL "https://github.com/KhodeNima"
+    And he perform the exmination option again "https://github.com/KhodeNima"
+    And he perform it again
+    
+    Then Ali will be informed with an error message on the response screen.
+      
 
-Scenario: The User chose the login option
-  Given the account management panel is launched
-    When the User chose the login option
-      Then verify the User information
-        When the Information is valid
-          Then log the user into the application
+Scenario: the user can see his/her internet connection status on the main window.
 
-        But if the information is not valid
-          Then warn the user to try again.
+  When the user does not have an internet connection
+  Then the connection status icon will be set to a red X.
+    
+  But if the user have a strong enough internet connection
+  Then the connction status icon will be set to a green check mark.
+    
+    
+Scenario: The user can examine the informations of an IP address.
 
-
-Scenario: The User chose the sign-up option
-  When the account management panel is launched
-    When the User chose the sign-up option
-      Then Verify the user sign-up inputs
-        When the sign-ip inputs are valid
-          Then create the User account
-            And log the user in.
-
-        But if the inputs are invalid
-          Then warn the User to try again.
-
-
-Scenario: The user is logged in
-  Given the user is logged in
-    And internet connection is available
-      Then show the apps main panle
-
-
-Scenario: The main panel is launched
-  When the main panel is launched
-    Then show the input form
-      And show the 'Generate' button.
-
-
-Scenario: The user input is valid
-  When the user input is valid
-    Then warn the user that their input is valid
-      And unlock the 'Generate' button.
-
-
-Scenario: The user input is invalid or contains sensitive content
-  When the user input is invalid or contains sensitive content
-    Then warn the user that their input is invalid
-      And lock 'Generate' button.
+  Given Ali inputs the IP address: 144.145.146.147
+  And clicks the examine button
+    
+  Then the IP information will be visible on the response screen.
   
+  
+Scenario: The user can examine the informations of an URL address.
 
-Scenario: The user clicks the generate buttion
-  When the user clicks the generate button
-    Then produce a AI generated image
-      And display the image on the screen.
+  Given Ali inputs the URL address: "https://github.com/KhodeNima"
+  And clicks the examine button
+    
+  Then the URL information will be visible on the response screen.
+    
+
+Scenario: The user can see the in-map location of the examined endpoint.
+  
+  Given Ali input the URL address: "https://google.com"
+  And he chekcs the examine option: "Show map location"
+  And lattitude of the URL is found
+  And the longitude of the URL is found
+  
+  Then show the exact in-map location of the URL on the map screen.
 
 
-
-"""ALGORITHM BY: KHODENIMA ( NIMA BAVAR )"""
+"""ALGORITHM EXPLANATION BY: KHODENIMA ( NIMA BAVAR )"""
