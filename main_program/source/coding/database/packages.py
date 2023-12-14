@@ -1,5 +1,5 @@
 """
-# The package/library imports required for the project
+# The package and/or library imports required for the project
 ---
 """
 
@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QApplication, QDialog
 from requests.exceptions import ConnectionError
 from tldextract import extract as extract_url
 from PyQt5.QtCore import QPropertyAnimation
+from requests.exceptions import SSLError
 from PyQt5.QtCore import QEventLoop
 from PyQt5.QtCore import QByteArray
 from os import system as cmd_input

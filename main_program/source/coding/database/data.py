@@ -29,7 +29,7 @@ from packages import (
     ABC,
 )
 
-__version__ = "5.16.14"
+__version__ = "5.18.20"
 __author__ = "KhodeNima ( Nima Bavar )"
 __built_date__ = "2023/11/13"
 
@@ -119,26 +119,28 @@ class NyvoNetHunterUrl(Connectable):
             raise TypeError("Invalid url passed.")
 
         self.__endpoint = __endpoint
-        
-        
-def generate_valid_connectable(endpoint: str) -> Connectable:
 
+
+def generate_valid_connectable(endpoint: str) -> Connectable:
     if not isinstance(endpoint, str):
         endpoint_argument_type = type(endpoint).__name__
-        raise ValueError(f"Expected argument type passed for the parameter ( endpoint ): str | Not: {endpoint_argument_type}")
-        
+        raise ValueError(
+            f"Expected argument type passed for the parameter ( endpoint ): str | Not: {endpoint_argument_type}"
+        )
+
     endpoint_type = find_endpoint_type(endpoint)
-    
+
     try:
         if endpoint_type == "ip":
             generated_connectable = NyvoNetHunterIpAddress(endpoint)
-        
+
         if endpoint_type == "url":
             generated_connectable = NyvoNetHunterUrl(endpoint)
-    
-    except Exception as e:
-        raise e
-        
+            
+
+    except ValueError:
+        raise ValueError("Invalid ip or URL.")
+
     return generated_connectable
 
 
@@ -160,11 +162,12 @@ def find_endpoint_type(connectable: [Connectable, str]) -> Literal["ip", "url"]:
     else:
         connectable_endpoint = connectable.endpoint
 
+    
     endpoint_is_ip_address = is_valid_ip(connectable_endpoint)
     endpoint_is_url = is_valid_url(connectable_endpoint)
 
     if not endpoint_is_ip_address and not endpoint_is_url:
-        raise TypeError("The connectable endpoint type is not communicatable")
+        raise TypeError("Invalid IP or URL")
 
     if endpoint_is_ip_address:
         return "ip"
@@ -253,42 +256,42 @@ def is_valid_url(url: str) -> bool:
 
 
 def examine_endpoint(connectable: Connectable) -> str:
-
-    api_key = "mWNfs+SWsyZk+Wx6r5AyGw==cFD5QGOQyTJo3Xzb"
+    api_key = "KBvhRDGVffUsQQ97m1Cm6SkmBERj8NLXPqZH8A0y"
     ip_lookup_api_url = "https://api.api-ninjas.com/v1/iplookup?address="
     url_lookup_api_url = "https://api.api-ninjas.com/v1/urllookup?url="
-    
+
     if not isinstance(connectable, Connectable):
         connectable_argument_type = type(connectable).__name__
         raise ValueError(
             f"Expected argument type passed for the parameter ( connectable ): Connectable | Not: ( {connectable_argument_type} )"
         )
 
-
     try:
         connectable_endpoint_type = find_endpoint_type(connectable=connectable)
-        
+
     except (TypeError, ValueError) as exception:
         error_type = type(exception)
         error_message = repr(exception)
-        
+
         raise error_type(error_message)
-        
 
     api_key_sign = "X-Api-Key"
     api_key_value = api_key
     api_key_header = {api_key_sign: api_key_value}
-        
-    
+
     if connectable_endpoint_type == "ip":
-        response = requests.get(f"{ip_lookup_api_url}{connectable.endpoint}", headers=api_key_header)
-        
+        response = requests.get(
+            f"{ip_lookup_api_url}{connectable.endpoint}", headers=api_key_header
+        )
+
     if connectable_endpoint_type == "url":
-        response = requests.get(f"{url_lookup_api_url}{connectable.endpoint}", headers=api_key_header)
-        
+        response = requests.get(
+            f"{url_lookup_api_url}{connectable.endpoint}", headers=api_key_header
+        )
+
     if response.ok:
         return response.text
-        
+
 
 def clean_terminal() -> None:
     cmd_input("cls")

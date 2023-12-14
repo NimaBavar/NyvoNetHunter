@@ -40,14 +40,11 @@ class NyvoNetHunterApp(QDialog):
         self.ui.progressBar.setValue(amount)
 
     def show_input_result(self):
-    
 
         line_edit_input = self.ui.lineEdit.text()
         
-        if not line_edit_input:
-            self.ui.responseLabel.setText("Please provide a valid IP or URL.")
-            return
-        
+        exceptions_found = False
+
         
         checked_examine_options = self.get_requested_examine_options()
         no_examine_option_is_checked = len(checked_examine_options) == 0
@@ -55,21 +52,25 @@ class NyvoNetHunterApp(QDialog):
             self.ui.responseLabel.setText("Please choose at least one examine option.")
             return 
             
-        
         try:
-        
             self.connectable_object = generate_valid_connectable(line_edit_input)
-            backend_examine_result = loads(examine_endpoint(self.connectable_object))
-
-        
-            if backend_examine_result and not backend_examine_result["is_valid"] == True:
-                self.ui.responseLabel.setText("IP or URL address does not exist in the web.")
-                return
-            
                 
-        except TypeError:
+        except TypeError as t:
             self.ui.responseLabel.setText("Invalid IP or URL address.")
-            return 
+            
+            self.api_call_thread.exit()
+            return
+            
+            
+        try:
+            self.api_call_thread.start()
+            backend_examine_result = loads(examine_endpoint(self.connectable_object))
+            
+        except SSLError:
+            self.ui.responseLabel.setText("Too many examines in a short period of time, please wait.")
+            
+            self.api_call_thread.exit()
+            return
             
             
         examine_text = ""
@@ -86,33 +87,35 @@ class NyvoNetHunterApp(QDialog):
         examine_text += f"Examined endpoint: {self.ui.lineEdit.text()}"
             
         self.ui.responseLabel.clear()
-        self.ui.lineEdit.clear()
-        
         self.ui.responseLabel.setText(examine_text)
+        
 
     def api_examining_animation(self) -> None:
         progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode( ), parent=self)
         
-        progressbar_percent_animation.setDuration(10000)
+        progressbar_percent_animation.setDuration(300)
         progressbar_percent_animation.setStartValue(0)
         progressbar_percent_animation.setEndValue(100)
         
-        if self.api_status_thread.isRunning():
-            self.ui.progressBar.valueChanged.connect(self.api_status_thread.exit)
-            self.ui.callstatusLabel.setText("Examining...")
-            progressbar_percent_animation.start()
-        
 
-    def api_responded_animation(self) -> None:
-       progressbar_percent_aniamtion = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
-       
-       progressbar_percent_aniamtion.setDuration(500)
-       progressbar_percent_aniamtion.setStartValue(100)
-       progressbar_percent_aniamtion.setEndValue(0)
-       
-       if not self.api_status_thread.isRunning():
-            self.ui.callstatusLabel.setText("Awaiting input...")
-            progressbar_percent_aniamtion.start()
+        self.ui.callstatusLabel.setText("Examining...")
+        
+        progressbar_percent_animation.start()
+        self.fill_animation_thread.exit()
+        
+        progressbar_percent_animation.finished.connect(self.api_responded_animation)
+        self.api_call_thread.exit()
+        
+    def api_responded_animation(self):
+        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
+        
+        progressbar_percent_animation.setDuration(500)
+        progressbar_percent_animation.setStartValue(100)
+        progressbar_percent_animation.setEndValue(0)
+        
+        progressbar_percent_animation.start()
+        self.ui.callstatusLabel.setText("Awaiting input.")
+        
         
     def get_requested_examine_options(self):
         
@@ -147,14 +150,17 @@ class NyvoNetHunterApp(QDialog):
         super().__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+    
 
-        self.api_status_thread = QThread()
-        self.api_status_thread.started.connect(self.api_examining_animation)
+        self.api_call_thread = QThread()
+        self.fill_animation_thread = QThread()
         
-        self.api_status_thread.finished.connect(self.api_responded_animation)
         
-        self.ui.pushButton.clicked.connect(self.api_status_thread.start)
+
+        self.fill_animation_thread.started.connect(self.api_examining_animation)
+        
         self.ui.pushButton.clicked.connect(self.show_input_result)
+        self.api_call_thread.started.connect(self.fill_animation_thread.start)
         
         
         self.show()

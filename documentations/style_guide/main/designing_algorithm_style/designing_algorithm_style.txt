@@ -1,10 +1,11 @@
-NyvoStudio algorithm writing style guide :
+NyvoStudio algorithm writing style guide:
 
-    1. Important variables are shown with variable sign ( identifier-Value pair ) , do not use excessively : Variables are not a part of the algorithm
+    1. Important variables are shown with variable sign ( identifier-Value pair ) , do not use excessively: -
+        Variables are not a part of the algorithm
+        
+    2. Loop starting , finishing , changes in operations will be written In sqaure.
 
-    2. Loop starting , finishing , changes in operations will be written In Sqaure.
-
-    3. Normal logical activites will be written In Circle ( Not classes , unctions , ecorators )
+    3. Normal logical activites will be written in Milestone plan item ( Not classes , functions , decorators ).
 
     4. User inputs are shown in Hexagon shape.
 
@@ -22,14 +23,17 @@ NyvoStudio algorithm writing style guide :
 
     11. Imports, accesses and inherits will be Refrenced With Arrowhead Lines.
 
-    12. Partitions will be shown In vertical Lines.
+    12. Partitions will be shown in vertical Lines.
 
-    13. Partition names will be shown in Horizontal lane.
+    13. Partition names will be shown with the Case File item.
 
     14. Comments will be sown In Comment_Alt shape.
 
     15. Numerical orderings will be written in brackets.
 
-    16. Implent indications are designed in ( Implementation event ).
+    16. Implement indications are designed in ( Implementation event ).
 
-    16. All algorithms Must be written In visual paradigm online.
+    17. All algorithms must be written In visual paradigm.
+    
+    18. All algorithm files ( Excluding the text-based ones ) must contain an Diagram Info object explaining the purpose of -
+        the file.

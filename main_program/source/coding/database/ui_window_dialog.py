@@ -27,15 +27,16 @@ from packages import (
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(1009, 685)
+        Dialog.resize(859, 685)
         font = QtGui.QFont()
         font.setBold(True)
         Dialog.setFont(font)
         Dialog.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         Dialog.setMouseTracking(False)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design\\resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
+        Dialog.setWindowOpacity(5.0)
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(430, 530, 211, 81))
         font = QtGui.QFont()
@@ -1180,16 +1181,6 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}")
         self.label_4.setObjectName("label_4")
-        self.line = QtWidgets.QFrame(Dialog)
-        self.line.setGeometry(QtCore.QRect(200, 40, 71, 101))
-        self.line.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line.setObjectName("line")
-        self.line_2 = QtWidgets.QFrame(Dialog)
-        self.line_2.setGeometry(QtCore.QRect(30, 40, 51, 101))
-        self.line_2.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_2.setObjectName("line_2")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -1220,3 +1211,13 @@ class Ui_Dialog(object):
         self.longitudeCheckBox.setToolTip(_translate("Dialog", "<html><head/><body><p>The IP user Internet Service Provider.</p><p><br/></p><p>Examples: Mobin Net Communication Company, SURFnet II c.</p></body></html>"))
         self.longitudeCheckBox.setText(_translate("Dialog", "Longitude"))
         self.label_4.setText(_translate("Dialog", "      Connection Status"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
+    sys.exit(app.exec_())
