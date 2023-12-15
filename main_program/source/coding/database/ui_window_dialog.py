@@ -34,7 +34,7 @@ class Ui_Dialog(object):
         Dialog.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         Dialog.setMouseTracking(False)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design\\resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setWindowOpacity(5.0)
         self.pushButton = QtWidgets.QPushButton(Dialog)
@@ -1181,7 +1181,15 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}")
         self.label_4.setObjectName("label_4")
-
+        self.connection_status_label = QtWidgets.QLabel(Dialog)
+        self.connection_status_label.setGeometry(QtCore.QRect(50, 50, 191, 81))
+        self.connection_status_label.setText("")
+        self.connection_status_label.setObjectName("connection_status_label")
+        
+        self.no_connction_icon = QtGui.QPixmap("main_program/source/ui_design/resources/pictures/no_connection_icon.png")
+        self.connected_icon = QtGui.QPixmap("main_program/source/ui_design/resources/pictures/connected_icon.png")
+        
+        
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -1211,13 +1219,8 @@ class Ui_Dialog(object):
         self.longitudeCheckBox.setToolTip(_translate("Dialog", "<html><head/><body><p>The IP user Internet Service Provider.</p><p><br/></p><p>Examples: Mobin Net Communication Company, SURFnet II c.</p></body></html>"))
         self.longitudeCheckBox.setText(_translate("Dialog", "Longitude"))
         self.label_4.setText(_translate("Dialog", "      Connection Status"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
+        
+        
+module_is_runned_directly = __name__ == "__main__"
+if module_is_runned_directly:
+    raise DirectRunError("Database modules are not intended to run directly, they are produced for import usage only.")
