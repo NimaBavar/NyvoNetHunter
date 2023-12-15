@@ -217,7 +217,7 @@ def is_valid_url(url: str) -> bool:
     if not url_contains_schema:
         url = f"http://{url}"
 
-    extracted_url_segments = list(extract_url(url))
+    extracted_url_segments = (extract_url(url)).__dict__()
     extracted_segments_list = [segment for segment in extracted_url_segments.values()]
 
     url_has_domain_name = bool(extracted_segments_list[1])
