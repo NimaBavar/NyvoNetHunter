@@ -17,6 +17,7 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
+from exceptions.direct_run_error import DirectRunError
 from packages import (
     abstractproperty,
     extract_url,
@@ -29,33 +30,10 @@ from packages import (
     ABC,
 )
 
-__version__ = "5.18.20"
+
+__version__ = "6.0.0"
 __author__ = "KhodeNima ( Nima Bavar )"
 __built_date__ = "2023/11/13"
-
-
-class DirectRunError(Exception):
-    """Improper direct run of a module"""
-
-    def __init__(self, error_message: str):
-        self.error_message = error_message
-
-    @property
-    def error_message(self) -> str:
-        return self.__error_message
-
-    @error_message.setter
-    def error_message(self, message) -> str:
-        message_is_string = isinstance(message, str)
-        message_is_not_valid = not message_is_string
-
-        if message_is_not_valid:
-            error_message_argument_type = type(message).__name__
-            raise ValueError(
-                f"Expected argument type passed for the parameter ( error_message ): ( str ) | Not: ( {error_message_argument_type} )"
-            )
-
-        self.__error_message = message
 
 
 class Connectable(ABC):
@@ -136,7 +114,6 @@ def generate_valid_connectable(endpoint: str) -> Connectable:
 
         if endpoint_type == "url":
             generated_connectable = NyvoNetHunterUrl(endpoint)
-            
 
     except ValueError:
         raise ValueError("Invalid ip or URL.")
@@ -162,7 +139,6 @@ def find_endpoint_type(connectable: [Connectable, str]) -> Literal["ip", "url"]:
     else:
         connectable_endpoint = connectable.endpoint
 
-    
     endpoint_is_ip_address = is_valid_ip(connectable_endpoint)
     endpoint_is_url = is_valid_url(connectable_endpoint)
 

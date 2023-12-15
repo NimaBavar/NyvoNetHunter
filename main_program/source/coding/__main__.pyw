@@ -19,6 +19,7 @@ from database.data import (
     is_valid_ip,
     Connectable, 
 )
+from database.connection_status import ConnectionStatusChecker
 from database.ui_window_dialog import Ui_Dialog
 from database.packages import *
 
@@ -43,9 +44,6 @@ class NyvoNetHunterApp(QDialog):
 
         line_edit_input = self.ui.lineEdit.text()
         
-        exceptions_found = False
-
-        
         checked_examine_options = self.get_requested_examine_options()
         no_examine_option_is_checked = len(checked_examine_options) == 0
         if no_examine_option_is_checked:
@@ -54,20 +52,33 @@ class NyvoNetHunterApp(QDialog):
             
         try:
             self.connectable_object = generate_valid_connectable(line_edit_input)
-                
+                    
+
         except TypeError as t:
-            self.ui.responseLabel.setText("Invalid IP or URL address.")
+            self.ui.responseLabel.setText("Invalid IP or URL address, please try again.")
             
             self.api_call_thread.exit()
             return
             
             
         try:
-            self.api_call_thread.start()
-            backend_examine_result = loads(examine_endpoint(self.connectable_object))
+            
+            try:
+                self.api_call_thread.start()
+                backend_examine_result = loads(examine_endpoint(self.connectable_object))
+                
+                self.api_call_thread.exit()
+            
+            except Exception:
+                self.ui.responseLabel.setText("No internet connection.")
+                self.api_call_thread.exit()
+                
+                self.no_connction_state()
+
+                return
             
         except SSLError:
-            self.ui.responseLabel.setText("Too many examines in a short period of time, please wait.")
+            self.ui.responseLabel.setText("Too many examines in a short period of time, please wait for at least 3 seconds.")
             
             self.api_call_thread.exit()
             return
@@ -146,6 +157,57 @@ class NyvoNetHunterApp(QDialog):
             
         return checked_options_list
         
+    def no_connction_state(self):
+    
+        check_boxes = [
+        
+        widget for widget in dir(self.ui) 
+        if not widget.startswith("__") 
+        and not widget.endswith("__") 
+        and widget.endswith("CheckBox")
+
+        ]
+    
+        self.ui.lineEdit.clear()
+        self.ui.lineEdit.setDisabled(True)
+        self.ui.pushButton.setDisabled(True)
+        self.ui
+        
+        for check_box in check_boxes:
+            eval(f"self.ui.{check_box}.setDisabled(True)")
+            
+            
+    
+        self.ui.responseLabel.setText("No internet connection.")
+        self.ui.connection_status_label.setPixmap(self.ui.no_connction_icon)
+        
+    def connected_state(self):  
+        
+        self.api_call_thread.start()
+    
+        check_boxes = [
+        
+        widget for widget in dir(self.ui) 
+        if not widget.startswith("__") 
+        and not widget.endswith("__") 
+        and widget.endswith("CheckBox")
+
+        ]
+        
+        self.ui.lineEdit.clear()
+        self.ui.lineEdit.setEnabled(True)
+        self.ui.pushButton.setEnabled(True)
+        self.ui.pushButton.setEnabled(True)
+
+        for check_box in check_boxes:
+            eval(f"self.ui.{check_box}.setDisabled(False)")
+            
+        self.ui.responseLabel.clear()
+        
+        self.ui.connection_status_label.setPixmap(self.ui.connected_icon)
+        
+        self.api_call_thread.exit()
+        
     def __init__(self):
         super().__init__()
         self.ui = Ui_Dialog()
@@ -154,9 +216,18 @@ class NyvoNetHunterApp(QDialog):
 
         self.api_call_thread = QThread()
         self.fill_animation_thread = QThread()
+        self.connection_status_thread = QThread()
+        
+        self.connection_status_worker = ConnectionStatusChecker()
+        
+        self.connection_status_worker.lost_connection.connect(self.no_connction_state)
+        self.connection_status_worker.spotted_connection.connect(self.connected_state)
+        
+        self.connection_status_worker.moveToThread(self.connection_status_thread)
+        self.connection_status_thread.started.connect(self.connection_status_worker.run)
         
         
-
+        
         self.fill_animation_thread.started.connect(self.api_examining_animation)
         
         self.ui.pushButton.clicked.connect(self.show_input_result)
@@ -164,6 +235,7 @@ class NyvoNetHunterApp(QDialog):
         
         
         self.show()
+        self.connection_status_thread.start()
 
 
 if __name__ == "__main__":

@@ -1470,6 +1470,19 @@ QLabel:disabled {
     <string>         Connection Status</string>
    </property>
   </widget>
+  <widget class="QLabel" name="connection_status_label">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>50</y>
+     <width>191</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
