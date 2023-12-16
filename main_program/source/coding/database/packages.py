@@ -18,10 +18,11 @@ from os import system as cmd_input
 from ipaddress import ip_address
 from PyQt5.QtCore import QThread
 from PyQt5.QtCore import QObject
+from typing import Literal, Dict
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtTest import QTest
+from platform import platform
 from PyQt5 import QtWidgets
-from typing import Literal
 from json import loads
 import requests
 import socket

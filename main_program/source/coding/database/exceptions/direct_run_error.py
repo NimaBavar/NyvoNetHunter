@@ -11,7 +11,7 @@ class DirectRunError(Exception):
 
     @property
     def error_message(self) -> str:
-        return self.__error_message
+        return self._error_message
 
     @error_message.setter
     def error_message(self, message) -> str:
@@ -24,4 +24,4 @@ class DirectRunError(Exception):
                 f"Expected argument type passed for the parameter ( error_message ): ( str ) | Not: ( {error_message_argument_type} )"
             )
 
-        self.__error_message = message
+        self._error_message = message
