@@ -17,7 +17,8 @@ def setup_database_import_paths() -> None:
 setup_database_import_paths()
 
 
-from database.data import is_valid_url, clean_terminal
+from database.workers.api import is_valid_url
+from database.data import clean_terminal
 from unittest import TestCase
 import unittest
 

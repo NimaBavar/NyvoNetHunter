@@ -17,7 +17,7 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
-from database.data import (
+from database.workers.api import (
     is_valid_ip,
     is_valid_ipv4,
     is_valid_ipv6,

@@ -8,18 +8,19 @@ BY: NyvoStudio, KhodeNima ( Nima Bavar )
 """
 
 
-from database.data import (
+from database.workers.api import (
     generate_valid_connectable,
     NyvoNetHunterIpAddress,
+    find_endpoint_type,
     NyvoNetHunterUrl,
-    examine_endpoint,
     is_valid_ipv4,
     is_valid_ipv6,
     is_valid_url,
     is_valid_ip,
     Connectable, 
 )
-from database.connection_status import ConnectionStatusChecker
+from database.workers.connection_status import ConnectionStatusChecker
+from database.workers.api import NyvoNetHunterRequestManager
 from database.ui_window_dialog import Ui_Dialog
 from database.packages import *
 
@@ -39,6 +40,49 @@ class NyvoNetHunterApp(QDialog):
             )
 
         self.ui.progressBar.setValue(amount)
+    
+    def examine_endpoint(self, connectable: Connectable) -> str:
+        api_key = "KBvhRDGVffUsQQ97m1Cm6SkmBERj8NLXPqZH8A0y"
+        ip_lookup_api_url = "https://api.api-ninjas.com/v1/iplookup?address="
+        url_lookup_api_url = "https://api.api-ninjas.com/v1/urllookup?url="
+
+        if not isinstance(connectable, Connectable):
+            connectable_argument_type = type(connectable).__name__
+            raise ValueError(
+            f"Expected argument type passed for the parameter ( connectable ): Connectable | Not: ( {connectable_argument_type} )"
+            )
+
+        try:
+            connectable_endpoint_type = find_endpoint_type(connectable=connectable)
+
+        except (TypeError, ValueError) as exception:
+            error_type = type(exception)
+            error_message = repr(exception)
+
+            raise error_type(error_message)
+
+        api_key_sign = "X-Api-Key"
+        api_key_value = api_key
+        api_key_header = {api_key_sign: api_key_value}
+
+        if connectable_endpoint_type == "ip":
+            self.network_manager_worker.__setattr__("url", f"{ip_lookup_api_url}{connectable.endpoint}")
+            self.network_manager_worker.__setattr__("headers", api_key_header)
+            self.network_manager_worker.__setattr__("data", {})
+            self.network_manager_worker.__setattr__("method", "get")
+            
+            self.network_manager_thread.start()
+
+
+        if connectable_endpoint_type == "url":
+            self.network_manager_worker.__setattr__("url", f"{url_lookup_api_url}{connectable.endpoint}")
+            self.network_manager_worker.__setattr__("headers", api_key_header)
+            self.network_manager_worker.__setattr__("data", {})
+            self.network_manager_worker.__setattr__("method", "get")
+            
+            
+            self.network_manager_thread.start()
+
 
     def show_input_result(self):
 
@@ -56,49 +100,8 @@ class NyvoNetHunterApp(QDialog):
 
         except TypeError as t:
             self.ui.responseLabel.setText("Invalid IP or URL address, please try again.")
-            
-            self.api_call_thread.exit()
             return
             
-            
-        try:
-            
-            try:
-                self.api_call_thread.start()
-                backend_examine_result = loads(examine_endpoint(self.connectable_object))
-                
-                self.api_call_thread.exit()
-            
-            except Exception:
-                self.ui.responseLabel.setText("No internet connection.")
-                self.api_call_thread.exit()
-                
-                self.no_connction_state()
-
-                return
-            
-        except SSLError:
-            self.ui.responseLabel.setText("Too many examines in a short period of time, please wait for at least 3 seconds.")
-            
-            self.api_call_thread.exit()
-            return
-            
-            
-        examine_text = ""
-        for option_index, option in enumerate(checked_examine_options):
-            option_index = option_index + 1
-            
-            try:
-                examine_text += f"{option_index}. {option}: {backend_examine_result[option]}\n\n"
-            
-            except KeyError:
-                examine_text += f"{option_index}. {option}: Not found.\n\n"
-            
-        
-        examine_text += f"Examined endpoint: {self.ui.lineEdit.text()}"
-            
-        self.ui.responseLabel.clear()
-        self.ui.responseLabel.setText(examine_text)
         
 
     def api_examining_animation(self) -> None:
@@ -112,10 +115,7 @@ class NyvoNetHunterApp(QDialog):
         self.ui.callstatusLabel.setText("Examining...")
         
         progressbar_percent_animation.start()
-        self.fill_animation_thread.exit()
-        
-        progressbar_percent_animation.finished.connect(self.api_responded_animation)
-        self.api_call_thread.exit()
+
         
     def api_responded_animation(self):
         progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
@@ -215,27 +215,16 @@ class NyvoNetHunterApp(QDialog):
     
 
         self.api_call_thread = QThread()
-        self.fill_animation_thread = QThread()
         self.connection_status_thread = QThread()
+        self.network_manager_thread = QThread()
         
         self.connection_status_worker = ConnectionStatusChecker()
-        
-        self.connection_status_worker.lost_connection.connect(self.no_connction_state)
-        self.connection_status_worker.spotted_connection.connect(self.connected_state)
-        
-        self.connection_status_worker.moveToThread(self.connection_status_thread)
-        self.connection_status_thread.started.connect(self.connection_status_worker.run)
-        
-        
-        
-        self.fill_animation_thread.started.connect(self.api_examining_animation)
-        
-        self.ui.pushButton.clicked.connect(self.show_input_result)
-        self.api_call_thread.started.connect(self.fill_animation_thread.start)
-        
-        
-        self.show()
-        self.connection_status_thread.start()
+        self.network_manager_worker = NyvoNetHunterRequestManager(
+            url="google.com",
+            method="get",
+            headers={},
+            data={},
+        )
 
 
 if __name__ == "__main__":
