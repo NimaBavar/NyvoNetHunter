@@ -15,6 +15,7 @@ from PyQt5.QtCore import QEventLoop
 from PyQt5.QtCore import QByteArray
 from PyQt5.QtCore import pyqtSignal
 from os import system as cmd_input
+from dataclasses import dataclass
 from ipaddress import ip_address
 from PyQt5.QtCore import QThread
 from PyQt5.QtCore import QObject

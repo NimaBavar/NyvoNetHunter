@@ -1,5 +1,5 @@
 """
-# The storage module for the API request worker class.
+# The storage module for the back-end API of the project.
 """
 
 def setup_database_import_path() -> None:
@@ -23,6 +23,8 @@ from packages import (
     extract_url,
     ip_address,
     pyqtSignal,
+    cmd_input,
+    platform,
     requests,
     Literal,
     QObject,
@@ -335,6 +337,21 @@ def is_valid_url(url: str) -> bool:
         return True
 
     return False
+    
+    
+def clean_terminal() -> None:
+    runner_operating_system = platform(terse=True)
+    operating_system_is_windows = runner_operating_system.lower().startswith("windows")
+    operating_system_is_linux = runner_operating_system.lower().startswith("linux")
+    
+    if operating_system_is_windows:
+        cmd_input("cls")
+        return
+        
+    if operating_system_is_linux:
+        cmd_input("clear")
+        
+clean_terminal()
 
 
 module_is_runned_directly = __name__ == "__main__"
