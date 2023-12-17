@@ -27,8 +27,13 @@ from database.packages import *
 
 class NyvoNetHunterApp(QDialog):
 
+    generated_line_edit_connectable = pyqtSignal()
+    fill_animationgroup_finished = pyqtSignal()
+    no_examine_option_found = pyqtSignal()
+    invalid_endpoint_passed = pyqtSignal()
+    user_input_is_empty = pyqtSignal()
 
-    def set_progressbar_value(self, amount: int):
+    def set_progressbar_value(self, amount: int) -> None:
     
         if amount > 100:
             raise TypeError(f"The progress bar fill amount cannot be more than 100.")
@@ -41,7 +46,7 @@ class NyvoNetHunterApp(QDialog):
 
         self.ui.progressBar.setValue(amount)
     
-    def examine_endpoint(self, connectable: Connectable) -> str:
+    def _set_examine_attributes(self, connectable: Connectable) -> str:
         api_key = "KBvhRDGVffUsQQ97m1Cm6SkmBERj8NLXPqZH8A0y"
         ip_lookup_api_url = "https://api.api-ninjas.com/v1/iplookup?address="
         url_lookup_api_url = "https://api.api-ninjas.com/v1/urllookup?url="
@@ -64,60 +69,123 @@ class NyvoNetHunterApp(QDialog):
         api_key_sign = "X-Api-Key"
         api_key_value = api_key
         api_key_header = {api_key_sign: api_key_value}
+        
+        self.network_manager_worker.__setattr__("headers", api_key_header)
+        self.network_manager_worker.__setattr__("data", {})
+        self.network_manager_worker.__setattr__("method", "get")
+        
 
         if connectable_endpoint_type == "ip":
             self.network_manager_worker.__setattr__("url", f"{ip_lookup_api_url}{connectable.endpoint}")
-            self.network_manager_worker.__setattr__("headers", api_key_header)
-            self.network_manager_worker.__setattr__("data", {})
-            self.network_manager_worker.__setattr__("method", "get")
-            
-            self.network_manager_thread.start()
-
+            return
 
         if connectable_endpoint_type == "url":
             self.network_manager_worker.__setattr__("url", f"{url_lookup_api_url}{connectable.endpoint}")
-            self.network_manager_worker.__setattr__("headers", api_key_header)
-            self.network_manager_worker.__setattr__("data", {})
-            self.network_manager_worker.__setattr__("method", "get")
-            
-            
-            self.network_manager_thread.start()
-
-
-    def show_input_result(self):
-
-        line_edit_input = self.ui.lineEdit.text()
+            return
         
-        checked_examine_options = self.get_requested_examine_options()
-        no_examine_option_is_checked = len(checked_examine_options) == 0
-        if no_examine_option_is_checked:
-            self.ui.responseLabel.setText("Please choose at least one examine option.")
+    def generate_user_desired_connectable(self) -> Connectable:
+    
+        self.inputted_text = self.ui.lineEdit.text()
+        line_edit_is_empty = not self.inputted_text
+        if line_edit_is_empty:
+            self.user_input_is_empty.emit()
+            del self.network_manager_worker.response
             return 
-            
+        
         try:
-            self.connectable_object = generate_valid_connectable(line_edit_input)
-                    
-
-        except TypeError as t:
-            self.ui.responseLabel.setText("Invalid IP or URL address, please try again.")
+        
+            generated_connectable = generate_valid_connectable(self.inputted_text)
+             
+        except (ValueError, TypeError):
+            self.invalid_endpoint_passed.emit()
             return
             
+        self.generated_connectable = generated_connectable
+            
+            
+        self.inputted_text = ""
+        self.generated_line_edit_connectable.emit()
+        return generated_connectable
+    
         
-
+    def show_response(self) -> None:
+        line_edit_is_empty = not self.ui.lineEdit.text()
+        if line_edit_is_empty:
+            self.user_input_is_empty.emit()
+            return
+    
+        try:
+            response = self.network_manager_worker.response.json()
+            if hasattr(self.network_manager_worker, "response"):
+                del self.network_manager_worker.response
+            
+        except Exception as e:
+            if hasattr(self.network_manager_worker, "response"):
+            
+                del self.network_manager_worker.response
+            return
+            
+        checked_options = self.get_checked_examine_options()
+        
+        no_examine_option_is_checked = len(checked_options) == 0
+        if no_examine_option_is_checked:
+            self.no_examine_option_found.emit()
+            return
+        
+        examine_text = ""
+        for option_index, option in enumerate(checked_options):
+            option_index = option_index + 1
+            
+            try:
+                examine_text += f"{option_index}. {option}: {response[option]}\n\n"
+            
+            except KeyError:
+                examine_text += f"{option_index}. {option}: Not found.\n\n"
+            
+        
+        examine_text += f"Examined endpoint: {self.ui.lineEdit.text()}"
+        
+        
+        self.ui.responseLabel.setText(examine_text)
+        self.ui.lineEdit.clear()
+        return
+        
+    def api_connected_animation(self) -> None:
+        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
+        
+        progressbar_percent_animation.setDuration(1000)
+        progressbar_percent_animation.setStartValue(0)
+        progressbar_percent_animation.setEndValue(100)
+        
+        self.ui.callstatusLabel.setText("Connecting...")
+        
+        progressbar_percent_animation.start()
+        
+        progressbar_percent_animation.finished.connect(self.fill_animationgroup_finished.emit)
+        
+    def api_disconnected_animation(self) -> None:
+        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
+        
+        progressbar_percent_animation.setDuration(1000)
+        progressbar_percent_animation.setStartValue(100)
+        progressbar_percent_animation.setEndValue(0)
+        
+        self.ui.callstatusLabel.setText("Diconnected...") 
+            
     def api_examining_animation(self) -> None:
         progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode( ), parent=self)
         
-        progressbar_percent_animation.setDuration(300)
+        progressbar_percent_animation.setDuration(4000)
         progressbar_percent_animation.setStartValue(0)
         progressbar_percent_animation.setEndValue(100)
         
 
         self.ui.callstatusLabel.setText("Examining...")
         
+        
         progressbar_percent_animation.start()
 
-        
-    def api_responded_animation(self):
+    def api_responded_animation(self) -> None:
         progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
         
         progressbar_percent_animation.setDuration(500)
@@ -127,8 +195,20 @@ class NyvoNetHunterApp(QDialog):
         progressbar_percent_animation.start()
         self.ui.callstatusLabel.setText("Awaiting input.")
         
+    def api_fast_fill_animation(self) -> None:
+        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
         
-    def get_requested_examine_options(self):
+        progressbar_percent_animation.setDuration(100)
+        progressbar_percent_animation.setStartValue(self.ui.progressBar.value())
+        progressbar_percent_animation.setEndValue(100)
+        
+        progressbar_percent_animation.start()
+        self.ui.callstatusLabel.setText("Examining...")
+        
+        self.fill_animationgroup_finished.emit()
+        
+
+    def get_checked_examine_options(self) -> None:
         
         all_options = [option for option in dir(self.ui) if option.endswith("CheckBox")]
         requested_options = [getattr(self.ui, option) for option in all_options]
@@ -157,7 +237,7 @@ class NyvoNetHunterApp(QDialog):
             
         return checked_options_list
         
-    def no_connction_state(self):
+    def no_connction_state(self) -> None:
     
         check_boxes = [
         
@@ -181,9 +261,7 @@ class NyvoNetHunterApp(QDialog):
         self.ui.responseLabel.setText("No internet connection.")
         self.ui.connection_status_label.setPixmap(self.ui.no_connction_icon)
         
-    def connected_state(self):  
-        
-        self.api_call_thread.start()
+    def connected_state(self) -> None:  
     
         check_boxes = [
         
@@ -205,8 +283,74 @@ class NyvoNetHunterApp(QDialog):
         self.ui.responseLabel.clear()
         
         self.ui.connection_status_label.setPixmap(self.ui.connected_icon)
+    
         
-        self.api_call_thread.exit()
+    def initialize_connection_checker(self) -> None:
+
+        self.connection_status_thread = QThread()
+        self.connection_status_worker = ConnectionStatusChecker()
+
+        self.connection_status_worker.moveToThread(self.connection_status_thread)
+        
+        self.connection_status_worker.spotted_connection.connect(self.connected_state)
+        self.connection_status_worker.lost_connection.connect(self.no_connction_state)
+        
+        self.connection_status_thread.started.connect(self.connection_status_worker.run)
+        self.connection_status_thread.start()
+        
+    def initialize_network_logic(self) -> None:
+
+        self.network_manager_thread = QThread()
+        self.network_manager_worker = NyvoNetHunterRequestManager(
+            url="https://google.com",
+            method="get",
+            headers={},
+            data={},
+        )
+        
+        self.network_manager_worker.moveToThread(self.network_manager_thread)
+        self.network_manager_thread.started.connect(self.network_manager_worker.fire)
+        self.network_manager_worker.received_invalid_response.connect(self.network_manager_thread.exit)
+        self.network_manager_worker.received_valid_response.connect(self.network_manager_thread.exit)
+        
+        self.ui.pushButton.clicked.connect(self.generate_user_desired_connectable)
+        
+        self.no_examine_option_found.connect(lambda: self.ui.responseLabel.setText("Please choose at least 1 examine option."))
+        self.user_input_is_empty.connect(lambda: self.ui.responseLabel.setText("Please provide a valid IP or URL address."))
+        self.invalid_endpoint_passed.connect(lambda: self.ui.responseLabel.setText("Invalid endpoint or URL passed."))
+        self.invalid_endpoint_passed.connect(lambda: globals().__setitem__("self.response", ""))
+        
+        try:
+            self.generated_line_edit_connectable.connect(lambda: self._set_examine_attributes(self.generated_connectable))
+        
+        except:
+            return
+        
+        self.network_manager_worker.received_valid_response.connect(self.show_response)
+        self.network_manager_worker.received_invalid_response.connect(self.show_response)
+    
+        self.ui.pushButton.clicked.connect(self.network_manager_thread.start)
+        
+    def initialize_animations_logic(self) -> None:
+    
+        self.animation_thread = QThread()
+        
+        self.animation_thread.started.connect(self.api_examining_animation)
+        self.animation_thread.finished.connect(self.api_responded_animation)
+        
+        self.network_manager_worker.sending_request.connect(self.api_examining_animation)
+        self.network_manager_worker.request_sent.connect(self.api_fast_fill_animation)
+    
+        self.connection_status_worker.spotted_connection.connect(self.api_connected_animation)
+        
+        
+        self.connection_status_worker.spotted_connection.connect(self.api_connected_animation)
+        self.connection_status_worker.lost_connection.connect(self.api_disconnected_animation)
+        
+        self.invalid_endpoint_passed.connect(self.api_fast_fill_animation)
+        
+        self.fill_animationgroup_finished.connect(self.api_responded_animation)
+        
         
     def __init__(self):
         super().__init__()
@@ -214,19 +358,12 @@ class NyvoNetHunterApp(QDialog):
         self.ui.setupUi(self)
     
 
-        self.api_call_thread = QThread()
-        self.connection_status_thread = QThread()
-        self.network_manager_thread = QThread()
         
-        self.connection_status_worker = ConnectionStatusChecker()
-        self.network_manager_worker = NyvoNetHunterRequestManager(
-            url="google.com",
-            method="get",
-            headers={},
-            data={},
-        )
-
-
+        self.initialize_connection_checker()
+        self.initialize_network_logic()
+        self.initialize_animations_logic()
+        self.show()
+        
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app_window = NyvoNetHunterApp()
