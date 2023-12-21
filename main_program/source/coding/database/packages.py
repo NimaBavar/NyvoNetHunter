@@ -3,6 +3,20 @@
 ---
 """
 
+
+
+from post_launch_setup.launch_count_manager import LaunchCountManager
+launch_manager = LaunchCountManager()
+
+if launch_manager.get_launch_count() == 0:
+    from post_launch_setup.requirement_installer import install_all_requirements
+    install_all_requirements()
+    
+
+launch_manager.increase_launch_count()
+launch_manager.store_changes_to_database()
+
+
 from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
 from exceptions.direct_run_error import DirectRunError
 from abc import ABC, abstractmethod, abstractproperty
@@ -30,8 +44,8 @@ import socket
 import sys
 import os
 
-module_is_runned_directly = __name__ == "__main__"
 
+module_is_runned_directly = __name__ == "__main__"
 if module_is_runned_directly:
     raise PermissionError(
         "Database modules are not intended to run directly. They are produced for import usage only."

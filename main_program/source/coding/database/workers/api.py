@@ -55,7 +55,7 @@ class Connectable(ABC):
 
 class NyvoNetHunterRequestManager(QObject):
     
-    sending_request = pyqtSignal()
+    request_started = pyqtSignal()
     request_sent = pyqtSignal()
     
     failed_to_send = pyqtSignal()
@@ -72,7 +72,7 @@ class NyvoNetHunterRequestManager(QObject):
         super(QObject, self).__init__()
         
     def fire(self) -> str:
-        self.sending_request.emit()
+        self.request_started.emit()
         
         current_method_name = self.method
         
