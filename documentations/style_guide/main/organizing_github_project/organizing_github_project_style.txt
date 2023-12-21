@@ -54,3 +54,5 @@ Nyvo Studio Project Documentation Style Guide:
 
     23. If the changelog of an update contains more than 10 elements, the version semantic numbering principle is considered-
          - a massive API change.
+
+    24. When the application is ready for offical publish, the project's semantic version numbering must be set to: Release: 1.0.0
