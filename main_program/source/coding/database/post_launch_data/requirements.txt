@@ -1,0 +1,6 @@
+tldextract
+ipaddress
+platform
+requests
+socket
+PyQt5

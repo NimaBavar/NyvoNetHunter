@@ -328,7 +328,6 @@ class NyvoNetHunterApp(QDialog):
             return
         
         self.generated_line_edit_connectable.connect(self.show_response)
-    
         self.ui.pushButton.clicked.connect(self.network_manager_thread.start)
         
     def initialize_animations_logic(self) -> None:
@@ -338,7 +337,7 @@ class NyvoNetHunterApp(QDialog):
         self.animation_thread.started.connect(self.api_examining_animation)
         self.animation_thread.finished.connect(self.api_responded_animation)
         
-        self.network_manager_worker.sending_request.connect(self.api_examining_animation)
+        self.network_manager_worker.request_started.connect(self.api_examining_animation)
         self.network_manager_worker.request_sent.connect(self.api_fast_fill_animation)
     
         self.connection_status_worker.spotted_connection.connect(self.api_connected_animation)
@@ -366,6 +365,7 @@ class NyvoNetHunterApp(QDialog):
         self.initialize_network_logic()
         self.initialize_animations_logic()
         self.show()
+        
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)

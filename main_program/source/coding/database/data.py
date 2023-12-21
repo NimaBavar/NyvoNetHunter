@@ -22,7 +22,7 @@ from packages import dataclass
 
 @dataclass
 class BuildData:
-    __version__ = "7.5.6"
+    __version__ = "8.0.0"
     __author__ = "KhodeNima ( Nima Bavar )"
     __build_date__ = "2023/11/13"
 
