@@ -89,7 +89,6 @@ class NyvoNetHunterApp(QDialog):
         line_edit_is_empty = not self.inputted_text
         if line_edit_is_empty:
             self.user_input_is_empty.emit()
-            del self.network_manager_worker.response
             return 
         
         try:
@@ -117,12 +116,12 @@ class NyvoNetHunterApp(QDialog):
         try:
             response = self.network_manager_worker.response.json()
             if hasattr(self.network_manager_worker, "response"):
-                del self.network_manager_worker.response
+                self.network_manager_worker.response = ""
             
         except Exception as e:
             if hasattr(self.network_manager_worker, "response"):
             
-                del self.network_manager_worker.response
+                self.network_manager_worker.response = ""
             return
             
         checked_options = self.get_checked_examine_options()
@@ -132,21 +131,21 @@ class NyvoNetHunterApp(QDialog):
             self.no_examine_option_found.emit()
             return
         
-        examine_text = ""
+        self.examine_text = ""
         for option_index, option in enumerate(checked_options):
             option_index = option_index + 1
             
             try:
-                examine_text += f"{option_index}. {option}: {response[option]}\n\n"
+                self.examine_text += f"{option_index}. {option}: {response[option]}\n\n"
             
             except KeyError:
-                examine_text += f"{option_index}. {option}: Not found.\n\n"
+                self.examine_text += f"{option_index}. {option}: Not found.\n\n"
             
         
-        examine_text += f"Examined endpoint: {self.ui.lineEdit.text()}"
+        self.examine_text += f"Examined endpoint: {self.ui.lineEdit.text()}"
         
         
-        self.ui.responseLabel.setText(examine_text)
+        self.ui.responseLabel.setText(self.examine_text)
         self.ui.lineEdit.clear()
         return
         
@@ -207,6 +206,8 @@ class NyvoNetHunterApp(QDialog):
         
         self.fill_animationgroup_finished.emit()
         
+    def api_kill_animation(self):
+        self.ui.progressBar.setValue(0)
 
     def get_checked_examine_options(self) -> None:
         
@@ -318,7 +319,7 @@ class NyvoNetHunterApp(QDialog):
         self.no_examine_option_found.connect(lambda: self.ui.responseLabel.setText("Please choose at least 1 examine option."))
         self.user_input_is_empty.connect(lambda: self.ui.responseLabel.setText("Please provide a valid IP or URL address."))
         self.invalid_endpoint_passed.connect(lambda: self.ui.responseLabel.setText("Invalid endpoint or URL passed."))
-        self.invalid_endpoint_passed.connect(lambda: globals().__setitem__("self.response", ""))
+        self.invalid_endpoint_passed.connect(lambda: locals().__setitem__("self.network_manager_worker.response", ""))
         
         try:
             self.generated_line_edit_connectable.connect(lambda: self._set_examine_attributes(self.generated_connectable))
@@ -326,8 +327,7 @@ class NyvoNetHunterApp(QDialog):
         except:
             return
         
-        self.network_manager_worker.received_valid_response.connect(self.show_response)
-        self.network_manager_worker.received_invalid_response.connect(self.show_response)
+        self.generated_line_edit_connectable.connect(self.show_response)
     
         self.ui.pushButton.clicked.connect(self.network_manager_thread.start)
         
@@ -350,6 +350,9 @@ class NyvoNetHunterApp(QDialog):
         self.invalid_endpoint_passed.connect(self.api_fast_fill_animation)
         
         self.fill_animationgroup_finished.connect(self.api_responded_animation)
+        
+        self.user_input_is_empty.connect(self.api_kill_animation)
+        self.invalid_endpoint_passed.connect(self.api_kill_animation)
         
         
     def __init__(self):
