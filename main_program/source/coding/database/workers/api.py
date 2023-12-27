@@ -70,15 +70,16 @@ class NyvoNetHunterRequestManager(QObject):
         self.method = method
         
         super(QObject, self).__init__()
+
         
     def fire(self) -> str:
         self.request_started.emit()
         
-        current_method_name = self.method
+        http_method_name = self.method
         
         try:
             exec(
-            f"global _BACKENDRESPOND; _BACKENDRESPOND = requests.{current_method_name}(url='{self.url}', data={self.data}, headers={self.headers})"
+            f"global _BACKENDRESPOND; _BACKENDRESPOND = requests.{http_method_name}(url='{self.url}', data={self.data}, headers={self.headers})"
             )
             
             global _BACKENDRESPOND
@@ -93,6 +94,7 @@ class NyvoNetHunterRequestManager(QObject):
             
         if self.response.ok:
             self.received_valid_response.emit()
+
             return self.response
         
         self.received_invalid_response.emit()
@@ -325,7 +327,7 @@ def is_valid_url(url: str) -> bool:
     if not url_contains_schema:
         url = f"http://{url}"
 
-    extracted_url_segments = (extract_url(url)).__dict__
+    extracted_url_segments = (extract_url(url))._asdict()
     extracted_segments_list = [segment for segment in extracted_url_segments.values()]
 
     url_has_domain_name = bool(extracted_segments_list[1])

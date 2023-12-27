@@ -308,7 +308,7 @@ QLabel:disabled {
 }</string>
    </property>
    <property name="text">
-    <string>Awaiting input...</string>
+    <string>Awaiting...</string>
    </property>
   </widget>
   <widget class="QProgressBar" name="progressBar">
