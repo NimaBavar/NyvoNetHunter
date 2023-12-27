@@ -4,7 +4,7 @@
 """
 
 
-Try:
+try:
     from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
     from exceptions.direct_run_error import DirectRunError
     from abc import ABC, abstractmethod, abstractproperty
