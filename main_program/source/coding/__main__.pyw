@@ -11,6 +11,7 @@ BY: NyvoStudio, KhodeNima ( Nima Bavar )
 from database.workers.api import (
     generate_valid_connectable,
     NyvoNetHunterIpAddress,
+    simplify_long_string,
     find_endpoint_type,
     NyvoNetHunterUrl,
     is_valid_ipv4,
@@ -30,15 +31,13 @@ class NyvoNetHunterApp(QDialog):
     fill_animationgroup_finished = pyqtSignal()
     setted_examine_attributes = pyqtSignal()
     examine_options_satisfied = pyqtSignal()
+    connectable_is_generated = pyqtSignal()
     no_examine_option_found = pyqtSignal()
     invalid_endpoint_passed = pyqtSignal()
     progressbar_is_filled = pyqtSignal()
     user_input_is_empty = pyqtSignal()
 
-    connectable_is_generated = pyqtSignal()
-
-    fill_cause = pyqtSignal()
-    response_cause = pyqtSignal()
+    inputted_text = ""
 
     def set_progressbar_value(self, amount: int) -> None:
     
@@ -93,6 +92,7 @@ class NyvoNetHunterApp(QDialog):
             return
         
     def generate_user_desired_connectable(self) -> Connectable:
+        self.ui.responseLabel.clear()
     
         self.inputted_text = self.ui.lineEdit.text()
         line_edit_is_empty = not self.inputted_text
@@ -119,11 +119,13 @@ class NyvoNetHunterApp(QDialog):
 
         response = self.network_manager_worker.response.json()
         checked_options = self.get_checked_examine_options()
+        chcked_options_amount = len(checked_options)
         
         no_examine_option_is_checked = len(checked_options) == 0
         if no_examine_option_is_checked:
             return
         
+        self.unfetched_options_count = 0
         self.examine_text = ""
         for option_index, option in enumerate(checked_options):
             option_index = option_index + 1
@@ -132,74 +134,78 @@ class NyvoNetHunterApp(QDialog):
                 self.examine_text += f"{option_index}. {option}: {response[option]}.\n"
             
             except KeyError:
+                self.unfetched_options_count += 1
                 self.examine_text += f"{option_index}. {option}: Not found.\n"
-            
+        
+        if self.unfetched_options_count == chcked_options_amount:
+            self.examine_text = "No checked option found."
         
         self.examine_text += f"\n\nExamined endpoint: {self.inputted_text}"
-        
         
         self.ui.responseLabel.setText(self.examine_text)
         self.ui.lineEdit.clear()
         return
         
     def api_connected_animation(self) -> None:
-        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
+        self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
         
-        progressbar_percent_animation.setDuration(1000)
-        progressbar_percent_animation.setStartValue(0)
-        progressbar_percent_animation.setEndValue(100)
+        self.progressbar_percent_animation.setDuration(1000)
+        self.progressbar_percent_animation.setStartValue(0)
+        self.progressbar_percent_animation.setEndValue(100)
         
         self.ui.callstatusLabel.setText("Connecting...")
         
-        progressbar_percent_animation.start()
+        self.progressbar_percent_animation.start()
         
-        progressbar_percent_animation.finished.connect(self.fill_animationgroup_finished.emit)
+        self.progressbar_percent_animation.finished.connect(self.fill_animationgroup_finished.emit)
         
     def api_disconnected_animation(self) -> None:
-        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
+        selfprogressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
         
-        progressbar_percent_animation.setDuration(1000)
-        progressbar_percent_animation.setStartValue(100)
-        progressbar_percent_animation.setEndValue(0)
+        selfprogressbar_percent_animation.setDuration(1000)
+        selfprogressbar_percent_animation.setStartValue(100)
+        selfprogressbar_percent_animation.setEndValue(0)
         
         self.ui.callstatusLabel.setText("Diconnected...") 
             
     def api_examining_animation(self) -> None:
-        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode( ), parent=self)
+        self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode( ), parent=self)
         
-        progressbar_percent_animation.setDuration(4000)
-        progressbar_percent_animation.setStartValue(0)
-        progressbar_percent_animation.setEndValue(100)
+        self.progressbar_percent_animation.setDuration(20000)
+        self.progressbar_percent_animation.setStartValue(0)
+        self.progressbar_percent_animation.setEndValue(100)
         
 
         self.ui.callstatusLabel.setText("Examining...")
         
         
-        progressbar_percent_animation.start()
+        self.progressbar_percent_animation.start()
 
     def api_responded_animation(self) -> None:
-        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
+        self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
         
-        progressbar_percent_animation.setDuration(500)
-        progressbar_percent_animation.setStartValue(100)
-        progressbar_percent_animation.setEndValue(0)
+        self.progressbar_percent_animation.setDuration(500)
+        self.progressbar_percent_animation.setStartValue(100)
+        self.progressbar_percent_animation.setEndValue(0)
         
-        progressbar_percent_animation.start()
+        self.progressbar_percent_animation.start()
         self.ui.callstatusLabel.setText("Awaiting...")
         
     def api_fast_fill_animation(self) -> None:
-        progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
+        self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
         
-        progressbar_percent_animation.setDuration(100)
-        progressbar_percent_animation.setStartValue(self.ui.progressBar.value())
-        progressbar_percent_animation.setEndValue(100)
+        self.progressbar_percent_animation.setDuration(100)
+        self.progressbar_percent_animation.setStartValue(self.ui.progressBar.value())
+        self.progressbar_percent_animation.setEndValue(100)
         
-        progressbar_percent_animation.start()
+        self.progressbar_percent_animation.start()
         self.ui.callstatusLabel.setText("Examining...")
         
         self.fill_animationgroup_finished.emit()
         
     def api_kill_animation(self):
+        self.progressbar_percent_animation.stop()
+
         self.ui.callstatusLabel.setText("Awaiting...")
         self.ui.progressBar.setValue(0)
 
@@ -260,11 +266,11 @@ class NyvoNetHunterApp(QDialog):
         for check_box in check_boxes:
             eval(f"self.ui.{check_box}.setDisabled(True)")
             
-            
-    
         self.ui.responseLabel.setText("No internet connection.")
         self.ui.connection_status_label.setPixmap(self.ui.no_connction_icon)
-        self.set_progressbar_value(0)
+
+    def warning_request_timeout(self):
+        self.ui.responseLabel.setText("Request timed out, please try again.")
         
     def connected_state(self) -> None:  
     
@@ -299,8 +305,9 @@ class NyvoNetHunterApp(QDialog):
 
         self.connection_status_thread.start()
 
-
     def initialize_network_logic(self) -> None:
+        self.ui.lineEdit.textChanged.connect(self.get_input_text)
+
         self.network_manager_worker = NyvoNetHunterRequestManager(url="https://github.com/KhodeNima", data={}, headers={}, method="get")
         self.network_manager_thread = QThread()
 
@@ -309,7 +316,7 @@ class NyvoNetHunterApp(QDialog):
 
 
         self.user_input_is_empty.connect(lambda: self.ui.responseLabel.setText("Please provide a valid IP or URL address."))
-        self.invalid_endpoint_passed.connect(lambda: self.ui.responseLabel.setText(f"'{self.ui.lineEdit.text()[0:10]}...' is not a valid IP or URL address."))
+        self.invalid_endpoint_passed.connect(lambda: self.ui.responseLabel.setText(f"{self.simplified_input} is not a valid IP or URL address."))
         self.no_examine_option_found.connect(lambda: self.ui.responseLabel.setText("Please choose at least 1 examine option."))
         self.examine_options_satisfied.connect(self.generate_user_desired_connectable)
 
@@ -320,33 +327,33 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.received_invalid_response.connect(self.network_manager_thread.exit)
         self.network_manager_worker.received_valid_response.connect(self.network_manager_thread.exit)
 
+        self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
+        self.network_manager_worker.failed_to_send.connect(self.network_manager_thread.exit)
+
         self.setted_examine_attributes.connect(self.network_manager_thread.start)
 
         self.ui.pushButton.clicked.connect(self.get_checked_examine_options)
-
 
     def initialize_animations_logic(self) -> None:
         self.connection_status_worker.spotted_connection.connect(self.connected_state)
         self.connection_status_worker.lost_connection.connect(self.no_connction_state)
 
-        check_call_status = lambda: self.response_cause.emit() if self.network_manager_worker.p == True else self.fill_cause.emit()
-        check_progressbar_status = lambda: self.progressbar_is_filled.emit() if self.ui.progressBar.value() == 100 else False
-
         self.fill_animationgroup_finished.connect(self.api_kill_animation)
 
         self.network_manager_worker.request_started.connect(self.api_examining_animation)
-        self.network_manager_worker.request_sent.connect(self.api_fast_fill_animation)
+        self.network_manager_worker.request_sent.connect(self.api_responded_animation)
 
+        self.network_manager_worker.received_valid_response.connect(self.api_responded_animation)
+        self.network_manager_worker.received_invalid_response.connect(self.api_responded_animation)
 
-        self.network_manager_worker.failed_to_send.connect(self.api_kill_animation)
+        self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
+        self.network_manager_worker.failed_to_send.connect(self.api_responded_animation)
 
-        self.ui.progressBar.valueChanged.connect(check_progressbar_status)
-        self.progressbar_is_filled.connect(check_call_status)
-        self.response_cause.connect(self.api_fast_fill_animation)
-        self.response_cause.connect(lambda: print("FILLED BECAUSE OF VALID RESPONSE."))
-        self.fill_cause.connect(lambda: print("FILLED BECAUSE OF NO VALID RESPONSE."))
+    def get_input_text(self) -> str:
+        self.inputted_text = self.ui.lineEdit.text()
+        self.simplified_input = simplify_long_string(self.inputted_text)
 
-
+        return self.inputted_text
 
     def __init__(self):
         super().__init__()
@@ -355,12 +362,12 @@ class NyvoNetHunterApp(QDialog):
     
 
         
-        self.initialize_connection_checker()
         self.initialize_network_logic()
+        self.initialize_connection_checker()
         self.initialize_animations_logic()
         self.show()
         
-        
+  
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app_window = NyvoNetHunterApp()

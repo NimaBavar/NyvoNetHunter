@@ -23,13 +23,13 @@ Nyvo Studio Project Documentation Style Guide:
     10. Commit messages should not refer to the updates applied to the project as convention, 
         - but rather to the main file title with the addition of the word 'Main.'
 
-    11. Commit descriptions must always be left blank.
+    11. Commit descriptions must refer to the updates affixed to the file ( No file description should be referred to ).
 
     12. All versions of the project repository must be controlled under semantic numbering.
 
     13. The branch names should only refer to the project version number. Example: V-1.0.9.
 
-    14. Pull request titles should begin with the name of the project, followed by a '|' character and their version. 
+    14. Pull request titles should begin with the name of the project, followed by a '|' character and their version number. 
         - Example: "NyvoStudio Project | V : 1.0.3".
 
     15. All pull requests must have at least one comment before being merged.
@@ -54,3 +54,19 @@ Nyvo Studio Project Documentation Style Guide:
 
     23. If the changelog of an update contains more than 10 elements, the version semantic numbering principle is considered-
          - a massive API change.
+
+    24. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
+
+    25. Issues naming conventions should follow the corressondig regular expression: `Issue Note | N : {Issue Number}`, e.x: Issue Note | N : 1
+
+    26. All issues should contain at least 1 comment.
+
+    27. The first comment of an issue is called the __details__ comment.
+
+    28. The first comment of an issue should be the __details__ comment.
+
+    29. The __details__ comment should elucidate all of the extant issues in the latest branch.
+
+    30. No issue is allowed to be assigned a To-Do list.
+
+    31. Every other asepct in the __details__ comment, should follow the conventions of branches __changelog__ comment.

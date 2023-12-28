@@ -2,6 +2,7 @@
 # The storage module for the back-end API of the project.
 """
 
+
 def setup_database_import_path() -> None:
     from sys import path as module_paths
     import pathlib
@@ -10,12 +11,13 @@ def setup_database_import_path() -> None:
 
     module_paths.append(f"{project_root_directory}/main_program/source/coding/database")
     module_paths.append(f"{project_root_directory}/main_program/source/coding")
-    
+
+
 setup_database_import_path()
 
 
+from exceptions.unexpected_argument_type import UnexpectedArgumentTypeError
 from exceptions.direct_run_error import DirectRunError
-
 from packages import (
     abstractproperty,
     ConnectionError,
@@ -27,8 +29,10 @@ from packages import (
     platform,
     requests,
     Literal,
+    QThread,
     QObject,
     loads,
+    sleep,
     Dict,
     ABC,
 )
@@ -51,119 +55,116 @@ class Connectable(ABC):
             )
 
         self._endpoint = _endpoint
-
+        
 
 class NyvoNetHunterRequestManager(QObject):
-    
     request_started = pyqtSignal()
     request_sent = pyqtSignal()
-    
+
     failed_to_send = pyqtSignal()
-    
+
     received_valid_response = pyqtSignal()
     received_invalid_response = pyqtSignal()
 
-    def __init__(self, url: str, data: Dict, headers: Dict, method: Literal["get", "post", "put", "delete"]):
+
+    def __init__(
+        self,
+        url: str,
+        data: Dict,
+        headers: Dict,
+        method: Literal["get", "post", "put", "delete"],
+    ):
         self.url = url
         self.data = data
         self.headers = headers
         self.method = method
-        
+
         super(QObject, self).__init__()
 
-        
     def fire(self) -> str:
         self.request_started.emit()
-        
-        http_method_name = self.method
-        
+
         try:
-            exec(
-            f"global _BACKENDRESPOND; _BACKENDRESPOND = requests.{http_method_name}(url='{self.url}', data={self.data}, headers={self.headers})"
-            )
-            
-            global _BACKENDRESPOND
-            self.response = _BACKENDRESPOND
-            del _BACKENDRESPOND
-            
+            self.response = requests.request(method=self.method, url=self.url, data=self.data, headers=self.headers, timeout=20)
             self.request_sent.emit()
-            
-        except ConnectionError:
+
+        except Exception as e:
             self.failed_to_send.emit()
             return
-            
+
         if self.response.ok:
             self.received_valid_response.emit()
 
             return self.response
-        
+
         self.received_invalid_response.emit()
         return self.response
-            
-        
+
     @property
     def url(self):
         return self._url
-        
+
     @url.setter
     def url(self, _url):
         if not isinstance(_url, str):
             url_argument_type = type(_url).__name__
-            raise ValueError(f"Expected argument type passed for the parameter( url ): ( str ) | Not ( {url_argument_type}")
-        
+            raise ValueError(
+                f"Expected argument type passed for the parameter( url ): ( str ) | Not ( {url_argument_type}"
+            )
+
         url_is_invalid = not is_valid_url(_url)
         if url_is_invalid:
             raise TypeError("That is not a valid url.")
-            
-            
+
         self._url = _url
-        
+
     @property
     def data(self):
         return self._data
-        
+
     @data.setter
     def data(self, _data):
         if not isinstance(_data, dict):
             data_argument_type = type(_data).__name__
             raise ValueError(
-            f"Expected argument type passed for the parameter ( data ): ( dict ) | Not: ( {data_argument_type} )"
+                f"Expected argument type passed for the parameter ( data ): ( dict ) | Not: ( {data_argument_type} )"
             )
-            
-            
+
         self._data = _data
-            
+
     @property
     def headers(self):
         return self._headers
-        
+
     @headers.setter
     def headers(self, _headers):
         if not isinstance(_headers, dict):
             headers_argument_type = type(_headers).__name__
-            raise ValueError(f"Expected argument type passed for the parameter ( headers ): ( dict ) | Not: ( {headers_argument_type} )")
-            
-        
+            raise ValueError(
+                f"Expected argument type passed for the parameter ( headers ): ( dict ) | Not: ( {headers_argument_type} )"
+            )
+
         self._headers = _headers
-        
+
     @property
     def method(self):
         return self._method
-        
+
     @method.setter
     def method(self, _method):
         available_http_methods = ["get", "post", "put", "delete"]
-        
+
         if not isinstance(_method, str):
             method_argument_type = type(_method).__name__
-            raise ValueError(f"Expected argument types passed for the parameter ( method ): ( str ) | Not: {method_argument_type}")
-            
+            raise ValueError(
+                f"Expected argument types passed for the parameter ( method ): ( str ) | Not: {method_argument_type}"
+            )
+
         if not _method in available_http_methods:
             raise TypeError("That is not a valid http method.")
-            
-            
-        self._method = _method
 
+        self._method = _method
+   
 
 class NyvoNetHunterIpAddress(Connectable):
     def __init__(self, ip_address: str):
@@ -207,7 +208,7 @@ class NyvoNetHunterUrl(Connectable):
             raise TypeError("Invalid url passed.")
 
         self._endpoint = _endpoint
-        
+
 
 def generate_valid_connectable(endpoint: str) -> Connectable:
     if not isinstance(endpoint, str):
@@ -339,23 +340,41 @@ def is_valid_url(url: str) -> bool:
         return True
 
     return False
-    
-    
+
+
 def clean_terminal() -> None:
     runner_operating_system = platform(terse=True)
     operating_system_is_windows = runner_operating_system.lower().startswith("windows")
     operating_system_is_linux = runner_operating_system.lower().startswith("linux")
-    
+
     if operating_system_is_windows:
         cmd_input("cls")
         return
-        
+
     if operating_system_is_linux:
         cmd_input("clear")
-        
-clean_terminal()
+
+
+def simplify_long_string(text: str) -> str:
+    """Simplifies a long text for previews.
+
+    ex: MyNameIsAlex -> MyName...
+    """
+
+    if not isinstance(text, str):
+        raise UnexpectedArgumentTypeError(text, str)
+
+
+    text_lenght = len(text)
+    if not text_lenght >= 6:
+        return text
+    
+    simplified_string = f"{text[0:5]}..."
+    return simplified_string
 
 
 module_is_runned_directly = __name__ == "__main__"
 if module_is_runned_directly:
-    raise DirectRunError("Database modules are not intended to run directly, they are produced for improt usage only.")
+    raise DirectRunError(
+        "Database modules are not intended to run directly, they are produced for import usage only."
+    )

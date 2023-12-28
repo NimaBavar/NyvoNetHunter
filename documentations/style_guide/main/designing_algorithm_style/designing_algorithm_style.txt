@@ -27,13 +27,15 @@ NyvoStudio algorithm writing style guide:
 
     13. Partition names will be shown with the Case File item.
 
-    14. Comments will be sown In Comment_Alt shape.
+    14. Comments will be shown In Comment_Alt shape.
 
     15. Numerical orderings will be written in brackets.
 
     16. Implement indications are designed in ( Implementation event ).
 
-    17. All algorithms must be written In visual paradigm.
-    
-    18. All algorithm files ( Excluding the text-based ones ) must contain an Diagram Info object explaining the purpose of -
+    17. All algorithm files ( Excluding the text-based ones ) must contain an Diagram Info object explaining the purpose of -
         the file.
+
+    18. All algorithms must be visualized in Visual Paradigm.
+    
+
