@@ -1201,7 +1201,7 @@ class Ui_Dialog(object):
         self.lineEdit.setToolTip(_translate("Dialog", "<html><head/><body><p>IP example: <span style=\" font-style:italic; text-decoration: underline;\">144.145.146.147</span><span style=\" font-weight:400;\">. </span>( IP addresses maximum octet digit is 255 )</p><p>URL example: <span style=\" font-style:italic; text-decoration: underline;\">https://github.com</span> OR <span style=\" font-style:italic; text-decoration: underline;\">https://discord.com</span><span style=\" font-weight:400;\">.</span></p><p><br/></p></body></html>"))
         self.lineEdit.setPlaceholderText(_translate("Dialog", "Enter your desired IP or URL to examine: "))
         self.graphicsView.setToolTip(_translate("Dialog", "<html><head/><body><p>The examine operation outputs will be shown <span style=\" font-style:italic; text-decoration: underline;\">here.</span></p></body></html>"))
-        self.callstatusLabel.setText(_translate("Dialog", "Awaiting input..."))
+        self.callstatusLabel.setText(_translate("Dialog", "Awaiting..."))
         self.progressBar.setToolTip(_translate("Dialog", "<html><head/><body><p>Examining...</p></body></html>"))
         self.graphicsView_2.setToolTip(_translate("Dialog", "<html><head/><body><p>The examine operation outputs will be shown <span style=\" font-style:italic; text-decoration: underline;\">here.</span></p></body></html>"))
         self.countryCheckBox.setText(_translate("Dialog", "Country"))

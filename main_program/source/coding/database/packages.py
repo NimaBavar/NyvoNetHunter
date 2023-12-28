@@ -28,6 +28,7 @@ try:
     from PyQt5 import QtWidgets
     from json import loads
     import requests
+    import inspect
     import socket
     import sys
     import os
