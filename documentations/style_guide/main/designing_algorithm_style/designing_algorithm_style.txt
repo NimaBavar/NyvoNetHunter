@@ -33,7 +33,7 @@ NyvoStudio algorithm writing style guide:
 
     16. Implement indications are designed in ( Implementation event ).
 
-    17. All algorithms must be written in Visual Paradigm or Visual Paradigm Online.
+    17. All algorithms must be written in Visual Paradigm.
     
     18. All algorithm files ( Excluding the text-based ones ) must contain an Diagram Info object explaining the purpose of -
         the file.
