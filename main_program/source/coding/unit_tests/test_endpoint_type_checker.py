@@ -17,7 +17,11 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
-from database.workers.api import NyvoNetHunterIpAddress, NyvoNetHunterUrl, find_endpoint_type
+from database.workers.api import (
+    NyvoNetHunterIpAddress,
+    NyvoNetHunterUrl,
+    find_endpoint_type,
+)
 from unittest import TestCase
 import unittest
 

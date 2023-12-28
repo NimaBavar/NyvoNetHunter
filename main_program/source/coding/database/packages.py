@@ -23,10 +23,12 @@ try:
     from PyQt5.QtCore import QObject
     from typing import Literal, Dict
     from PyQt5 import QtCore, QtGui
+    from PyQt5.QtGui import QIcon
     from PyQt5.QtTest import QTest
     from platform import platform
     from PyQt5 import QtWidgets
     from json import loads
+    from time import sleep
     import requests
     import inspect
     import socket
@@ -35,7 +37,9 @@ try:
 
 
 except:
-    raise ModuleNotFoundError("Please activate the project main virtual environment in order to access the source code launch.")
+    raise ModuleNotFoundError(
+        "Please activate the project main virtual environment in order to access the source code direct execute permission."
+    )
 
 
 module_is_runned_directly = __name__ == "__main__"

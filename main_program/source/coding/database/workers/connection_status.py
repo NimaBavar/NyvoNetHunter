@@ -3,6 +3,18 @@
 """
 
 
+def setup_database_import_path() -> None:
+    from sys import path as module_paths
+    import pathlib
+
+    project_root_directory = pathlib.Path.cwd()
+
+    module_paths.append(f"{project_root_directory}/main_program/source/coding/database")
+    module_paths.append(f"{project_root_directory}/main_program/source/coding")
+
+setup_database_import_path()
+
+
 from exceptions.direct_run_error import DirectRunError
 from packages import (
     ConnectionError,
@@ -28,6 +40,8 @@ class ConnectionStatusChecker(QObject):
         host = "8.8.8.8"
         port = 53
         connection_is_available = None
+
+        self.lost_connection.emit()
 
         while True:
             try:
