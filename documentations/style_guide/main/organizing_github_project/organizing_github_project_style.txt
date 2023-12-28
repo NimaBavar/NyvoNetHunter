@@ -23,7 +23,7 @@ Nyvo Studio Project Documentation Style Guide:
     10. Commit messages should not refer to the updates applied to the project as convention, 
         - but rather to the main file title with the addition of the word 'Main.'
 
-    11. Commit descriptions must always be left blank.
+    11. Commit descriptions must refer to the updates affixed to the file ( No file description should be referred to ).
 
     12. All versions of the project repository must be controlled under semantic numbering.
 
@@ -54,3 +54,5 @@ Nyvo Studio Project Documentation Style Guide:
 
     23. If the changelog of an update contains more than 10 elements, the version semantic numbering principle is considered-
          - a massive API change.
+
+    24. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
