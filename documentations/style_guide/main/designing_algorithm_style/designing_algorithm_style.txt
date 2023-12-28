@@ -27,7 +27,7 @@ NyvoStudio algorithm writing style guide:
 
     13. Partition names will be shown with the Case File item.
 
-    14. Comments will be sown In Comment_Alt shape.
+    14. Comments will be shown In Comment_Alt shape.
 
     15. Numerical orderings will be written in brackets.
 
