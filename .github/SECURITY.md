@@ -53,7 +53,7 @@
   > **This project and all the ```repositories``` , ```Issues``` , ```Pull requests``` , ```Pages``` , ```Datasets``` , ```Documentations``` , ```Security informations , Including any 
   > copy of this prviacy text```**:
 
-  > Are licensed under *GNU Affero General Public License v3.0* , Which means All the permissions and limitations under this license are applied to this Project , Which are :
+  > Are licensed under *Creative Commons Zero v1.0 Universal License* , Which means All the permissions and limitations under this license are applied to this Project , Which are :
 
 > | **Permissions**     | CheckBox |
 > | -------------       |  ------  |
