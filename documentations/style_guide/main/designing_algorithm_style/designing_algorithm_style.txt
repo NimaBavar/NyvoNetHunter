@@ -15,7 +15,7 @@ NyvoStudio algorithm writing style guide:
 
     7. Function calls be written In call activity shape ( Yellow Square ).
 
-    8. Connected attributes will be written In Page-refrences shape.
+    8. Connected attributes ( such as additional documentations, ETC ) will be written in Page-refrences shape.
 
     9. Databases and class connections will be written In Database Shape.
 
