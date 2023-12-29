@@ -7,7 +7,7 @@ NyvoStudio algorithm writing style guide:
 
     3. Normal logical activites will be written in Milestone plan item ( Not classes , functions , decorators ).
 
-    4. User inputs are shown in Hexagon shape.
+    4. Inputs are shown in Hexagon shape.
 
     5. System decisions and exceptions will be written In Rhombus.
 
