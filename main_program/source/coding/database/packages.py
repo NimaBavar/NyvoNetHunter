@@ -21,17 +21,20 @@ try:
     from ipaddress import ip_address
     from PyQt5.QtCore import QThread
     from PyQt5.QtCore import QObject
+    from PyQt5.QtGui import QPainter
     from typing import Literal, Dict
     from PyQt5 import QtCore, QtGui
-    from PyQt5.QtGui import QIcon
     from PyQt5.QtTest import QTest
+    from PyQt5.QtGui import QIcon
     from platform import platform
     from PyQt5 import QtWidgets
     from json import loads
     from time import sleep
     import requests
     import inspect
+    import folium
     import socket
+    import json
     import sys
     import os
 

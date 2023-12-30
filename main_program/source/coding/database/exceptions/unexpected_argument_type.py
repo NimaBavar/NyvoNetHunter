@@ -3,6 +3,22 @@ The holder module for the UnexpectedArgumentTypeError exception class
 """
 
 
+def setup_database_import_path() -> None:
+    from sys import path as module_paths
+    from os import system as cmd_input
+    import pathlib
+    from time import sleep
+
+    project_root_directory = pathlib.Path.cwd()
+
+    module_paths.append(f"{project_root_directory}/main_program/source/coding/database/exceptions")
+    module_paths.append(f"{project_root_directory}/main_program/source/coding/database")
+    module_paths.append(f"{project_root_directory}/main_program/source/coding")
+
+setup_database_import_path()
+
+
+from direct_run_error import DirectRunError
 from inspect import isclass
 
 
@@ -39,3 +55,10 @@ class UnexpectedArgumentTypeError(ValueError):
             raise ValueError("The ( expected_argument_type ) argument must be object| e.x: ( str, tuple... )")
         
         self._expected_argument_type = argument.__name__
+
+
+module_is_runned_directly = __name__ == "__main__"
+if module_is_runned_directly:
+    raise DirectRunError(
+        "Database modules are not intended to run directly, they are produced for import usage only."
+    )

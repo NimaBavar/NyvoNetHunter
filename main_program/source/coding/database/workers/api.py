@@ -31,6 +31,7 @@ from packages import (
     Literal,
     QThread,
     QObject,
+    folium,
     loads,
     sleep,
     Dict,
@@ -164,7 +165,7 @@ class NyvoNetHunterRequestManager(QObject):
             raise TypeError("That is not a valid http method.")
 
         self._method = _method
-   
+
 
 class NyvoNetHunterIpAddress(Connectable):
     def __init__(self, ip_address: str):
@@ -206,7 +207,7 @@ class NyvoNetHunterUrl(Connectable):
 
         if not is_valid_url(_endpoint):
             raise TypeError("Invalid url passed.")
-
+        
         self._endpoint = _endpoint
 
 
