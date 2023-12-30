@@ -6,12 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>859</width>
+    <width>1192</width>
     <height>685</height>
    </rect>
   </property>
   <property name="font">
    <font>
+    <weight>75</weight>
     <bold>true</bold>
    </font>
   </property>
@@ -43,6 +44,7 @@
    <property name="font">
     <font>
      <family>Arial</family>
+     <weight>75</weight>
      <italic>false</italic>
      <bold>true</bold>
     </font>
@@ -480,6 +482,7 @@ QGraphicsView:disabled {
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -621,7 +624,7 @@ QLabel:disabled {
 }</string>
    </property>
    <property name="text">
-    <string>          Examine options</string>
+    <string>     Examine options</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="regionCheckBox">
@@ -635,6 +638,7 @@ QLabel:disabled {
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -732,6 +736,7 @@ QCheckBoxchecked ~ .svg-icon {
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -829,6 +834,7 @@ QCheckBoxchecked ~ .svg-icon {
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -926,6 +932,7 @@ QCheckBoxchecked ~ .svg-icon {
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -1023,6 +1030,7 @@ QCheckBoxchecked ~ .svg-icon {
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -1123,6 +1131,7 @@ QCheckBoxchecked ~ .svg-icon {
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -1223,6 +1232,7 @@ QCheckBoxchecked ~ .svg-icon {
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -1367,7 +1377,7 @@ QLabel:disabled {
 }</string>
    </property>
    <property name="text">
-    <string>         Connection Status</string>
+    <string>   Connection Status</string>
    </property>
   </widget>
   <widget class="QLabel" name="connection_status_label">

@@ -25,3 +25,8 @@ class DirectRunError(Exception):
             )
 
         self._error_message = message
+
+
+module_is_runned_directly = __name__ == "__main__"
+if module_is_runned_directly:
+    raise DirectRunError("Database modules are not intended to run directly, they are produced for import usage only.")

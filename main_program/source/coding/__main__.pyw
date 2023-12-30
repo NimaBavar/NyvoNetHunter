@@ -53,8 +53,9 @@ class NyvoNetHunterApp(QDialog):
         self.ui.progressBar.setValue(amount)
     
     def _set_examine_attributes(self, connectable: Connectable) -> str:
+    
         api_key = "KBvhRDGVffUsQQ97m1Cm6SkmBERj8NLXPqZH8A0y"
-        ip_lookup_api_url = "https://api.api-ninjas.com/v1/iplookup?address="
+        ip_lookup_api_url = "http://ip-api.com/json/"
         url_lookup_api_url = "https://api.api-ninjas.com/v1/urllookup?url="
 
         if not isinstance(connectable, Connectable):
@@ -118,16 +119,13 @@ class NyvoNetHunterApp(QDialog):
     def show_response(self) -> None:
 
         response = self.network_manager_worker.response.json()
-        checked_options = self.get_checked_examine_options()
-        chcked_options_amount = len(checked_options)
-        
-        no_examine_option_is_checked = len(checked_options) == 0
-        if no_examine_option_is_checked:
-            return
+
+        self.checked_options = self.get_checked_examine_options()
+        self.checked_options_amount = len(self.checked_options)
         
         self.unfetched_options_count = 0
         self.examine_text = ""
-        for option_index, option in enumerate(checked_options):
+        for option_index, option in enumerate(self.checked_options):
             option_index = option_index + 1
             
             try:
@@ -137,7 +135,7 @@ class NyvoNetHunterApp(QDialog):
                 self.unfetched_options_count += 1
                 self.examine_text += f"{option_index}. {option}: Not found.\n"
         
-        if self.unfetched_options_count == chcked_options_amount:
+        if self.unfetched_options_count == self.checked_options_amount:
             self.examine_text = "No checked option found."
         
         self.examine_text += f"\n\nExamined endpoint: {self.inputted_text}"
@@ -213,39 +211,38 @@ class NyvoNetHunterApp(QDialog):
         
         all_options = [option for option in dir(self.ui) if option.endswith("CheckBox")]
         requested_options = [getattr(self.ui, option) for option in all_options]
-        checked_options_list = [option.objectName().replace("CheckBox", "") for option in requested_options if option.isChecked()]
-
-        if len(checked_options_list) == 0:
-            self.no_examine_option_found.emit()
-            return None
+        self.checked_options_list = [option.objectName().replace("CheckBox", "") for option in requested_options if option.isChecked()]
         
-        for option in checked_options_list:
-            option_index = checked_options_list.index(option)
-            
-            if option == "zip":
-                unified_option = option.replace("zipcode", "zip")
-                checked_options_list.insert(option_index, unified_option)
-                del checked_options_list[option_index+1]
+        for option in self.checked_options_list:
+            option_index = self.checked_options_list.index(option)
+
+            if option == "zipcode":
+                unified_option = option.replace("zipcode", "zip")    
+                self.checked_options_list.insert(option_index, unified_option)
+                del self.checked_options_list[option_index+1]
                 
-            elif option == "latitude":
+            if option == "latitude":
                 unified_option = option.replace("latitude", "lat")
-                checked_options_list.insert(option_index, unified_option)
-                del checked_options_list[option_index+1]
+                self.checked_options_list.insert(option_index, unified_option)
+                del self.checked_options_list[option_index+1]
                 
             elif option == "longitude":
                 unified_option = option.replace("longitude", "lon")
-                checked_options_list.insert(option_index, unified_option)
-                del checked_options_list[option_index+1]
+                self.checked_options_list.insert(option_index, unified_option)
+                del self.checked_options_list[option_index+1]
                 
-        if checked_options_list:
-            checked_options_list.sort()
-
+        if not self.checked_options_list:
+            self.no_examine_option_found.emit()
+            return self.checked_options_list
+        
+        if self.checked_options_list:
+            self.checked_options_list.sort()
 
         caller_function = inspect.currentframe().f_back.f_code.co_name
         if not caller_function == "show_response":
             self.examine_options_satisfied.emit()
 
-        return checked_options_list
+        return self.checked_options_list
         
     def no_connction_state(self) -> None:
     
@@ -269,9 +266,41 @@ class NyvoNetHunterApp(QDialog):
         self.ui.responseLabel.setText("No internet connection.")
         self.ui.connection_status_label.setPixmap(self.ui.no_connction_icon)
 
-    def warning_request_timeout(self):
+    def warning_request_timeout(self) -> None:
         self.ui.responseLabel.setText("Request timed out, please try again.")
-        
+
+    def examining_state(self) -> None:
+        self.ui.pushButton.setDisabled(True)
+        self.ui.pushButton.setText(None)
+
+        self.ui.lineEdit.setDisabled(True)
+
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(
+            QtGui.QPixmap(
+                "main_program/source/ui_design/resources/pictures/check_mark.png"
+            ),
+            QtGui.QIcon.Normal,
+            QtGui.QIcon.On,
+        )
+        self.ui.pushButton.setIcon(icon1)
+
+    def default_state(self) -> None:
+        self.ui.pushButton.setEnabled(True)
+        self.ui.pushButton.setText("Examine")
+
+        self.ui.lineEdit.setEnabled(True)
+
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(
+            QtGui.QPixmap(
+                "main_program/source/ui_design/resources/pictures/pushbuttonicon.png"
+            ),
+            QtGui.QIcon.Normal,
+            QtGui.QIcon.On,
+        )
+        self.ui.pushButton.setIcon(icon1)
+
     def connected_state(self) -> None:  
     
         check_boxes = [
@@ -313,14 +342,13 @@ class NyvoNetHunterApp(QDialog):
 
         self.network_manager_worker.moveToThread(self.network_manager_thread)
         self.network_manager_thread.started.connect(self.network_manager_worker.fire)
-
-
-        self.user_input_is_empty.connect(lambda: self.ui.responseLabel.setText("Please provide a valid IP or URL address."))
-        self.invalid_endpoint_passed.connect(lambda: self.ui.responseLabel.setText(f"{self.simplified_input} is not a valid IP or URL address."))
-        self.no_examine_option_found.connect(lambda: self.ui.responseLabel.setText("Please choose at least 1 examine option."))
         self.examine_options_satisfied.connect(self.generate_user_desired_connectable)
 
         self.connectable_is_generated.connect(lambda: self._set_examine_attributes(self.generated_connectable))
+    
+        self.user_input_is_empty.connect(lambda: self.ui.responseLabel.setText("Please provide a valid IP or URL address."))
+        self.invalid_endpoint_passed.connect(lambda: self.ui.responseLabel.setText(f"{self.simplified_input} is not a valid IP or URL address."))
+        self.no_examine_option_found.connect(lambda: self.ui.responseLabel.setText("Please choose at least 1 examine option."))
 
         self.network_manager_worker.received_valid_response.connect(self.show_response)
         self.network_manager_worker.received_invalid_response.connect(self.show_response)
@@ -332,6 +360,7 @@ class NyvoNetHunterApp(QDialog):
 
         self.setted_examine_attributes.connect(self.network_manager_thread.start)
 
+        self.ui.pushButton
         self.ui.pushButton.clicked.connect(self.get_checked_examine_options)
 
     def initialize_animations_logic(self) -> None:
@@ -349,6 +378,9 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
         self.network_manager_worker.failed_to_send.connect(self.api_responded_animation)
 
+        self.network_manager_worker.request_started.connect(self.examining_state)
+        self.network_manager_worker.request_sent.connect(self.default_state)
+
     def get_input_text(self) -> str:
         self.inputted_text = self.ui.lineEdit.text()
         self.simplified_input = simplify_long_string(self.inputted_text)
@@ -360,8 +392,6 @@ class NyvoNetHunterApp(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
     
-
-        
         self.initialize_network_logic()
         self.initialize_connection_checker()
         self.initialize_animations_logic()
