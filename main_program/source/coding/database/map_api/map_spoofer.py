@@ -5,9 +5,7 @@ The projects map spoofing system module.
 
 def setup_database_import_path() -> None:
     from sys import path as module_paths
-    from os import system as cmd_input
     import pathlib
-    from time import sleep
 
     project_root_directory = pathlib.Path.cwd()
 
@@ -21,13 +19,18 @@ setup_database_import_path()
 from exceptions.unexpected_argument_type import UnexpectedArgumentTypeError
 from exceptions.direct_run_error import DirectRunError
 from packages import (
+    pyqtSignal,
     QObject,
     folium,
     json,
+    io,
 )
 
 
 class MapSpoofer(QObject):
+    location_spoofed = pyqtSignal()
+    saved_as_html = pyqtSignal()
+
     def __init__(self, latitude: int, longitude: int):
         self.latitude = latitude
         self.longitude = longitude
@@ -71,9 +74,11 @@ class MapSpoofer(QObject):
         target_marker.add_to(self._map_image_html)
         target_radius_marker.add_to(self._map_image_html)
 
+        self.location_spoofed.emit()
         return self._map_image_html
 
     def save_as_html_file(self, file_path: str) -> None:
+        self.saved_as_html.emit()
         self._map_image_html.save(outfile=file_path)
 
     def save_as_geojson(self, file_path: str) -> None:
@@ -87,6 +92,22 @@ class MapSpoofer(QObject):
 
         with open(file_path, "w") as geojson_file:
             json.dump(map_image_geojson, geojson_file, indent=4)
+
+    def save_as_bytes(self):
+        if not self.generated:
+            raise PermissionError("No spoof result to save, please finish the spoofing operation before attempting to save.")
+
+        byte_data = io.BytesIO()
+        self._map_image_html.save(byte_data, close_file=False)
+        self.map_image_bytes = byte_data
+
+        return self.map_image_bytes
+    
+    def set_latitude(self, latitude) -> None:
+        self.latitude = latitude
+
+    def set_longitude(self, longitude) -> None:
+        self.longitude = longitude
 
 
 module_is_runned_directly = __name__ == "__main__"

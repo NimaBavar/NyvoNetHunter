@@ -5,9 +5,7 @@ The holder module for the UnexpectedArgumentTypeError exception class
 
 def setup_database_import_path() -> None:
     from sys import path as module_paths
-    from os import system as cmd_input
     import pathlib
-    from time import sleep
 
     project_root_directory = pathlib.Path.cwd()
 

@@ -13,6 +13,8 @@ try:
     from tldextract import extract as extract_url
     from PyQt5.QtCore import QPropertyAnimation
     from requests.exceptions import SSLError
+    from PyQt5.QtWidgets import QSizePolicy
+    from PyQt5 import QtWebEngineWidgets
     from PyQt5.QtCore import QEventLoop
     from PyQt5.QtCore import QByteArray
     from PyQt5.QtCore import pyqtSignal
@@ -28,6 +30,7 @@ try:
     from PyQt5.QtGui import QIcon
     from platform import platform
     from PyQt5 import QtWidgets
+    from pathlib import Path
     from json import loads
     from time import sleep
     import requests
@@ -37,12 +40,13 @@ try:
     import json
     import sys
     import os
+    import io
 
 
-except:
+except Exception as e:
     raise ModuleNotFoundError(
         "Please activate the project main virtual environment in order to access the source code direct execute permission."
-    )
+    ) from e
 
 
 module_is_runned_directly = __name__ == "__main__"
