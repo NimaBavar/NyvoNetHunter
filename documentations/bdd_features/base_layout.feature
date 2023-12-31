@@ -54,7 +54,7 @@ Scenario: the user can see his/her internet connection status on the main window
   Then the connection status icon will be set to a red X.
     
   But if the user have a strong enough internet connection
-  Then the connction status icon will be set to a green check mark.
+  Then the connection status icon will be set to a green check mark.
     
     
 Scenario: The user can examine the informations of an IP address.

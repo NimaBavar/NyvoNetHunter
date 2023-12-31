@@ -22,6 +22,7 @@ from database.workers.api import (
 )
 from database.workers.connection_status import ConnectionStatusChecker
 from database.workers.api import NyvoNetHunterRequestManager
+from database.map_api.map_spoofer import MapSpoofer
 from database.ui_window_dialog import Ui_Dialog
 from database.packages import *
 
@@ -32,10 +33,17 @@ class NyvoNetHunterApp(QDialog):
     setted_examine_attributes = pyqtSignal()
     examine_options_satisfied = pyqtSignal()
     connectable_is_generated = pyqtSignal()
-    no_examine_option_found = pyqtSignal()
     invalid_endpoint_passed = pyqtSignal()
+    no_examine_option_found = pyqtSignal()
     progressbar_is_filled = pyqtSignal()
     user_input_is_empty = pyqtSignal()
+
+    cant_spoof_location = pyqtSignal()
+    can_spoof_location = pyqtSignal()
+    longitude_found = pyqtSignal()
+    latitude_found = pyqtSignal()
+
+    network_query_finished = pyqtSignal()
 
     inputted_text = ""
 
@@ -118,6 +126,9 @@ class NyvoNetHunterApp(QDialog):
         
     def show_response(self) -> None:
 
+        self.bool_longitude_found = False
+        self.bool_latitude_found = False
+
         response = self.network_manager_worker.response.json()
 
         self.checked_options = self.get_checked_examine_options()
@@ -127,13 +138,27 @@ class NyvoNetHunterApp(QDialog):
         self.examine_text = ""
         for option_index, option in enumerate(self.checked_options):
             option_index = option_index + 1
+
+            try:    
             
-            try:
                 self.examine_text += f"{option_index}. {option}: {response[option]}.\n"
+
+                if option == "lon":
+                    self.longitude = float(response[option])
+
+                    self.bool_longitude_found = True
+                    self.longitude_found.emit()
+
+                if option == "lat":
+                    self.latitude = float(response[option])
+
+                    self.bool_latitude_found = True
+                    self.latitude_found.emit()
             
             except KeyError:
                 self.unfetched_options_count += 1
                 self.examine_text += f"{option_index}. {option}: Not found.\n"
+
         
         if self.unfetched_options_count == self.checked_options_amount:
             self.examine_text = "No checked option found."
@@ -142,6 +167,8 @@ class NyvoNetHunterApp(QDialog):
         
         self.ui.responseLabel.setText(self.examine_text)
         self.ui.lineEdit.clear()
+
+        self.network_query_finished.emit()
         return
         
     def api_connected_animation(self) -> None:
@@ -172,11 +199,8 @@ class NyvoNetHunterApp(QDialog):
         self.progressbar_percent_animation.setDuration(20000)
         self.progressbar_percent_animation.setStartValue(0)
         self.progressbar_percent_animation.setEndValue(100)
-        
-
         self.ui.callstatusLabel.setText("Examining...")
-        
-        
+
         self.progressbar_percent_animation.start()
 
     def api_responded_animation(self) -> None:
@@ -208,6 +232,8 @@ class NyvoNetHunterApp(QDialog):
         self.ui.progressBar.setValue(0)
 
     def get_checked_examine_options(self) -> [list, None]:
+        self.bool_longitude_found = False
+        self.bool_latitude_found = False
         
         all_options = [option for option in dir(self.ui) if option.endswith("CheckBox")]
         requested_options = [getattr(self.ui, option) for option in all_options]
@@ -219,16 +245,21 @@ class NyvoNetHunterApp(QDialog):
             if option == "zipcode":
                 unified_option = option.replace("zipcode", "zip")    
                 self.checked_options_list.insert(option_index, unified_option)
+
                 del self.checked_options_list[option_index+1]
                 
             if option == "latitude":
                 unified_option = option.replace("latitude", "lat")
                 self.checked_options_list.insert(option_index, unified_option)
+                self.bool_latitude_found = True
+            
                 del self.checked_options_list[option_index+1]
                 
             elif option == "longitude":
                 unified_option = option.replace("longitude", "lon")
                 self.checked_options_list.insert(option_index, unified_option)
+
+                self.bool_longitude_found = True
                 del self.checked_options_list[option_index+1]
                 
         if not self.checked_options_list:
@@ -244,7 +275,7 @@ class NyvoNetHunterApp(QDialog):
 
         return self.checked_options_list
         
-    def no_connction_state(self) -> None:
+    def no_connection_state(self) -> None:
     
         check_boxes = [
         
@@ -264,7 +295,7 @@ class NyvoNetHunterApp(QDialog):
             eval(f"self.ui.{check_box}.setDisabled(True)")
             
         self.ui.responseLabel.setText("No internet connection.")
-        self.ui.connection_status_label.setPixmap(self.ui.no_connction_icon)
+        self.ui.connection_status_label.setPixmap(self.ui.no_connection_icon)
 
     def warning_request_timeout(self) -> None:
         self.ui.responseLabel.setText("Request timed out, please try again.")
@@ -285,7 +316,7 @@ class NyvoNetHunterApp(QDialog):
         )
         self.ui.pushButton.setIcon(icon1)
 
-    def default_state(self) -> None:
+    def default_query_state(self) -> None:
         self.ui.pushButton.setEnabled(True)
         self.ui.pushButton.setText("Examine")
 
@@ -323,11 +354,21 @@ class NyvoNetHunterApp(QDialog):
         self.ui.responseLabel.clear()
         
         self.ui.connection_status_label.setPixmap(self.ui.connected_icon)
-    
+
+    def web_view_default_state(self) -> None:
+        project_root_directory = Path.cwd()
+        self.base_state_html = QtCore.QUrl.fromLocalFile(
+            f"{project_root_directory}/main_program/source/coding/database/map_api/data_storage/base_state.html"
+        )
+
+        self.ui.webView.load(self.base_state_html)
         
     def initialize_connection_checker(self) -> None:
         self.connection_status_thread = QThread()
         self.connection_status_worker = ConnectionStatusChecker()
+
+        self.connection_status_worker.lost_connection.connect(self.no_connection_state)
+        self.connection_status_worker.spotted_connection.connect(self.connected_state)
 
         self.connection_status_worker.moveToThread(self.connection_status_thread)
         self.connection_status_thread.started.connect(self.connection_status_worker.run)
@@ -360,12 +401,38 @@ class NyvoNetHunterApp(QDialog):
 
         self.setted_examine_attributes.connect(self.network_manager_thread.start)
 
-        self.ui.pushButton
         self.ui.pushButton.clicked.connect(self.get_checked_examine_options)
 
+    def initialize_spoofer_logic(self) -> None:
+        self.map_spoofer = MapSpoofer(0, 0)
+        self.html_data_storage = "main_program/source/coding/database/map_api/data_storage/spoof_result.html"
+
+        check_spoof_status = lambda: (self.can_spoof_location.emit() 
+            if all([self.bool_latitude_found, self.bool_longitude_found]) else self.cant_spoof_location.emit()
+        )
+
+        self.cant_spoof_location.connect(self.web_view_default_state)
+
+        self.network_query_finished.connect(check_spoof_status)
+
+        self.can_spoof_location.connect(lambda: self.map_spoofer.set_latitude(self.latitude))
+        self.can_spoof_location.connect(lambda: self.map_spoofer.set_longitude(self.longitude))
+        self.can_spoof_location.connect(self.map_spoofer.start)
+
+        self.map_spoofer.location_spoofed.connect(lambda: self.map_spoofer.save_as_html_file(self.html_data_storage))
+
+        project_root_directory = Path.cwd()
+        map_location_file_path = QtCore.QUrl.fromLocalFile(
+            f"{project_root_directory}/main_program/source/coding/database/map_api/data_storage/spoof_result.html"
+        )
+
+        self.map_spoofer.saved_as_html.connect(lambda: self.ui.webView.load(map_location_file_path))
+
+
     def initialize_animations_logic(self) -> None:
-        self.connection_status_worker.spotted_connection.connect(self.connected_state)
-        self.connection_status_worker.lost_connection.connect(self.no_connction_state)
+        self.web_view_default_state()
+
+        self.connection_status_worker.lost_connection.connect(self.web_view_default_state)
 
         self.fill_animationgroup_finished.connect(self.api_kill_animation)
 
@@ -379,7 +446,7 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.failed_to_send.connect(self.api_responded_animation)
 
         self.network_manager_worker.request_started.connect(self.examining_state)
-        self.network_manager_worker.request_sent.connect(self.default_state)
+        self.network_manager_worker.request_sent.connect(self.default_query_state)
 
     def get_input_text(self) -> str:
         self.inputted_text = self.ui.lineEdit.text()
@@ -391,15 +458,17 @@ class NyvoNetHunterApp(QDialog):
         super().__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.ui.retranslateUi(self)
     
         self.initialize_network_logic()
         self.initialize_connection_checker()
         self.initialize_animations_logic()
+        self.initialize_spoofer_logic()
         self.show()
         
   
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QApplication(sys.argv + ["--no-sandbox"])
     app_window = NyvoNetHunterApp()
 
     app_window.show()
