@@ -85,7 +85,8 @@
 >  |   -------                    |                                      -------                                      |
 >  | psf/black                    | Maintaining the code readability                                                  |
 >  | PyQt5 Package                | Implementing the Graphical User Interface of the project                          |
->  | Qt Designer package          | Implementing the Graphical User Interface ofthe project                           |
+>  | Qt Designer Application      | Implementing the Graphical User Interface ofthe project                           |
+>  | Python Folium package        | Rendering multifarious map objects                                                |
 
 <br>
 
