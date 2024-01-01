@@ -1,0 +1,20 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+
+
+<qresource>
+
+
+    <file>pictures/check_mark.png</file>
+    <file>pictures/connected_icon.png</file>
+    <file>pictures/icon.png</file>
+    <file>pictures/no_connection_icon.png</file>
+    <file>pictures/pushbuttonicon.png</file>
+    <file>pictures/target_icon.png</file>
+    <file>html_files/base_state.html</file>
+    <file>html_files/spoof_result.html</file>
+
+
+</qresource>
+
+</RCC>

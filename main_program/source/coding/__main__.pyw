@@ -126,8 +126,11 @@ class NyvoNetHunterApp(QDialog):
         
     def show_response(self) -> None:
 
-        self.bool_longitude_found = False
         self.bool_latitude_found = False
+        self.bool_longitude_found = False
+
+        self.latitude = 1
+        self.longitude = 1
 
         response = self.network_manager_worker.response.json()
 
@@ -145,6 +148,7 @@ class NyvoNetHunterApp(QDialog):
 
                 if option == "lon":
                     self.longitude = float(response[option])
+                    print(self.longitude)
 
                     self.bool_longitude_found = True
                     self.longitude_found.emit()
@@ -411,6 +415,8 @@ class NyvoNetHunterApp(QDialog):
             if all([self.bool_latitude_found, self.bool_longitude_found]) else self.cant_spoof_location.emit()
         )
 
+        self.network_query_finished.connect(check_spoof_status)
+
         self.cant_spoof_location.connect(self.web_view_default_state)
 
         self.network_query_finished.connect(check_spoof_status)
@@ -453,6 +459,7 @@ class NyvoNetHunterApp(QDialog):
         self.simplified_input = simplify_long_string(self.inputted_text)
 
         return self.inputted_text
+    
 
     def __init__(self):
         super().__init__()
