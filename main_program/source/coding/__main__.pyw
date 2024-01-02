@@ -143,12 +143,14 @@ class NyvoNetHunterApp(QDialog):
             option_index = option_index + 1
 
             try:    
+
+                if not response[option]:
+                    raise KeyError("...")
             
                 self.examine_text += f"{option_index}. {option}: {response[option]}.\n"
 
                 if option == "lon":
                     self.longitude = float(response[option])
-                    print(self.longitude)
 
                     self.bool_longitude_found = True
                     self.longitude_found.emit()
@@ -255,7 +257,7 @@ class NyvoNetHunterApp(QDialog):
             if option == "latitude":
                 unified_option = option.replace("latitude", "lat")
                 self.checked_options_list.insert(option_index, unified_option)
-                self.bool_latitude_found = True
+                
             
                 del self.checked_options_list[option_index+1]
                 
@@ -263,7 +265,6 @@ class NyvoNetHunterApp(QDialog):
                 unified_option = option.replace("longitude", "lon")
                 self.checked_options_list.insert(option_index, unified_option)
 
-                self.bool_longitude_found = True
                 del self.checked_options_list[option_index+1]
                 
         if not self.checked_options_list:

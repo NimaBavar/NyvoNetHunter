@@ -343,6 +343,7 @@ def is_valid_url(url: str) -> bool:
     return False
 
 
+
 def clean_terminal() -> None:
     runner_operating_system = platform(terse=True)
     operating_system_is_windows = runner_operating_system.lower().startswith("windows")
