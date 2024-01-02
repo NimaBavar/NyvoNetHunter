@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-# The main launcher for GNU/Linux operating systems.
+# The main launcher for Windows operating systems.
 """
 
 
@@ -63,7 +63,9 @@ except Exception as e:
 
 
 def setup_temp_directory() -> QTemporaryDir:
-    temporary_directory = QTemporaryDir("/tmp/nyvonethunter")
+    home_path = os.environ["HOME"]
+
+    temporary_directory = QTemporaryDir(f"{home_path}/nyvonethunter_temp")
     temporary_directory.setAutoRemove(False)
 
     file_manager = QFile("temp_dir_manager")
