@@ -3,7 +3,7 @@
 Feature: The apps fundamental features.
 
 
-Background: The app must be launched at first.
+Background: The app must be launched in order to be used..
 
 
 Rule: The user is unable to use the app features without a valid internet connection.
