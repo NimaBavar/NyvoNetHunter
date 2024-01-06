@@ -61,7 +61,7 @@
 ## Note:
 ---
 > [!NOTE]
-> **This project is archived until further development**.
+> *This project is archived until further development*.
 ---
 
 
