@@ -22,6 +22,7 @@
 > - [**What is NyvoNetHunter project?**](#what-is-nyvonethunter-project)
 > - [**What is the purpose of this project?**](#what-is-the-purpose-of-this-project)
 > - [**Where can I read the security policy guidelines of this project?**](#where-can-i-read-the-security-policy-guidelines-of-this-project)
+> - [**Note**](#note)
 ---
 
 
