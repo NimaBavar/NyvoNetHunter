@@ -30,6 +30,7 @@ try:
     from PyQt5.QtGui import QIcon
     from platform import platform
     from PyQt5 import QtWidgets
+    from pyperclip import copy
     from pathlib import Path
     from json import loads
     from time import sleep
