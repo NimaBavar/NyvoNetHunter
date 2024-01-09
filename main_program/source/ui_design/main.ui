@@ -386,8 +386,8 @@ QGraphicsView:disabled {
   appearance: none;
   border-radius: 5px;
   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
-  z-index: 2;
-  transition: all 0.3s;
+   : 2;
+   : all 0.3s;
 }
 
 .container {
@@ -398,7 +398,7 @@ QGraphicsView:disabled {
   left: -8%;
   border-radius: 5px;
   background-color: #6593cf;
-  transition: all 0.3s;
+   : all 0.3s;
 }
 
 QCheckBox::before {
@@ -411,25 +411,25 @@ QCheckBox::before {
   width: 55px;
   height: 3px;
   border-radius: 25px;
-  transform: translate(100px, 0px) scale(0);
-  transition: ease-out 0.15s;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
 }
 
 QCheckBox:checked::before {
-  transform: translateX(2em);
+  : translateX(2em);
   top: 12px;
-  transition: ease-out 0.15s;
+   : ease-out 0.15s;
 }
 
 QcheckBox:hover {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
 QCheckBox:checked {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
@@ -438,18 +438,18 @@ QCheckBox:checked {
   width: 25px;
   height: 25px;
   display: flex;
-  z-index: 3;
+   : 3;
   top: 35%;
   left: 11%;
   color: #fefefe;
   font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
-  transform: rotate(0deg) scale(0);
-  transition: ease-in 0.2s;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
 }
 
 QCheckBoxchecked ~ .svg-icon {
-  transform: rotate(360deg) scale(1);
-  transition: ease-in 0.2s;
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
 }
 </string>
    </property>
@@ -539,8 +539,8 @@ QLabel:disabled {
   appearance: none;
   border-radius: 5px;
   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
-  z-index: 2;
-  transition: all 0.3s;
+   : 2;
+   : all 0.3s;
 }
 
 .container {
@@ -551,7 +551,7 @@ QLabel:disabled {
   left: -8%;
   border-radius: 5px;
   background-color: #6593cf;
-  transition: all 0.3s;
+   : all 0.3s;
 }
 
 QCheckBox::before {
@@ -564,25 +564,25 @@ QCheckBox::before {
   width: 55px;
   height: 3px;
   border-radius: 25px;
-  transform: translate(100px, 0px) scale(0);
-  transition: ease-out 0.15s;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
 }
 
 QCheckBox:checked::before {
-  transform: translateX(2em);
+  : translateX(2em);
   top: 12px;
-  transition: ease-out 0.15s;
+   : ease-out 0.15s;
 }
 
 QcheckBox:hover {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
 QCheckBox:checked {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
@@ -591,18 +591,18 @@ QCheckBox:checked {
   width: 25px;
   height: 25px;
   display: flex;
-  z-index: 3;
+   : 3;
   top: 35%;
   left: 11%;
   color: #fefefe;
   font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
-  transform: rotate(0deg) scale(0);
-  transition: ease-in 0.2s;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
 }
 
 QCheckBoxchecked ~ .svg-icon {
-  transform: rotate(360deg) scale(1);
-  transition: ease-in 0.2s;
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
 }
 </string>
    </property>
@@ -637,8 +637,8 @@ QCheckBoxchecked ~ .svg-icon {
   appearance: none;
   border-radius: 5px;
   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
-  z-index: 2;
-  transition: all 0.3s;
+   : 2;
+   : all 0.3s;
 }
 
 .container {
@@ -649,7 +649,7 @@ QCheckBoxchecked ~ .svg-icon {
   left: -8%;
   border-radius: 5px;
   background-color: #6593cf;
-  transition: all 0.3s;
+   : all 0.3s;
 }
 
 QCheckBox::before {
@@ -662,25 +662,25 @@ QCheckBox::before {
   width: 55px;
   height: 3px;
   border-radius: 25px;
-  transform: translate(100px, 0px) scale(0);
-  transition: ease-out 0.15s;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
 }
 
 QCheckBox:checked::before {
-  transform: translateX(2em);
+  : translateX(2em);
   top: 12px;
-  transition: ease-out 0.15s;
+   : ease-out 0.15s;
 }
 
 QcheckBox:hover {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
 QCheckBox:checked {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
@@ -689,18 +689,18 @@ QCheckBox:checked {
   width: 25px;
   height: 25px;
   display: flex;
-  z-index: 3;
+   : 3;
   top: 35%;
   left: 11%;
   color: #fefefe;
   font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
-  transform: rotate(0deg) scale(0);
-  transition: ease-in 0.2s;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
 }
 
 QCheckBoxchecked ~ .svg-icon {
-  transform: rotate(360deg) scale(1);
-  transition: ease-in 0.2s;
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
 }
 </string>
    </property>
@@ -735,8 +735,8 @@ QCheckBoxchecked ~ .svg-icon {
   appearance: none;
   border-radius: 5px;
   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
-  z-index: 2;
-  transition: all 0.3s;
+   : 2;
+   : all 0.3s;
 }
 
 .container {
@@ -747,7 +747,7 @@ QCheckBoxchecked ~ .svg-icon {
   left: -8%;
   border-radius: 5px;
   background-color: #6593cf;
-  transition: all 0.3s;
+   : all 0.3s;
 }
 
 QCheckBox::before {
@@ -760,25 +760,25 @@ QCheckBox::before {
   width: 55px;
   height: 3px;
   border-radius: 25px;
-  transform: translate(100px, 0px) scale(0);
-  transition: ease-out 0.15s;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
 }
 
 QCheckBox:checked::before {
-  transform: translateX(2em);
+  : translateX(2em);
   top: 12px;
-  transition: ease-out 0.15s;
+   : ease-out 0.15s;
 }
 
 QcheckBox:hover {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
 QCheckBox:checked {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
@@ -787,18 +787,18 @@ QCheckBox:checked {
   width: 25px;
   height: 25px;
   display: flex;
-  z-index: 3;
+   : 3;
   top: 35%;
   left: 11%;
   color: #fefefe;
   font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
-  transform: rotate(0deg) scale(0);
-  transition: ease-in 0.2s;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
 }
 
 QCheckBoxchecked ~ .svg-icon {
-  transform: rotate(360deg) scale(1);
-  transition: ease-in 0.2s;
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
 }
 </string>
    </property>
@@ -833,8 +833,8 @@ QCheckBoxchecked ~ .svg-icon {
   appearance: none;
   border-radius: 5px;
   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
-  z-index: 2;
-  transition: all 0.3s;
+   : 2;
+   : all 0.3s;
 }
 
 .container {
@@ -845,7 +845,7 @@ QCheckBoxchecked ~ .svg-icon {
   left: -8%;
   border-radius: 5px;
   background-color: #6593cf;
-  transition: all 0.3s;
+   : all 0.3s;
 }
 
 QCheckBox::before {
@@ -858,25 +858,25 @@ QCheckBox::before {
   width: 55px;
   height: 3px;
   border-radius: 25px;
-  transform: translate(100px, 0px) scale(0);
-  transition: ease-out 0.15s;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
 }
 
 QCheckBox:checked::before {
-  transform: translateX(2em);
+  : translateX(2em);
   top: 12px;
-  transition: ease-out 0.15s;
+   : ease-out 0.15s;
 }
 
 QcheckBox:hover {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
 QCheckBox:checked {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
@@ -885,18 +885,18 @@ QCheckBox:checked {
   width: 25px;
   height: 25px;
   display: flex;
-  z-index: 3;
+   : 3;
   top: 35%;
   left: 11%;
   color: #fefefe;
   font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
-  transform: rotate(0deg) scale(0);
-  transition: ease-in 0.2s;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
 }
 
 QCheckBoxchecked ~ .svg-icon {
-  transform: rotate(360deg) scale(1);
-  transition: ease-in 0.2s;
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
 }
 </string>
    </property>
@@ -934,8 +934,8 @@ QCheckBoxchecked ~ .svg-icon {
   appearance: none;
   border-radius: 5px;
   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
-  z-index: 2;
-  transition: all 0.3s;
+   : 2;
+   : all 0.3s;
 }
 
 .container {
@@ -946,7 +946,7 @@ QCheckBoxchecked ~ .svg-icon {
   left: -8%;
   border-radius: 5px;
   background-color: #6593cf;
-  transition: all 0.3s;
+   : all 0.3s;
 }
 
 QCheckBox::before {
@@ -959,25 +959,25 @@ QCheckBox::before {
   width: 55px;
   height: 3px;
   border-radius: 25px;
-  transform: translate(100px, 0px) scale(0);
-  transition: ease-out 0.15s;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
 }
 
 QCheckBox:checked::before {
-  transform: translateX(2em);
+  : translateX(2em);
   top: 12px;
-  transition: ease-out 0.15s;
+   : ease-out 0.15s;
 }
 
 QcheckBox:hover {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
 QCheckBox:checked {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
@@ -986,18 +986,18 @@ QCheckBox:checked {
   width: 25px;
   height: 25px;
   display: flex;
-  z-index: 3;
+   : 3;
   top: 35%;
   left: 11%;
   color: #fefefe;
   font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
-  transform: rotate(0deg) scale(0);
-  transition: ease-in 0.2s;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
 }
 
 QCheckBoxchecked ~ .svg-icon {
-  transform: rotate(360deg) scale(1);
-  transition: ease-in 0.2s;
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
 }
 </string>
    </property>
@@ -1035,8 +1035,8 @@ QCheckBoxchecked ~ .svg-icon {
   appearance: none;
   border-radius: 5px;
   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
-  z-index: 2;
-  transition: all 0.3s;
+   : 2;
+   : all 0.3s;
 }
 
 .container {
@@ -1047,7 +1047,7 @@ QCheckBoxchecked ~ .svg-icon {
   left: -8%;
   border-radius: 5px;
   background-color: #6593cf;
-  transition: all 0.3s;
+   : all 0.3s;
 }
 
 QCheckBox::before {
@@ -1060,25 +1060,25 @@ QCheckBox::before {
   width: 55px;
   height: 3px;
   border-radius: 25px;
-  transform: translate(100px, 0px) scale(0);
-  transition: ease-out 0.15s;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
 }
 
 QCheckBox:checked::before {
-  transform: translateX(2em);
+  : translateX(2em);
   top: 12px;
-  transition: ease-out 0.15s;
+   : ease-out 0.15s;
 }
 
 QcheckBox:hover {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
 QCheckBox:checked {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
@@ -1087,18 +1087,18 @@ QCheckBox:checked {
   width: 25px;
   height: 25px;
   display: flex;
-  z-index: 3;
+   : 3;
   top: 35%;
   left: 11%;
   color: #fefefe;
   font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
-  transform: rotate(0deg) scale(0);
-  transition: ease-in 0.2s;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
 }
 
 QCheckBoxchecked ~ .svg-icon {
-  transform: rotate(360deg) scale(1);
-  transition: ease-in 0.2s;
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
 }
 </string>
    </property>
@@ -1136,8 +1136,8 @@ QCheckBoxchecked ~ .svg-icon {
   appearance: none;
   border-radius: 5px;
   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
-  z-index: 2;
-  transition: all 0.3s;
+   : 2;
+   : all 0.3s;
 }
 
 .container {
@@ -1148,7 +1148,7 @@ QCheckBoxchecked ~ .svg-icon {
   left: -8%;
   border-radius: 5px;
   background-color: #6593cf;
-  transition: all 0.3s;
+   : all 0.3s;
 }
 
 QCheckBox::before {
@@ -1161,25 +1161,25 @@ QCheckBox::before {
   width: 55px;
   height: 3px;
   border-radius: 25px;
-  transform: translate(100px, 0px) scale(0);
-  transition: ease-out 0.15s;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
 }
 
 QCheckBox:checked::before {
-  transform: translateX(2em);
+  : translateX(2em);
   top: 12px;
-  transition: ease-out 0.15s;
+   : ease-out 0.15s;
 }
 
 QcheckBox:hover {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
 QCheckBox:checked {
-  transform: translate(4px, 4px);
-  transition: ease-out 0.15s;
+  : translate(4px, 4px);
+   : ease-out 0.15s;
   background-color: #6593cf;
 }
 
@@ -1188,18 +1188,18 @@ QCheckBox:checked {
   width: 25px;
   height: 25px;
   display: flex;
-  z-index: 3;
+   : 3;
   top: 35%;
   left: 11%;
   color: #fefefe;
   font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
-  transform: rotate(0deg) scale(0);
-  transition: ease-in 0.2s;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
 }
 
 QCheckBoxchecked ~ .svg-icon {
-  transform: rotate(360deg) scale(1);
-  transition: ease-in 0.2s;
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
 }
 </string>
    </property>
@@ -1386,6 +1386,19 @@ QProgressBardisabled {
    </property>
    <property name="value">
     <number>0</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>820</x>
+     <y>487</y>
+     <width>301</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>copy</string>
    </property>
   </widget>
  </widget>

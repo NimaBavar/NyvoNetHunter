@@ -24,7 +24,7 @@ from packages import dataclass
 
 @dataclass
 class BuildData:
-    __version__ = "11.2.2"
+    __version__ = "11.4.4"
     __author__ = "KhodeNima ( Nima Bavar )"
     __build_date__ = "2023/11/13"
 

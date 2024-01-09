@@ -302,6 +302,8 @@ class NyvoNetHunterApp(QDialog):
         self.ui.responseLabel.setText("No internet connection.")
         self.ui.connection_status_label.setPixmap(self.ui.no_connection_icon)
 
+        self.ui.copyButton.setDisabled(True)
+
     def warning_request_timeout(self) -> None:
         self.ui.responseLabel.setText("Request timed out, please try again.")
 
@@ -320,6 +322,7 @@ class NyvoNetHunterApp(QDialog):
             QtGui.QIcon.On,
         )
         self.ui.pushButton.setIcon(icon1)
+        self.ui.copyButton.setDisabled(True)
 
     def default_query_state(self) -> None:
         self.ui.pushButton.setEnabled(True)
@@ -336,6 +339,7 @@ class NyvoNetHunterApp(QDialog):
             QtGui.QIcon.On,
         )
         self.ui.pushButton.setIcon(icon1)
+        self.ui.copyButton.setDisabled(True)
 
     def connected_state(self) -> None:  
     
@@ -408,6 +412,8 @@ class NyvoNetHunterApp(QDialog):
 
         self.ui.pushButton.clicked.connect(self.get_checked_examine_options)
 
+        self.ui.copyButton.clicked.connect(lambda: copy(self.ui.responseLabel.text()))
+
     def initialize_spoofer_logic(self) -> None:
         self.map_spoofer = MapSpoofer(0, 0)
         self.html_data_storage = "main_program/source/coding/database/map_api/data_storage/spoof_result.html"
@@ -448,17 +454,28 @@ class NyvoNetHunterApp(QDialog):
 
         self.network_manager_worker.received_valid_response.connect(self.api_responded_animation)
         self.network_manager_worker.received_invalid_response.connect(self.api_responded_animation)
+        self.network_manager_worker.received_valid_response.connect(lambda: self.ui.copyButton.setEnabled(True))
+        self.network_manager_worker.received_invalid_response.connect(lambda: self.ui.copyButton.setEnabled(True))
 
         self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
         self.network_manager_worker.failed_to_send.connect(self.api_responded_animation)
+        self.network_manager_worker.failed_to_send.connect(lambda: self.ui.copyButton.setDisabled(True))
 
         self.network_manager_worker.request_started.connect(self.examining_state)
         self.network_manager_worker.request_sent.connect(self.default_query_state)
 
+        self.invalid_endpoint_passed.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.no_examine_option_found.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.user_input_is_empty.connect(lambda: self.ui.copyButton.setDisabled(True))
+
+        self.invalid_endpoint_passed.connect(self.web_view_default_state)
+        self.no_examine_option_found.connect(self.web_view_default_state)
+        self.user_input_is_empty.connect(self.web_view_default_state)
+
+
     def get_input_text(self) -> str:
         self.inputted_text = self.ui.lineEdit.text()
         self.simplified_input = simplify_long_string(self.inputted_text)
-
         return self.inputted_text
     
 
@@ -480,4 +497,7 @@ if __name__ == "__main__":
     app_window = NyvoNetHunterApp()
 
     app_window.show()
+    cmd_input("clear")
+    print(f"\33[34m Booted.\33[0m")
+
     sys.exit(app_window.exec_())
