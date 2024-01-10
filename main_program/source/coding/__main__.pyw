@@ -122,8 +122,7 @@ class NyvoNetHunterApp(QDialog):
             
         self.connectable_is_generated.emit()
         return generated_connectable
-    
-        
+     
     def show_response(self) -> None:
 
         self.bool_latitude_found = False
@@ -176,28 +175,6 @@ class NyvoNetHunterApp(QDialog):
 
         self.network_query_finished.emit()
         return
-        
-    def api_connected_animation(self) -> None:
-        self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
-        
-        self.progressbar_percent_animation.setDuration(1000)
-        self.progressbar_percent_animation.setStartValue(0)
-        self.progressbar_percent_animation.setEndValue(100)
-        
-        self.ui.callstatusLabel.setText("Connecting...")
-        
-        self.progressbar_percent_animation.start()
-        
-        self.progressbar_percent_animation.finished.connect(self.fill_animationgroup_finished.emit)
-        
-    def api_disconnected_animation(self) -> None:
-        selfprogressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
-        
-        selfprogressbar_percent_animation.setDuration(1000)
-        selfprogressbar_percent_animation.setStartValue(100)
-        selfprogressbar_percent_animation.setEndValue(0)
-        
-        self.ui.callstatusLabel.setText("Diconnected...") 
             
     def api_examining_animation(self) -> None:
         self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode( ), parent=self)
@@ -205,7 +182,9 @@ class NyvoNetHunterApp(QDialog):
         self.progressbar_percent_animation.setDuration(20000)
         self.progressbar_percent_animation.setStartValue(0)
         self.progressbar_percent_animation.setEndValue(100)
-        self.ui.callstatusLabel.setText("Examining...")
+        
+        self.ui.callstatusLabel.setMovie(self.ui.examining_movie)
+        self.ui.examining_movie.start()
 
         self.progressbar_percent_animation.start()
 
@@ -217,7 +196,6 @@ class NyvoNetHunterApp(QDialog):
         self.progressbar_percent_animation.setEndValue(0)
         
         self.progressbar_percent_animation.start()
-        self.ui.callstatusLabel.setText("Awaiting...")
         
     def api_fast_fill_animation(self) -> None:
         self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
@@ -227,14 +205,11 @@ class NyvoNetHunterApp(QDialog):
         self.progressbar_percent_animation.setEndValue(100)
         
         self.progressbar_percent_animation.start()
-        self.ui.callstatusLabel.setText("Examining...")
         
         self.fill_animationgroup_finished.emit()
         
     def api_kill_animation(self):
         self.progressbar_percent_animation.stop()
-
-        self.ui.callstatusLabel.setText("Awaiting...")
         self.ui.progressBar.setValue(0)
 
     def get_checked_examine_options(self) -> [list, None]:
@@ -294,15 +269,17 @@ class NyvoNetHunterApp(QDialog):
         self.ui.lineEdit.clear()
         self.ui.lineEdit.setDisabled(True)
         self.ui.pushButton.setDisabled(True)
-        self.ui
+        self.ui.copyButton.setDisabled(True)
+
+        self.ui.copyButton.setText("copy")
         
         for check_box in check_boxes:
             eval(f"self.ui.{check_box}.setDisabled(True)")
             
         self.ui.responseLabel.setText("No internet connection.")
-        self.ui.connection_status_label.setPixmap(self.ui.no_connection_icon)
+        self.ui.connection_status_label.setMovie(self.ui.no_connection_movie)
+        self.ui.no_connection_movie.start()
 
-        self.ui.copyButton.setDisabled(True)
 
     def warning_request_timeout(self) -> None:
         self.ui.responseLabel.setText("Request timed out, please try again.")
@@ -323,10 +300,14 @@ class NyvoNetHunterApp(QDialog):
         )
         self.ui.pushButton.setIcon(icon1)
         self.ui.copyButton.setDisabled(True)
+        self.ui.copyButton.setText("copy")
 
     def default_query_state(self) -> None:
         self.ui.pushButton.setEnabled(True)
         self.ui.pushButton.setText("Examine")
+
+        self.ui.callstatusLabel.setMovie(self.ui.awaiting_movie)
+        self.ui.awaiting_movie.start()
 
         self.ui.lineEdit.setEnabled(True)
 
@@ -340,6 +321,7 @@ class NyvoNetHunterApp(QDialog):
         )
         self.ui.pushButton.setIcon(icon1)
         self.ui.copyButton.setDisabled(True)
+        self.ui.copyButton.setText("copy")
 
     def connected_state(self) -> None:  
     
@@ -362,7 +344,8 @@ class NyvoNetHunterApp(QDialog):
             
         self.ui.responseLabel.clear()
         
-        self.ui.connection_status_label.setPixmap(self.ui.connected_icon)
+        self.ui.connection_status_label.setMovie(self.ui.connected_movie)
+        self.ui.connected_movie.start()
 
     def web_view_default_state(self) -> None:
         project_root_directory = Path.cwd()
@@ -406,7 +389,6 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.received_valid_response.connect(self.network_manager_thread.exit)
 
         self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
-        self.network_manager_worker.failed_to_send.connect(self.network_manager_thread.exit)
 
         self.setted_examine_attributes.connect(self.network_manager_thread.start)
 
@@ -441,9 +423,9 @@ class NyvoNetHunterApp(QDialog):
 
         self.map_spoofer.saved_as_html.connect(lambda: self.ui.webView.load(map_location_file_path))
 
-
     def initialize_animations_logic(self) -> None:
         self.web_view_default_state()
+        self.default_query_state()
 
         self.connection_status_worker.lost_connection.connect(self.web_view_default_state)
 
@@ -467,18 +449,22 @@ class NyvoNetHunterApp(QDialog):
         self.invalid_endpoint_passed.connect(lambda: self.ui.copyButton.setDisabled(True))
         self.no_examine_option_found.connect(lambda: self.ui.copyButton.setDisabled(True))
         self.user_input_is_empty.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.invalid_endpoint_passed.connect(lambda: self.ui.copyButton.setText("copy"))
+        self.no_examine_option_found.connect(lambda: self.ui.copyButton.setText("copy"))
+        self.user_input_is_empty.connect(lambda: self.ui.copyButton.setText("copy"))
 
         self.invalid_endpoint_passed.connect(self.web_view_default_state)
         self.no_examine_option_found.connect(self.web_view_default_state)
         self.user_input_is_empty.connect(self.web_view_default_state)
 
+        self.ui.copyButton.clicked.connect(lambda: self.ui.copyButton.setText("Result copied to clipboard."))
+        self.ui.copyButton.clicked.connect(lambda: self.ui.copyButton.setDisabled(True))
 
     def get_input_text(self) -> str:
         self.inputted_text = self.ui.lineEdit.text()
         self.simplified_input = simplify_long_string(self.inputted_text)
         return self.inputted_text
     
-
     def __init__(self):
         super().__init__()
         self.ui = Ui_Dialog()

@@ -6,13 +6,16 @@
 
 
     <file>pictures/check_mark.png</file>
-    <file>pictures/connected_icon.png</file>
     <file>pictures/icon.png</file>
-    <file>pictures/no_connection_icon.png</file>
     <file>pictures/pushbuttonicon.png</file>
     <file>pictures/target_icon.png</file>
     <file>html_files/base_state.html</file>
     <file>html_files/spoof_result.html</file>
+
+    <file>gifs/connected.gif</file>
+    <file>gifs/no_connection.gif</file>
+    <file>gifs/examining.gif</file>
+    <file>gifs/awaiting.gif</file>
 
 
 </qresource>

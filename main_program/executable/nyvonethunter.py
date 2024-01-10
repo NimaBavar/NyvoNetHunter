@@ -1,18 +1,7 @@
 #!/usr/bin/env python3
 """
-# The main launcher for GNU/Linux operating systems.
+# The main launcher for Windows operating systems.
 """
-
-
-def setup_database_import_path() -> None:
-    from sys import path as module_paths
-    import pathlib
-
-    project_root_directory = pathlib.Path.cwd()
-
-    module_paths.append(f"{project_root_directory}/main_program/source/ui_design/resources")
-
-setup_database_import_path()
 
 
 try:
@@ -26,6 +15,7 @@ try:
     from requests.exceptions import SSLError
     from PyQt5.QtWidgets import QSizePolicy
     from PyQt5.QtCore import QTemporaryDir
+    from platform import platform, uname
     from PyQt5 import QtWebEngineWidgets
     from PyQt5.QtCore import QEventLoop
     from PyQt5.QtCore import QByteArray
@@ -40,8 +30,8 @@ try:
     from PyQt5 import QtCore, QtGui
     from PyQt5.QtTest import QTest
     from PyQt5.QtGui import QIcon
-    from platform import platform
     from PyQt5 import QtWidgets
+    from pyperclip import copy
     from pathlib import Path
     import resource_storage
     from json import loads
@@ -63,11 +53,12 @@ except Exception as e:
 
 
 def setup_temp_directory() -> QTemporaryDir:
-    temporary_directory = QTemporaryDir("/tmp/nyvonethunter")
+    home_directory_path = os.environ["HOME"]
+
+    temporary_directory = QTemporaryDir(f"{home_directory_path}/Desktop/.nyvonethunter")
     temporary_directory.setAutoRemove(False)
 
     file_manager = QFile("temp_dir_manager")
-
 
     required_resources = [":/pictures/target_icon.png", ":/html_files/base_state.html", ":/html_files/spoof_result.html"]
 
@@ -75,12 +66,29 @@ def setup_temp_directory() -> QTemporaryDir:
     file_manager.copy(":/html_files/base_state.html", f"{temporary_directory.path()}/base_state.html")
     file_manager.copy(":/html_files/spoof_result.html", f"{temporary_directory.path()}/spoof_result.html")
 
-    cmd_input(f"chmod +rwx {temporary_directory.path()}/spoof_result.html")
-
     return temporary_directory
 
-
 temporary_resource_file = setup_temp_directory()
+
+
+def setup_permissions() -> None:
+    operating_system_version = uname()[3]
+    operating_system = uname()[0]
+
+    operating_system_is_new_windows = "10" in operating_system_version or "11" in operating_system_version or "8" in operating_system_version
+    
+    if operating_system == "Linux":
+        cmd_input(f"chmod -R 777 {temporary_resource_file.path()}")
+        return None
+
+    if operating_system == "Windows" and not operating_system_is_new_windows:
+        cmd_input(f"cacls {temporary_resource_file.path()} /p everyone:f")
+        return None
+
+    if operating_system == "Windows" and operating_system_is_new_windows:
+        cmd_input(f"icacls {temporary_resource_file.path()} /p everyone:f")
+        return None
+setup_permissions()
 
 
 class DirectRunError(Exception):
@@ -621,19 +629,17 @@ class Ui_Dialog(object):
         self.pushButton.setFont(font)
         self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton.setWhatsThis("")
-        self.pushButton.setStyleSheet("QPushButton{ border: 2px solid red; background-color: orange }\n"
+        self.pushButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
 "\n"
 "QPushButton:hover{\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,\n"
-"                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "}\n"
 "\n"
 "QPushButton {\n"
 "        border: 1px solid #6593cf;\n"
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,\n"
-"                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "        color: #006aff;\n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
@@ -643,8 +649,7 @@ class Ui_Dialog(object):
 "\n"
 "\n"
 "QPushButton:pressed {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,\n"
-"        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);\n"
+"\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "\n"
@@ -663,10 +668,9 @@ class Ui_Dialog(object):
 "        padding-top: 2px;        \n"
 "        padding-left: 3px;\n"
 "        color: black;\n"
-"}\n"
-"")
+"}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/../../../../../../.designer/backup/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon1)
         self.pushButton.setIconSize(QtCore.QSize(35, 35))
         self.pushButton.setDefault(False)
@@ -675,30 +679,25 @@ class Ui_Dialog(object):
         self.lineEdit = QtWidgets.QLineEdit(Dialog)
         self.lineEdit.setGeometry(QtCore.QRect(250, 490, 561, 31))
         self.lineEdit.setAutoFillBackground(False)
-        self.lineEdit.setStyleSheet("QLineEdit{ border: 2px solid red; background-color: orange }\n"
+        self.lineEdit.setStyleSheet("QLineEdit { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
 "\n"
 "QLineEdit:hover{\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,\n"
-"                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);\n"
+"        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "}\n"
 "\n"
 "QLineEdit {\n"
 "        border: 1px solid #6593cf;\n"
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,\n"
-"                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "        color: #006aff;\n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
 "}\n"
 "\n"
 "\n"
-"\n"
-"\n"
 "QLineEdit:pressed {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,\n"
-"        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);\n"
+"\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "\n"
@@ -706,8 +705,7 @@ class Ui_Dialog(object):
 "\n"
 "\n"
 "QLineEdit:on {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
-"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "}\n"
@@ -724,39 +722,33 @@ class Ui_Dialog(object):
         self.lineEdit.setObjectName("lineEdit")
         self.graphicsView = QtWidgets.QGraphicsView(Dialog)
         self.graphicsView.setGeometry(QtCore.QRect(250, 180, 561, 301))
-        self.graphicsView.setStyleSheet("QGraphicsView { border: 2px solid red; background-color: orange }\n"
+        self.graphicsView.setStyleSheet("QGraphicsView { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
 "\n"
-"QGraphicsView:hover{\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,\n"
-"                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);\n"
+"QLineEdit:hover{\n"
+"        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "}\n"
 "\n"
-"QGraphicsView {\n"
+"QLineEdit {\n"
 "        border: 1px solid #6593cf;\n"
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,\n"
-"                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "        color: #006aff;\n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
 "}\n"
 "\n"
 "\n"
+"QLineEdit:pressed {\n"
 "\n"
-"\n"
-"QGraphicsView:pressed {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,\n"
-"        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "\n"
 "}\n"
 "\n"
 "\n"
-"QGraphicsView:on {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
-"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
+"QLineEdit:on {\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "}\n"
@@ -768,162 +760,39 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}")
         self.graphicsView.setObjectName("graphicsView")
-        self.callstatusLabel = QtWidgets.QLabel(Dialog)
-        self.callstatusLabel.setGeometry(QtCore.QRect(480, 100, 121, 31))
-        self.callstatusLabel.setStyleSheet("QLabel{ border: 2px solid red; background-color: orange }\n"
-"\n"
-"QLabel:hover{\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,\n"
-"                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);\n"
-"}\n"
-"\n"
-"QLabel {\n"
-"        border: 1px solid #6593cf;\n"
-"        border-radius: 2px;\n"
-"        padding: 5px 15px 2px 5px;\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,\n"
-"                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);\n"
-"        color: #006aff;\n"
-"        font: bold large \"Arial\";\n"
-"        height: 30px;\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"QLabel:pressed {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,\n"
-"        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);\n"
-"        padding-top: 2px;\n"
-"        padding-left: 3px;\n"
-"\n"
-"}\n"
-"\n"
-"\n"
-"QLabel:on {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
-"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
-"        padding-top: 2px;\n"
-"        padding-left: 3px;\n"
-"}\n"
-"\n"
-"QLabel:disabled {\n"
-"        background: transparent #e5e9ee;\n"
-"        padding-top: 2px;        \n"
-"        padding-left: 3px;\n"
-"        color: black;\n"
-"}")
-        self.callstatusLabel.setObjectName("callstatusLabel")
-        self.progressBar = QtWidgets.QProgressBar(Dialog)
-        self.progressBar.setGeometry(QtCore.QRect(250, 140, 561, 31))
-        self.progressBar.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.progressBar.setStyleSheet("QProgressBar {\n"
-"\n"
-"\n"
-"    border:2px solid red;  \n"
-"    border-radius:5px; \n"
-"    text-align:center;\n"
-"\n"
-"\n"
-"}\n"
-" \n"
-"\n"
-"QProgressBar::chunk {\n"
-"\n"
-"    background-color:#05B8CC;\n"
-"    width:5px; \n"
-"    margin:1px;\n"
-"\n"
-"}\n"
-"\n"
-"\n"
-"QProgressBar{ border: 2px solid red; background-color: orange }\n"
-"\n"
-"QProgressBar:hover{\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,\n"
-"                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);\n"
-"}\n"
-"\n"
-"QProgressBar {\n"
-"        border: 1px solid #6593cf;\n"
-"        border-radius: 2px;\n"
-"        padding: 5px 15px 2px 5px;\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,\n"
-"                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);\n"
-"        color: #006aff;\n"
-"        font: bold large \"Arial\";\n"
-"        height: 30px;\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"QProgressBar:pressed {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,\n"
-"        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);\n"
-"        padding-top: 2px;\n"
-"        padding-left: 3px;\n"
-"\n"
-"}\n"
-"\n"
-"\n"
-"QProgressBar:on {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
-"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
-"        padding-top: 2px;\n"
-"        padding-left: 3px;\n"
-"}\n"
-"\n"
-"QProgressBar:disabled {\n"
-"        background: transparent #e5e9ee;\n"
-"        padding-top: 2px;        \n"
-"        padding-left: 3px;\n"
-"        color: black;\n"
-"}\n"
-"\n"
-"\n"
-"")
-        self.progressBar.setProperty("value", 0)
-        self.progressBar.setObjectName("progressBar")
         self.responseLabel = QtWidgets.QLabel(Dialog)
         self.responseLabel.setGeometry(QtCore.QRect(280, 190, 501, 281))
         self.responseLabel.setText("")
         self.responseLabel.setObjectName("responseLabel")
         self.graphicsView_2 = QtWidgets.QGraphicsView(Dialog)
         self.graphicsView_2.setGeometry(QtCore.QRect(50, 180, 191, 301))
-        self.graphicsView_2.setStyleSheet("QGraphicsView { border: 2px solid red; background-color: orange }\n"
+        self.graphicsView_2.setStyleSheet("QGraphicsView { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
 "\n"
-"QGraphicsView:hover{\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,\n"
-"                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);\n"
+"QLineEdit:hover{\n"
+"        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "}\n"
 "\n"
-"QGraphicsView {\n"
+"QLineEdit {\n"
 "        border: 1px solid #6593cf;\n"
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,\n"
-"                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "        color: #006aff;\n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
 "}\n"
 "\n"
 "\n"
+"QLineEdit:pressed {\n"
 "\n"
-"\n"
-"QGraphicsView:pressed {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,\n"
-"        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "\n"
 "}\n"
 "\n"
 "\n"
-"QGraphicsView:on {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
-"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
+"QLineEdit:on {\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "}\n"
@@ -949,7 +818,7 @@ class Ui_Dialog(object):
 "  margin-right: -22px;\n"
 "  appearance: none;\n"
 "  border-radius: 5px;\n"
-"  background-color: #6593cf;\n"
+"  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "   : 2;\n"
 "   : all 0.3s;\n"
 "}\n"
@@ -1019,19 +888,17 @@ class Ui_Dialog(object):
         self.countryCheckBox.setObjectName("countryCheckBox")
         self.label_3 = QtWidgets.QLabel(Dialog)
         self.label_3.setGeometry(QtCore.QRect(50, 140, 191, 31))
-        self.label_3.setStyleSheet("QLabel{ border: 2px solid red; background-color: orange }\n"
-"\n"
+        self.label_3.setStyleSheet("QLabel{ border: 2px solid white; background-color: qlineargradient(spread:reflect, x1:0.00947867, y1:1, x2:0.838863, y2:0.222, stop:0.0663507 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"}\n"
 "QLabel:hover{\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,\n"
-"                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "}\n"
 "\n"
 "QLabel {\n"
 "        border: 1px solid #6593cf;\n"
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,\n"
-"                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "        color: #006aff;\n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
@@ -1041,8 +908,7 @@ class Ui_Dialog(object):
 "\n"
 "\n"
 "QLabel:pressed {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,\n"
-"        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);\n"
+"\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "\n"
@@ -1077,7 +943,7 @@ class Ui_Dialog(object):
 "  margin-right: -22px;\n"
 "  appearance: none;\n"
 "  border-radius: 5px;\n"
-"  background-color: #6593cf;\n"
+"  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "   : 2;\n"
 "   : all 0.3s;\n"
 "}\n"
@@ -1159,7 +1025,7 @@ class Ui_Dialog(object):
 "  margin-right: -22px;\n"
 "  appearance: none;\n"
 "  border-radius: 5px;\n"
-"  background-color: #6593cf;\n"
+"  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "   : 2;\n"
 "   : all 0.3s;\n"
 "}\n"
@@ -1241,7 +1107,7 @@ class Ui_Dialog(object):
 "  margin-right: -22px;\n"
 "  appearance: none;\n"
 "  border-radius: 5px;\n"
-"  background-color: #6593cf;\n"
+"  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "   : 2;\n"
 "   : all 0.3s;\n"
 "}\n"
@@ -1323,7 +1189,7 @@ class Ui_Dialog(object):
 "  margin-right: -22px;\n"
 "  appearance: none;\n"
 "  border-radius: 5px;\n"
-"  background-color: #6593cf;\n"
+"  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "   : 2;\n"
 "   : all 0.3s;\n"
 "}\n"
@@ -1405,7 +1271,7 @@ class Ui_Dialog(object):
 "  margin-right: -22px;\n"
 "  appearance: none;\n"
 "  border-radius: 5px;\n"
-"  background-color: #6593cf;\n"
+"  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "   : 2;\n"
 "   : all 0.3s;\n"
 "}\n"
@@ -1487,7 +1353,7 @@ class Ui_Dialog(object):
 "  margin-right: -22px;\n"
 "  appearance: none;\n"
 "  border-radius: 5px;\n"
-"  background-color: #6593cf;\n"
+"  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "   : 2;\n"
 "   : all 0.3s;\n"
 "}\n"
@@ -1569,7 +1435,7 @@ class Ui_Dialog(object):
 "  margin-right: -22px;\n"
 "  appearance: none;\n"
 "  border-radius: 5px;\n"
-"  background-color: #6593cf;\n"
+"  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "   : 2;\n"
 "   : all 0.3s;\n"
 "}\n"
@@ -1639,19 +1505,17 @@ class Ui_Dialog(object):
         self.longitudeCheckBox.setObjectName("longitudeCheckBox")
         self.label_4 = QtWidgets.QLabel(Dialog)
         self.label_4.setGeometry(QtCore.QRect(50, 10, 191, 31))
-        self.label_4.setStyleSheet("QLabel{ border: 2px solid red; background-color: orange }\n"
-"\n"
+        self.label_4.setStyleSheet("QLabel{ border: 2px solid white; background-color: qlineargradient(spread:reflect, x1:0.00947867, y1:1, x2:0.838863, y2:0.222, stop:0.0663507 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"}\n"
 "QLabel:hover{\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,\n"
-"                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "}\n"
 "\n"
 "QLabel {\n"
 "        border: 1px solid #6593cf;\n"
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,\n"
-"                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "        color: #006aff;\n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
@@ -1661,8 +1525,7 @@ class Ui_Dialog(object):
 "\n"
 "\n"
 "QLabel:pressed {\n"
-"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,\n"
-"        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);\n"
+"\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "\n"
@@ -1689,9 +1552,117 @@ class Ui_Dialog(object):
         self.connection_status_label.setObjectName("connection_status_label")
         self.webView = QtWebEngineWidgets.QWebEngineView(Dialog)
         self.webView.setGeometry(QtCore.QRect(820, 180, 300, 301))
+        self.webView.setStyleSheet("QWebView{ border: 2px solid red; background-color: orange }\n"
+"\n"
+"QWebView:hover{\n"
+"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,\n"
+"                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);\n"
+"}\n"
+"\n"
+"QWebView {\n"
+"        border: 1px solid #6593cf;\n"
+"        border-radius: 2px;\n"
+"        padding: 5px 15px 2px 5px;\n"
+"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,\n"
+"                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);\n"
+"        color: #006aff;\n"
+"        font: bold large \"Arial\";\n"
+"        height: 30px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"QWebView:pressed {\n"
+"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,\n"
+"        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"QWebView:on {\n"
+"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
+"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"}\n"
+"\n"
+"QWebView:disabled {\n"
+"        background: transparent #e5e9ee;\n"
+"        padding-top: 2px;        \n"
+"        padding-left: 3px;\n"
+"        color: black;\n"
+"}\n"
+"")
+        self.webView.setUrl(QtCore.QUrl("about:blank"))
+        self.webView.setObjectName("webView")
+        self.progressBar = QtWidgets.QProgressBar(Dialog)
+        self.progressBar.setGeometry(QtCore.QRect(250, 140, 561, 31))
+        self.progressBar.setStyleSheet("QProgressBar { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
+"\n"
+"QProgrssBar:hover{\n"
+"        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"}\n"
+"\n"
+"QProgrssBar {\n"
+"        border: 1px solid #6593cf;\n"
+"        border-radius: 2px;\n"
+"        padding: 5px 15px 2px 5px;\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"        color: #006aff;\n"
+"        font: bold large \"Arial\";\n"
+"        height: 30px;\n"
+"}\n"
+"\n"
+"\n"
+"QProgrssBar:pressed {\n"
+"\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"QLineEdit:on {\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"}\n"
+"\n"
+"QProgressBardisabled {\n"
+"        background: transparent #e5e9ee;\n"
+"        padding-top: 2px;        \n"
+"        padding-left: 3px;\n"
+"        color: black;\n"
+"}")
+        self.progressBar.setProperty("value", 0)
+        self.progressBar.setObjectName("progressBar_2")
+        self.copyButton = QtWidgets.QPushButton(Dialog)
+        self.copyButton.setGeometry(QtCore.QRect(820, 487, 301, 31))
+        self.copyButton.setObjectName("copyButton")
+        self.callstatusLabel = QtWidgets.QLabel(Dialog)
+        self.callstatusLabel.setGeometry(QtCore.QRect(450, 50, 161, 81))
+        self.callstatusLabel.setText("")
+        self.callstatusLabel.setObjectName("callstatusLabel")
 
-        self.no_connection_icon = QtGui.QPixmap(":/pictures/no_connection_icon.png")
-        self.connected_icon = QtGui.QPixmap(":/pictures/connected_icon.png")
+        self.copyButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
+        self.no_connection_movie = QtGui.QMovie(":/gifs/no_connection.gif")
+        self.no_connection_movie.setScaledSize(QtCore.QSize(self.connection_status_label.width(), self.connection_status_label.height()))
+
+        self.connected_movie = QtGui.QMovie(":/gifs/connected.gif")
+        self.connected_movie.setScaledSize(QtCore.QSize(self.connection_status_label.width(), self.connection_status_label.height()))
+
+        self.awaiting_movie = QtGui.QMovie(":/gifs/awaiting.gif")
+        self.awaiting_movie.setScaledSize(QtCore.QSize(self.callstatusLabel.width(), self.callstatusLabel.height()))
+
+        self.examining_movie = QtGui.QMovie(":/gifs/examining.gif")
+        self.examining_movie.setScaledSize(QtCore.QSize(self.callstatusLabel.width(), self.callstatusLabel.height()))
+
+        self.webviewSettings = self.webView.settings()
+        self.webviewSettings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.WebAttribute.JavascriptEnabled, True)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -1704,12 +1675,9 @@ class Ui_Dialog(object):
         self.lineEdit.setToolTip(_translate("Dialog", "<html><head/><body><p>IP example: <span style=\" font-style:italic; text-decoration: underline;\">144.145.146.147</span><span style=\" font-weight:400;\">. </span>( IP addresses maximum octet digit is 255 )</p><p>URL example: <span style=\" font-style:italic; text-decoration: underline;\">https://github.com</span> OR <span style=\" font-style:italic; text-decoration: underline;\">https://discord.com</span><span style=\" font-weight:400;\">.</span></p><p><br/></p></body></html>"))
         self.lineEdit.setPlaceholderText(_translate("Dialog", "Enter your desired IP or URL to examine: "))
         self.graphicsView.setToolTip(_translate("Dialog", "<html><head/><body><p>The examine operation outputs will be shown <span style=\" font-style:italic; text-decoration: underline;\">here.</span></p></body></html>"))
-        self.callstatusLabel.setText(_translate("Dialog", "Awaiting..."))
-        self.progressBar.setToolTip(_translate("Dialog", "<html><head/><body><p>Examining...</p></body></html>"))
-        self.progressBar.setFormat(_translate("Dialog", "%p%"))
         self.graphicsView_2.setToolTip(_translate("Dialog", "<html><head/><body><p>The examine operation outputs will be shown <span style=\" font-style:italic; text-decoration: underline;\">here.</span></p></body></html>"))
         self.countryCheckBox.setText(_translate("Dialog", "Country"))
-        self.label_3.setText(_translate("Dialog", "     Examine options"))
+        self.label_3.setText(_translate("Dialog", "Examine options"))
         self.regionCheckBox.setText(_translate("Dialog", "Region"))
         self.cityCheckBox.setText(_translate("Dialog", "City"))
         self.zipcodeCheckBox.setText(_translate("Dialog", "Zip code"))
@@ -1720,8 +1688,9 @@ class Ui_Dialog(object):
         self.latitudeCheckBox.setText(_translate("Dialog", "latitude"))
         self.longitudeCheckBox.setToolTip(_translate("Dialog", "<html><head/><body><p>The IP user Internet Service Provider.</p><p><br/></p><p>Examples: Mobin Net Communication Company, SURFnet II c.</p></body></html>"))
         self.longitudeCheckBox.setText(_translate("Dialog", "Longitude"))
-        self.label_4.setText(_translate("Dialog", "   Connection Status"))
-
+        self.label_4.setText(_translate("Dialog", "Connection Status"))
+        self.progressBar.setFormat(_translate("Dialog", "                                                                              %p"))
+        self.copyButton.setText(_translate("Dialog", "copy"))
 
 class NyvoNetHunterApp(QDialog):
 
@@ -1818,7 +1787,6 @@ class NyvoNetHunterApp(QDialog):
             
         self.connectable_is_generated.emit()
         return generated_connectable
-    
         
     def show_response(self) -> None:
 
@@ -1872,28 +1840,6 @@ class NyvoNetHunterApp(QDialog):
 
         self.network_query_finished.emit()
         return
-        
-    def api_connected_animation(self) -> None:
-        self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
-        
-        self.progressbar_percent_animation.setDuration(1000)
-        self.progressbar_percent_animation.setStartValue(0)
-        self.progressbar_percent_animation.setEndValue(100)
-        
-        self.ui.callstatusLabel.setText("Connecting...")
-        
-        self.progressbar_percent_animation.start()
-        
-        self.progressbar_percent_animation.finished.connect(self.fill_animationgroup_finished.emit)
-        
-    def api_disconnected_animation(self) -> None:
-        selfprogressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
-        
-        selfprogressbar_percent_animation.setDuration(1000)
-        selfprogressbar_percent_animation.setStartValue(100)
-        selfprogressbar_percent_animation.setEndValue(0)
-        
-        self.ui.callstatusLabel.setText("Diconnected...") 
             
     def api_examining_animation(self) -> None:
         self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode( ), parent=self)
@@ -1901,7 +1847,9 @@ class NyvoNetHunterApp(QDialog):
         self.progressbar_percent_animation.setDuration(20000)
         self.progressbar_percent_animation.setStartValue(0)
         self.progressbar_percent_animation.setEndValue(100)
-        self.ui.callstatusLabel.setText("Examining...")
+        
+        self.ui.callstatusLabel.setMovie(self.ui.examining_movie)
+        self.ui.examining_movie.start()
 
         self.progressbar_percent_animation.start()
 
@@ -1913,7 +1861,6 @@ class NyvoNetHunterApp(QDialog):
         self.progressbar_percent_animation.setEndValue(0)
         
         self.progressbar_percent_animation.start()
-        self.ui.callstatusLabel.setText("Awaiting...")
         
     def api_fast_fill_animation(self) -> None:
         self.progressbar_percent_animation = QPropertyAnimation(targetObject=self.ui.progressBar, propertyName="value".encode(), parent=self)
@@ -1923,14 +1870,11 @@ class NyvoNetHunterApp(QDialog):
         self.progressbar_percent_animation.setEndValue(100)
         
         self.progressbar_percent_animation.start()
-        self.ui.callstatusLabel.setText("Examining...")
         
         self.fill_animationgroup_finished.emit()
         
     def api_kill_animation(self):
         self.progressbar_percent_animation.stop()
-
-        self.ui.callstatusLabel.setText("Awaiting...")
         self.ui.progressBar.setValue(0)
 
     def get_checked_examine_options(self) -> [list, None]:
@@ -1990,13 +1934,16 @@ class NyvoNetHunterApp(QDialog):
         self.ui.lineEdit.clear()
         self.ui.lineEdit.setDisabled(True)
         self.ui.pushButton.setDisabled(True)
-        self.ui
+        self.ui.copyButton.setDisabled(True)
+
+        self.ui.copyButton.setText("copy")
         
         for check_box in check_boxes:
             eval(f"self.ui.{check_box}.setDisabled(True)")
             
         self.ui.responseLabel.setText("No internet connection.")
-        self.ui.connection_status_label.setPixmap(self.ui.no_connection_icon)
+        self.ui.connection_status_label.setMovie(self.ui.no_connection_movie)
+        self.ui.no_connection_movie.start()
 
     def warning_request_timeout(self) -> None:
         self.ui.responseLabel.setText("Request timed out, please try again.")
@@ -2010,28 +1957,35 @@ class NyvoNetHunterApp(QDialog):
         icon1 = QtGui.QIcon()
         icon1.addPixmap(
             QtGui.QPixmap(
-                "main_program/source/ui_design/resources/pictures/check_mark.png"
+                ":/pictures/check_mark.png"
             ),
             QtGui.QIcon.Normal,
             QtGui.QIcon.On,
         )
         self.ui.pushButton.setIcon(icon1)
+        self.ui.copyButton.setDisabled(True)
+        self.ui.copyButton.setText("copy")
 
     def default_query_state(self) -> None:
         self.ui.pushButton.setEnabled(True)
         self.ui.pushButton.setText("Examine")
+
+        self.ui.callstatusLabel.setMovie(self.ui.awaiting_movie)
+        self.ui.awaiting_movie.start()
 
         self.ui.lineEdit.setEnabled(True)
 
         icon1 = QtGui.QIcon()
         icon1.addPixmap(
             QtGui.QPixmap(
-                "main_program/source/ui_design/resources/pictures/pushbuttonicon.png"
+                ":/pictures/pushbuttonicon.png"
             ),
             QtGui.QIcon.Normal,
             QtGui.QIcon.On,
         )
         self.ui.pushButton.setIcon(icon1)
+        self.ui.copyButton.setDisabled(True)
+        self.ui.copyButton.setText("copy")
 
     def connected_state(self) -> None:  
     
@@ -2054,12 +2008,13 @@ class NyvoNetHunterApp(QDialog):
             
         self.ui.responseLabel.clear()
         
-        self.ui.connection_status_label.setPixmap(self.ui.connected_icon)
+        self.ui.connection_status_label.setMovie(self.ui.connected_movie)
+        self.ui.connected_movie.start()
 
     def web_view_default_state(self) -> None:
         project_root_directory = Path.cwd()
         self.base_state_html = QtCore.QUrl.fromLocalFile(
-            f"{project_root_directory}/main_program/source/coding/database/map_api/data_storage/base_state.html"
+            f"{temporary_resource_file.path()}/base_state.html"
         )
 
         self.ui.webView.load(self.base_state_html)
@@ -2098,15 +2053,16 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.received_valid_response.connect(self.network_manager_thread.exit)
 
         self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
-        self.network_manager_worker.failed_to_send.connect(self.network_manager_thread.exit)
 
         self.setted_examine_attributes.connect(self.network_manager_thread.start)
 
         self.ui.pushButton.clicked.connect(self.get_checked_examine_options)
 
+        self.ui.copyButton.clicked.connect(lambda: copy(self.ui.responseLabel.text()))
+
     def initialize_spoofer_logic(self) -> None:
         self.map_spoofer = MapSpoofer(0, 0)
-        self.html_data_storage = "main_program/source/coding/database/map_api/data_storage/spoof_result.html"
+        self.html_data_storage = f"{temporary_resource_file.path()}/spoof_result.html"
 
         check_spoof_status = lambda: (self.can_spoof_location.emit() 
             if all([self.bool_latitude_found, self.bool_longitude_found]) else self.cant_spoof_location.emit()
@@ -2126,14 +2082,14 @@ class NyvoNetHunterApp(QDialog):
 
         project_root_directory = Path.cwd()
         map_location_file_path = QtCore.QUrl.fromLocalFile(
-            f"{project_root_directory}/main_program/source/coding/database/map_api/data_storage/spoof_result.html"
+            f"{temporary_resource_file.path()}/spoof_result.html"
         )
 
         self.map_spoofer.saved_as_html.connect(lambda: self.ui.webView.load(map_location_file_path))
 
-
     def initialize_animations_logic(self) -> None:
         self.web_view_default_state()
+        self.default_query_state()
 
         self.connection_status_worker.lost_connection.connect(self.web_view_default_state)
 
@@ -2144,20 +2100,40 @@ class NyvoNetHunterApp(QDialog):
 
         self.network_manager_worker.received_valid_response.connect(self.api_responded_animation)
         self.network_manager_worker.received_invalid_response.connect(self.api_responded_animation)
+        self.network_manager_worker.received_valid_response.connect(lambda: self.ui.copyButton.setEnabled(True))
+        self.network_manager_worker.received_invalid_response.connect(lambda: self.ui.copyButton.setEnabled(True))
 
         self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
         self.network_manager_worker.failed_to_send.connect(self.api_responded_animation)
+        self.network_manager_worker.failed_to_send.connect(lambda: self.ui.copyButton.setDisabled(True))
 
         self.network_manager_worker.request_started.connect(self.examining_state)
         self.network_manager_worker.request_sent.connect(self.default_query_state)
 
+        self.invalid_endpoint_passed.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.no_examine_option_found.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.user_input_is_empty.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.invalid_endpoint_passed.connect(lambda: self.ui.copyButton.setText("copy"))
+        self.no_examine_option_found.connect(lambda: self.ui.copyButton.setText("copy"))
+        self.user_input_is_empty.connect(lambda: self.ui.copyButton.setText("copy"))
+
+        self.invalid_endpoint_passed.connect(self.web_view_default_state)
+        self.no_examine_option_found.connect(self.web_view_default_state)
+        self.user_input_is_empty.connect(self.web_view_default_state)
+
+        self.ui.copyButton.clicked.connect(lambda: self.ui.copyButton.setText("Result copied to clipboard."))
+        self.ui.copyButton.clicked.connect(lambda: self.ui.copyButton.setDisabled(True))
+
     def get_input_text(self) -> str:
         self.inputted_text = self.ui.lineEdit.text()
         self.simplified_input = simplify_long_string(self.inputted_text)
-
         return self.inputted_text
     
-
+    def closeEvent(self, event):
+        """The action to perform when the app is closed.
+        """
+        temporary_resource_file.remove()
+        
     def __init__(self):
         super().__init__()
         self.ui = Ui_Dialog()
@@ -2169,11 +2145,14 @@ class NyvoNetHunterApp(QDialog):
         self.initialize_animations_logic()
         self.initialize_spoofer_logic()
         self.show()
-        
-  
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv + ["--no-sandbox"])
     app_window = NyvoNetHunterApp()
 
     app_window.show()
+    cmd_input("clear")
+    print(f"\33[34m Booted.\33[0m")
+
     sys.exit(app_window.exec_())
