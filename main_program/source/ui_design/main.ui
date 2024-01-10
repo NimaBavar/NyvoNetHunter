@@ -239,61 +239,6 @@ QGraphicsView:disabled {
 }</string>
    </property>
   </widget>
-  <widget class="QLabel" name="callstatusLabel">
-   <property name="geometry">
-    <rect>
-     <x>480</x>
-     <y>100</y>
-     <width>121</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLabel{ border: 2px solid white; background-color: qlineargradient(spread:reflect, x1:0.00947867, y1:1, x2:0.838863, y2:0.222, stop:0.0663507 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}
-QLabel:hover{
-        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
-}
-
-QLabel {
-        border: 1px solid #6593cf;
-        border-radius: 2px;
-        padding: 5px 15px 2px 5px;
-        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
-        color: #006aff;
-        font: bold large &quot;Arial&quot;;
-        height: 30px;
-}
-
-
-
-
-QLabel:pressed {
-
-        padding-top: 2px;
-        padding-left: 3px;
-
-}
-
-
-QLabel:on {
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,
-        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);
-        padding-top: 2px;
-        padding-left: 3px;
-}
-
-QLabel:disabled {
-        background: transparent #e5e9ee;
-        padding-top: 2px;        
-        padding-left: 3px;
-        color: black;
-}</string>
-   </property>
-   <property name="text">
-    <string>Awaiting...</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="responseLabel">
    <property name="geometry">
     <rect>
@@ -1387,6 +1332,9 @@ QProgressBardisabled {
    <property name="value">
     <number>0</number>
    </property>
+   <property name="format">
+    <string>                                                                              %p</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
@@ -1399,6 +1347,19 @@ QProgressBardisabled {
    </property>
    <property name="text">
     <string>copy</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="callstatusLabel">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>50</y>
+     <width>161</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>
