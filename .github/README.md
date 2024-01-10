@@ -56,13 +56,3 @@
 
 
 <br>
-
-
-## Note:
----
-> [!NOTE]
-> *This project is archived until further development*.
----
-
-
-<br>
