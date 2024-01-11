@@ -85,6 +85,7 @@ class NyvoNetHunterRequestManager(QObject):
     def fire(self) -> str:
         self.request_started.emit()
 
+
         try:
             self.response = requests.request(method=self.method, url=self.url, data=self.data, headers=self.headers, timeout=20)
             self.request_sent.emit()

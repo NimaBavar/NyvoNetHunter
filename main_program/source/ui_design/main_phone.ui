@@ -1,0 +1,1375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1192</width>
+    <height>685</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
+  <property name="cursor">
+   <cursorShape>IBeamCursor</cursorShape>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>NyvoNetHunter</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../../../../.designer/backup/resources/pictures/icon.png.png</normaloff>../../../../../../.designer/backup/resources/pictures/icon.png.png</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>5.000000000000000</double>
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>530</y>
+     <width>211</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Examine the ENDPOINT!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }
+
+QPushButton:hover{
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+}
+
+QPushButton {
+        border: 1px solid #6593cf;
+        border-radius: 2px;
+        padding: 5px 15px 2px 5px;
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+        color: #006aff;
+        font: bold large &quot;Arial&quot;;
+        height: 30px;
+}
+
+
+
+
+QPushButton:pressed {
+
+        padding-top: 2px;
+        padding-left: 3px;
+
+}
+
+
+QPushButton:on {
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,
+        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);
+        padding-top: 2px;
+        padding-left: 3px;
+}
+
+QPushButton:disabled {
+        background: transparent #e5e9ee;
+        padding-top: 2px;        
+        padding-left: 3px;
+        color: black;
+}</string>
+   </property>
+   <property name="text">
+    <string>Examine</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../../.designer/backup/resources/pictures/pushbuttonicon.png</normaloff>../../../../../../.designer/backup/resources/pictures/pushbuttonicon.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>35</width>
+     <height>35</height>
+    </size>
+   </property>
+   <property name="default">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>490</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP example: &lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;144.145.146.147&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;. &lt;/span&gt;( IP addresses maximum octet digit is 255 )&lt;/p&gt;&lt;p&gt;URL example: &lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;https://github.com&lt;/span&gt; OR &lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;https://discord.com&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }
+
+QLineEdit:hover{
+        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+}
+
+QLineEdit {
+        border: 1px solid #6593cf;
+        border-radius: 2px;
+        padding: 5px 15px 2px 5px;
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+        color: #006aff;
+        font: bold large &quot;Arial&quot;;
+        height: 30px;
+}
+
+
+QLineEdit:pressed {
+
+        padding-top: 2px;
+        padding-left: 3px;
+
+}
+
+
+QLineEdit:on {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+        padding-top: 2px;
+        padding-left: 3px;
+}
+
+QLineEdit:disabled {
+        background: transparent #e5e9ee;
+        padding-top: 2px;        
+        padding-left: 3px;
+        color: black;
+}</string>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhSensitiveData</set>
+   </property>
+   <property name="maxLength">
+    <number>50</number>
+   </property>
+   <property name="placeholderText">
+    <string>Enter your desired IP or URL to examine: </string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QGraphicsView" name="graphicsView">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>180</y>
+     <width>351</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The examine operation outputs will be shown &lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;here.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGraphicsView { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }
+
+QLineEdit:hover{
+        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+}
+
+QLineEdit {
+        border: 1px solid #6593cf;
+        border-radius: 2px;
+        padding: 5px 15px 2px 5px;
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+        color: #006aff;
+        font: bold large &quot;Arial&quot;;
+        height: 30px;
+}
+
+
+QLineEdit:pressed {
+
+        padding-top: 2px;
+        padding-left: 3px;
+
+}
+
+
+QLineEdit:on {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+        padding-top: 2px;
+        padding-left: 3px;
+}
+
+QGraphicsView:disabled {
+        background: transparent #e5e9ee;
+        padding-top: 2px;        
+        padding-left: 3px;
+        color: black;
+}</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="responseLabel">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>190</y>
+     <width>281</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QGraphicsView" name="graphicsView_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>180</y>
+     <width>191</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The examine operation outputs will be shown &lt;span style=&quot; font-style:italic; text-decoration: underline;&quot;&gt;here.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGraphicsView { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }
+
+QLineEdit:hover{
+        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+}
+
+QLineEdit {
+        border: 1px solid #6593cf;
+        border-radius: 2px;
+        padding: 5px 15px 2px 5px;
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+        color: #006aff;
+        font: bold large &quot;Arial&quot;;
+        height: 30px;
+}
+
+
+QLineEdit:pressed {
+
+        padding-top: 2px;
+        padding-left: 3px;
+
+}
+
+
+QLineEdit:on {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+        padding-top: 2px;
+        padding-left: 3px;
+}
+
+QGraphicsView:disabled {
+        background: transparent #e5e9ee;
+        padding-top: 2px;        
+        padding-left: 3px;
+        color: black;
+}</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="countryCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>200</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-right: -22px;
+  appearance: none;
+  border-radius: 5px;
+  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
+   : 2;
+   : all 0.3s;
+}
+
+.container {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 4px;
+  left: -8%;
+  border-radius: 5px;
+  background-color: #6593cf;
+   : all 0.3s;
+}
+
+QCheckBox::before {
+  content: &quot;&quot;;
+  background-color: #6593cf;
+  position: relative;
+  display: flex;
+  top: 45%;
+  left: 50%;
+  width: 55px;
+  height: 3px;
+  border-radius: 25px;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
+}
+
+QCheckBox:checked::before {
+  : translateX(2em);
+  top: 12px;
+   : ease-out 0.15s;
+}
+
+QcheckBox:hover {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+QCheckBox:checked {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+.svg-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  display: flex;
+   : 3;
+  top: 35%;
+  left: 11%;
+  color: #fefefe;
+  font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
+}
+
+QCheckBoxchecked ~ .svg-icon {
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Country</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>140</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{ border: 2px solid white; background-color: qlineargradient(spread:reflect, x1:0.00947867, y1:1, x2:0.838863, y2:0.222, stop:0.0663507 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+}
+QLabel:hover{
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+}
+
+QLabel {
+        border: 1px solid #6593cf;
+        border-radius: 2px;
+        padding: 5px 15px 2px 5px;
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+        color: #006aff;
+        font: bold large &quot;Arial&quot;;
+        height: 30px;
+}
+
+
+
+
+QLabel:pressed {
+
+        padding-top: 2px;
+        padding-left: 3px;
+
+}
+
+
+QLabel:on {
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,
+        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);
+        padding-top: 2px;
+        padding-left: 3px;
+}
+
+QLabel:disabled {
+        background: transparent #e5e9ee;
+        padding-top: 2px;        
+        padding-left: 3px;
+        color: black;
+}</string>
+   </property>
+   <property name="text">
+    <string>     Examine options</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="regionCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>220</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-right: -22px;
+  appearance: none;
+  border-radius: 5px;
+  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
+   : 2;
+   : all 0.3s;
+}
+
+.container {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 4px;
+  left: -8%;
+  border-radius: 5px;
+  background-color: #6593cf;
+   : all 0.3s;
+}
+
+QCheckBox::before {
+  content: &quot;&quot;;
+  background-color: #6593cf;
+  position: relative;
+  display: flex;
+  top: 45%;
+  left: 50%;
+  width: 55px;
+  height: 3px;
+  border-radius: 25px;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
+}
+
+QCheckBox:checked::before {
+  : translateX(2em);
+  top: 12px;
+   : ease-out 0.15s;
+}
+
+QcheckBox:hover {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+QCheckBox:checked {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+.svg-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  display: flex;
+   : 3;
+  top: 35%;
+  left: 11%;
+  color: #fefefe;
+  font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
+}
+
+QCheckBoxchecked ~ .svg-icon {
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Region</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="cityCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>240</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-right: -22px;
+  appearance: none;
+  border-radius: 5px;
+  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
+   : 2;
+   : all 0.3s;
+}
+
+.container {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 4px;
+  left: -8%;
+  border-radius: 5px;
+  background-color: #6593cf;
+   : all 0.3s;
+}
+
+QCheckBox::before {
+  content: &quot;&quot;;
+  background-color: #6593cf;
+  position: relative;
+  display: flex;
+  top: 45%;
+  left: 50%;
+  width: 55px;
+  height: 3px;
+  border-radius: 25px;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
+}
+
+QCheckBox:checked::before {
+  : translateX(2em);
+  top: 12px;
+   : ease-out 0.15s;
+}
+
+QcheckBox:hover {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+QCheckBox:checked {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+.svg-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  display: flex;
+   : 3;
+  top: 35%;
+  left: 11%;
+  color: #fefefe;
+  font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
+}
+
+QCheckBoxchecked ~ .svg-icon {
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>City</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="zipcodeCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>260</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-right: -22px;
+  appearance: none;
+  border-radius: 5px;
+  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
+   : 2;
+   : all 0.3s;
+}
+
+.container {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 4px;
+  left: -8%;
+  border-radius: 5px;
+  background-color: #6593cf;
+   : all 0.3s;
+}
+
+QCheckBox::before {
+  content: &quot;&quot;;
+  background-color: #6593cf;
+  position: relative;
+  display: flex;
+  top: 45%;
+  left: 50%;
+  width: 55px;
+  height: 3px;
+  border-radius: 25px;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
+}
+
+QCheckBox:checked::before {
+  : translateX(2em);
+  top: 12px;
+   : ease-out 0.15s;
+}
+
+QcheckBox:hover {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+QCheckBox:checked {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+.svg-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  display: flex;
+   : 3;
+  top: 35%;
+  left: 11%;
+  color: #fefefe;
+  font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
+}
+
+QCheckBoxchecked ~ .svg-icon {
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Zip code</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="timezoneCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>280</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-right: -22px;
+  appearance: none;
+  border-radius: 5px;
+  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
+   : 2;
+   : all 0.3s;
+}
+
+.container {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 4px;
+  left: -8%;
+  border-radius: 5px;
+  background-color: #6593cf;
+   : all 0.3s;
+}
+
+QCheckBox::before {
+  content: &quot;&quot;;
+  background-color: #6593cf;
+  position: relative;
+  display: flex;
+  top: 45%;
+  left: 50%;
+  width: 55px;
+  height: 3px;
+  border-radius: 25px;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
+}
+
+QCheckBox:checked::before {
+  : translateX(2em);
+  top: 12px;
+   : ease-out 0.15s;
+}
+
+QcheckBox:hover {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+QCheckBox:checked {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+.svg-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  display: flex;
+   : 3;
+  top: 35%;
+  left: 11%;
+  color: #fefefe;
+  font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
+}
+
+QCheckBoxchecked ~ .svg-icon {
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Time zone</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ispCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>300</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The IP user Internet Service Provider.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Examples: Mobin Net Communication Company, SURFnet II c.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-right: -22px;
+  appearance: none;
+  border-radius: 5px;
+  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
+   : 2;
+   : all 0.3s;
+}
+
+.container {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 4px;
+  left: -8%;
+  border-radius: 5px;
+  background-color: #6593cf;
+   : all 0.3s;
+}
+
+QCheckBox::before {
+  content: &quot;&quot;;
+  background-color: #6593cf;
+  position: relative;
+  display: flex;
+  top: 45%;
+  left: 50%;
+  width: 55px;
+  height: 3px;
+  border-radius: 25px;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
+}
+
+QCheckBox:checked::before {
+  : translateX(2em);
+  top: 12px;
+   : ease-out 0.15s;
+}
+
+QcheckBox:hover {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+QCheckBox:checked {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+.svg-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  display: flex;
+   : 3;
+  top: 35%;
+  left: 11%;
+  color: #fefefe;
+  font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
+}
+
+QCheckBoxchecked ~ .svg-icon {
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>ISP</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="latitudeCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>330</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The IP user Internet Service Provider.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Examples: Mobin Net Communication Company, SURFnet II c.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-right: -22px;
+  appearance: none;
+  border-radius: 5px;
+  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
+   : 2;
+   : all 0.3s;
+}
+
+.container {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 4px;
+  left: -8%;
+  border-radius: 5px;
+  background-color: #6593cf;
+   : all 0.3s;
+}
+
+QCheckBox::before {
+  content: &quot;&quot;;
+  background-color: #6593cf;
+  position: relative;
+  display: flex;
+  top: 45%;
+  left: 50%;
+  width: 55px;
+  height: 3px;
+  border-radius: 25px;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
+}
+
+QCheckBox:checked::before {
+  : translateX(2em);
+  top: 12px;
+   : ease-out 0.15s;
+}
+
+QcheckBox:hover {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+QCheckBox:checked {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+.svg-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  display: flex;
+   : 3;
+  top: 35%;
+  left: 11%;
+  color: #fefefe;
+  font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
+}
+
+QCheckBoxchecked ~ .svg-icon {
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>latitude</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="longitudeCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>350</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The IP user Internet Service Provider.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Examples: Mobin Net Communication Company, SURFnet II c.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-right: -22px;
+  appearance: none;
+  border-radius: 5px;
+  background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 76, 41, 255), stop:1 rgba(255, 255, 255, 255));
+   : 2;
+   : all 0.3s;
+}
+
+.container {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 4px;
+  left: -8%;
+  border-radius: 5px;
+  background-color: #6593cf;
+   : all 0.3s;
+}
+
+QCheckBox::before {
+  content: &quot;&quot;;
+  background-color: #6593cf;
+  position: relative;
+  display: flex;
+  top: 45%;
+  left: 50%;
+  width: 55px;
+  height: 3px;
+  border-radius: 25px;
+  : translate(100px, 0px) scale(0);
+   : ease-out 0.15s;
+}
+
+QCheckBox:checked::before {
+  : translateX(2em);
+  top: 12px;
+   : ease-out 0.15s;
+}
+
+QcheckBox:hover {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+QCheckBox:checked {
+  : translate(4px, 4px);
+   : ease-out 0.15s;
+  background-color: #6593cf;
+}
+
+.svg-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  display: flex;
+   : 3;
+  top: 35%;
+  left: 11%;
+  color: #fefefe;
+  font-family: &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, Calibri, &quot;Trebuchet MS&quot;, sans-serif;
+  : rotate(0deg) scale(0);
+   : ease-in 0.2s;
+}
+
+QCheckBoxchecked ~ .svg-icon {
+  : rotate(360deg) scale(1);
+   : ease-in 0.2s;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Longitude</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>10</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{ border: 2px solid white; background-color: qlineargradient(spread:reflect, x1:0.00947867, y1:1, x2:0.838863, y2:0.222, stop:0.0663507 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+}
+QLabel:hover{
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+}
+
+QLabel {
+        border: 1px solid #6593cf;
+        border-radius: 2px;
+        padding: 5px 15px 2px 5px;
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+        color: #006aff;
+        font: bold large &quot;Arial&quot;;
+        height: 30px;
+}
+
+
+
+
+QLabel:pressed {
+
+        padding-top: 2px;
+        padding-left: 3px;
+
+}
+
+
+QLabel:on {
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,
+        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);
+        padding-top: 2px;
+        padding-left: 3px;
+}
+
+QLabel:disabled {
+        background: transparent #e5e9ee;
+        padding-top: 2px;        
+        padding-left: 3px;
+        color: black;
+}</string>
+   </property>
+   <property name="text">
+    <string>   Connection Status</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="connection_status_label">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>50</y>
+     <width>191</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QWebView" name="webView">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>180</y>
+     <width>231</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWebView{ border: 2px solid red; background-color: orange }
+
+QWebView:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}
+
+QWebView {
+        border: 1px solid #6593cf;
+        border-radius: 2px;
+        padding: 5px 15px 2px 5px;
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,
+                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);
+        color: #006aff;
+        font: bold large &quot;Arial&quot;;
+        height: 30px;
+}
+
+
+
+
+QWebView:pressed {
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,
+        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);
+        padding-top: 2px;
+        padding-left: 3px;
+
+}
+
+
+QWebView:on {
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,
+        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);
+        padding-top: 2px;
+        padding-left: 3px;
+}
+
+QWebView:disabled {
+        background: transparent #e5e9ee;
+        padding-top: 2px;        
+        padding-left: 3px;
+        color: black;
+}
+</string>
+   </property>
+   <property name="url">
+    <url>
+     <string>about:blank</string>
+    </url>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="progressBar_2">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>140</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }
+
+QProgrssBar:hover{
+        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+}
+
+QProgrssBar {
+        border: 1px solid #6593cf;
+        border-radius: 2px;
+        padding: 5px 15px 2px 5px;
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))
+        color: #006aff;
+        font: bold large &quot;Arial&quot;;
+        height: 30px;
+}
+
+
+QProgrssBar:pressed {
+
+        padding-top: 2px;
+        padding-left: 3px;
+
+}
+
+
+QLineEdit:on {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+        padding-top: 2px;
+        padding-left: 3px;
+}
+
+QProgressBardisabled {
+        background: transparent #e5e9ee;
+        padding-top: 2px;        
+        padding-left: 3px;
+        color: black;
+}</string>
+   </property>
+   <property name="value">
+    <number>0</number>
+   </property>
+   <property name="format">
+    <string>                                                %p</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>490</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>copy</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="callstatusLabel">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>50</y>
+     <width>161</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebKitWidgets/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

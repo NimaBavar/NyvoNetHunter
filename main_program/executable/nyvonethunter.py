@@ -616,7 +616,7 @@ class Ui_Dialog(object):
         Dialog.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         Dialog.setMouseTracking(False)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setWindowOpacity(5.0)
         self.pushButton = QtWidgets.QPushButton(Dialog)
@@ -670,7 +670,7 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/../../../../../../.designer/backup/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon1)
         self.pushButton.setIconSize(QtCore.QSize(35, 35))
         self.pushButton.setDefault(False)
@@ -1655,9 +1655,6 @@ class Ui_Dialog(object):
         self.connected_movie = QtGui.QMovie(":/gifs/connected.gif")
         self.connected_movie.setScaledSize(QtCore.QSize(self.connection_status_label.width(), self.connection_status_label.height()))
 
-        self.awaiting_movie = QtGui.QMovie(":/gifs/awaiting.gif")
-        self.awaiting_movie.setScaledSize(QtCore.QSize(self.callstatusLabel.width(), self.callstatusLabel.height()))
-
         self.examining_movie = QtGui.QMovie(":/gifs/examining.gif")
         self.examining_movie.setScaledSize(QtCore.QSize(self.callstatusLabel.width(), self.callstatusLabel.height()))
 
@@ -1691,6 +1688,7 @@ class Ui_Dialog(object):
         self.label_4.setText(_translate("Dialog", "Connection Status"))
         self.progressBar.setFormat(_translate("Dialog", "                                                                              %p"))
         self.copyButton.setText(_translate("Dialog", "copy"))
+
 
 class NyvoNetHunterApp(QDialog):
 
@@ -1787,7 +1785,7 @@ class NyvoNetHunterApp(QDialog):
             
         self.connectable_is_generated.emit()
         return generated_connectable
-        
+     
     def show_response(self) -> None:
 
         self.bool_latitude_found = False
@@ -1970,8 +1968,7 @@ class NyvoNetHunterApp(QDialog):
         self.ui.pushButton.setEnabled(True)
         self.ui.pushButton.setText("Examine")
 
-        self.ui.callstatusLabel.setMovie(self.ui.awaiting_movie)
-        self.ui.awaiting_movie.start()
+        self.ui.callstatusLabel.setText("Awaiting Input.")
 
         self.ui.lineEdit.setEnabled(True)
 
@@ -2052,12 +2049,8 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.received_invalid_response.connect(self.network_manager_thread.exit)
         self.network_manager_worker.received_valid_response.connect(self.network_manager_thread.exit)
 
-        self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
-
         self.setted_examine_attributes.connect(self.network_manager_thread.start)
-
         self.ui.pushButton.clicked.connect(self.get_checked_examine_options)
-
         self.ui.copyButton.clicked.connect(lambda: copy(self.ui.responseLabel.text()))
 
     def initialize_spoofer_logic(self) -> None:
@@ -2103,9 +2096,12 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.received_valid_response.connect(lambda: self.ui.copyButton.setEnabled(True))
         self.network_manager_worker.received_invalid_response.connect(lambda: self.ui.copyButton.setEnabled(True))
 
+        self.network_manager_worker.failed_to_send.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.network_manager_worker.failed_to_send.connect(self.network_manager_thread.exit)
         self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
         self.network_manager_worker.failed_to_send.connect(self.api_responded_animation)
-        self.network_manager_worker.failed_to_send.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.network_manager_worker.failed_to_send.connect(self.web_view_default_state)
+        self.network_manager_worker.failed_to_send.connect(self.default_query_state)
 
         self.network_manager_worker.request_started.connect(self.examining_state)
         self.network_manager_worker.request_sent.connect(self.default_query_state)
@@ -2129,11 +2125,6 @@ class NyvoNetHunterApp(QDialog):
         self.simplified_input = simplify_long_string(self.inputted_text)
         return self.inputted_text
     
-    def closeEvent(self, event):
-        """The action to perform when the app is closed.
-        """
-        temporary_resource_file.remove()
-        
     def __init__(self):
         super().__init__()
         self.ui = Ui_Dialog()
@@ -2145,7 +2136,7 @@ class NyvoNetHunterApp(QDialog):
         self.initialize_animations_logic()
         self.initialize_spoofer_logic()
         self.show()
-
+        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv + ["--no-sandbox"])

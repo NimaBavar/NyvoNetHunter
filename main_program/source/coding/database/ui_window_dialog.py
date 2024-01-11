@@ -1078,11 +1078,11 @@ class Ui_Dialog(object):
         self.connected_movie = QtGui.QMovie("main_program/source/ui_design/resources/gifs/connected.gif")
         self.connected_movie.setScaledSize(QtCore.QSize(self.connection_status_label.width(), self.connection_status_label.height()))
 
-        self.awaiting_movie = QtGui.QMovie("main_program/source/ui_design/resources/gifs/awaiting.gif")
-        self.awaiting_movie.setScaledSize(QtCore.QSize(self.callstatusLabel.width(), self.callstatusLabel.height()))
-
         self.examining_movie = QtGui.QMovie("main_program/source/ui_design/resources/gifs/examining.gif")
         self.examining_movie.setScaledSize(QtCore.QSize(self.callstatusLabel.width(), self.callstatusLabel.height()))
+
+        self.awaiting_icon = QtGui.QPixmap("main_program/source/ui_design/resources/pictures/awaiting.png")
+        self.awaiting_icon = self.awaiting_icon.scaled(self.callstatusLabel.width(), self.callstatusLabel.height())
 
         self.webviewSettings = self.webView.settings()
         self.webviewSettings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.WebAttribute.JavascriptEnabled, True)
