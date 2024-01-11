@@ -34,21 +34,20 @@ class TestUrlValidators(TestCase):
         self.invalid_url_1 = "I'm not an url!"
         self.invalid_url_2 = "Hello"
 
-    def test_valid_url_response(self):
+    def test_valid_url_response(self) -> unittest.result:
         self.assertTrue(is_valid_url(self.schemed_valid_url_1))
         self.assertTrue(is_valid_url(self.schemed_valid_url_2))
 
-    def test_valid_noschema_url_response(self):
+    def test_valid_noschema_url_response(self) -> unittest.result:
         self.assertTrue(is_valid_url(self.noscheme_valid_url_1))
         self.assertTrue(is_valid_url(self.noscheme_valid_url_2))
 
-    def test_invalid_url(self):
+    def test_invalid_url(self) -> unittest.result:
         self.assertFalse(is_valid_url(self.invalid_url_1))
         self.assertFalse(is_valid_url(self.invalid_url_2))
 
 
 module_is_runned_directly = __name__ == "__main__"
-
 if module_is_runned_directly:
     clean_terminal()
     unittest.main()

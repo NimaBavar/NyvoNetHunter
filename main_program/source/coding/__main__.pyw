@@ -11,9 +11,9 @@ BY: NyvoStudio, KhodeNima ( Nima Bavar )
 from database.workers.api import (
     generate_valid_connectable,
     NyvoNetHunterIpAddress,
-    simplify_long_string,
     find_endpoint_type,
     NyvoNetHunterUrl,
+    simplify_text,
     is_valid_ipv4,
     is_valid_ipv6,
     is_valid_url,
@@ -344,7 +344,6 @@ class NyvoNetHunterApp(QDialog):
         
         self.ui.connection_status_label.setMovie(self.ui.connected_movie)
         self.ui.connected_movie.start()
-
     def web_view_default_state(self) -> None:
         project_root_directory = Path.cwd()
         self.base_state_html = QtCore.QUrl.fromLocalFile(
@@ -359,6 +358,7 @@ class NyvoNetHunterApp(QDialog):
 
         self.connection_status_worker.lost_connection.connect(self.no_connection_state)
         self.connection_status_worker.spotted_connection.connect(self.connected_state)
+
 
         self.connection_status_worker.moveToThread(self.connection_status_thread)
         self.connection_status_thread.started.connect(self.connection_status_worker.run)
@@ -388,7 +388,6 @@ class NyvoNetHunterApp(QDialog):
 
         self.setted_examine_attributes.connect(self.network_manager_thread.start)
         self.ui.pushButton.clicked.connect(self.get_checked_examine_options)
-        self.ui.copyButton.clicked.connect(lambda: copy(self.ui.responseLabel.text()))
 
     def initialize_spoofer_logic(self) -> None:
         self.map_spoofer = MapSpoofer(0, 0)
@@ -412,7 +411,7 @@ class NyvoNetHunterApp(QDialog):
 
         project_root_directory = Path.cwd()
         map_location_file_path = QtCore.QUrl.fromLocalFile(
-            f"{project_root_directory}/main_program/source/coding/database/map_api/data_storage/spoof_result.html"
+            f"{project_root_directory}/{self.html_data_storage}"
         )
 
         self.map_spoofer.saved_as_html.connect(lambda: self.ui.webView.load(map_location_file_path))
@@ -457,9 +456,12 @@ class NyvoNetHunterApp(QDialog):
         self.ui.copyButton.clicked.connect(lambda: self.ui.copyButton.setText("Result copied to clipboard."))
         self.ui.copyButton.clicked.connect(lambda: self.ui.copyButton.setDisabled(True))
 
+    def initialize_copy_logic(self) -> None:
+        self.ui.copyButton.clicked.connect(lambda: copy(self.ui.responseLabel.text()))
+
     def get_input_text(self) -> str:
         self.inputted_text = self.ui.lineEdit.text()
-        self.simplified_input = simplify_long_string(self.inputted_text)
+        self.simplified_input = simplify_text(self.inputted_text)
         return self.inputted_text
     
     def __init__(self):
@@ -472,6 +474,7 @@ class NyvoNetHunterApp(QDialog):
         self.initialize_connection_checker()
         self.initialize_animations_logic()
         self.initialize_spoofer_logic()
+        self.initialize_copy_logic()
         self.show()
         
   
