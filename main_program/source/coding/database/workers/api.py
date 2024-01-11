@@ -358,7 +358,7 @@ def clean_terminal() -> None:
         cmd_input("clear")
 
 
-def simplify_long_string(text: str) -> str:
+def simplify_text(text: str) -> str:
     """Simplifies a long text for previews.
 
     ex: MyNameIsAlex -> MyName...
@@ -372,7 +372,7 @@ def simplify_long_string(text: str) -> str:
     if not text_lenght >= 6:
         return text
     
-    simplified_string = f"{text[0:5]}..."
+    simplified_string = f"{text[0:6]}..."
     return simplified_string
 
 

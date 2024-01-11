@@ -36,13 +36,13 @@ class TestIpValidators(TestCase):
 
         self.invalid_ip = "I'm not an IP!"
 
-    def test_ip_validator(self):
+    def test_ip_validator(self) -> unittest.result:
         self.assertTrue(is_valid_ip(self.valid_ipv4_1))
         self.assertTrue(is_valid_ip(self.valid_ipv6_1))
 
         self.assertFalse(is_valid_ip(self.invalid_ip))
 
-    def test_ipv4_validator(self):
+    def test_ipv4_validator(self) -> unittest.result:
         self.assertTrue(is_valid_ipv4(self.valid_ipv4_1))
         self.assertTrue(is_valid_ipv4(self.valid_ipv4_2))
 
@@ -51,7 +51,7 @@ class TestIpValidators(TestCase):
         self.assertFalse(is_valid_ipv4(self.valid_ipv6_1))
         self.assertFalse(is_valid_ipv4(self.valid_ipv6_2))
 
-    def test_ipv6_validator(self):
+    def test_ipv6_validator(self) -> unittest.result:
         self.assertTrue(is_valid_ipv6(self.valid_ipv6_1))
         self.assertTrue(is_valid_ipv6(self.valid_ipv6_2))
 
@@ -62,6 +62,5 @@ class TestIpValidators(TestCase):
 
 
 module_is_runned_directly = __name__ == "__main__"
-
 if module_is_runned_directly:
     unittest.main()

@@ -2125,6 +2125,9 @@ class NyvoNetHunterApp(QDialog):
         self.simplified_input = simplify_long_string(self.inputted_text)
         return self.inputted_text
     
+    def initialize_copy_logic(self) -> None:
+        self.ui.copyButton.clicked.connect(lambda: copy(self.ui.responseLabel.text()))
+    
     def __init__(self):
         super().__init__()
         self.ui = Ui_Dialog()
@@ -2135,6 +2138,7 @@ class NyvoNetHunterApp(QDialog):
         self.initialize_connection_checker()
         self.initialize_animations_logic()
         self.initialize_spoofer_logic()
+        self.initialize_copy_logic()
         self.show()
         
 
