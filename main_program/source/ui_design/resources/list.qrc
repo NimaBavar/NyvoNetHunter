@@ -15,7 +15,6 @@
     <file>gifs/connected.gif</file>
     <file>gifs/no_connection.gif</file>
     <file>gifs/examining.gif</file>
-    <file>gifs/awaiting.gif</file>
 
 
 </qresource>

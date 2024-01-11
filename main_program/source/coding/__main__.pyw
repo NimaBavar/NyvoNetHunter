@@ -280,7 +280,6 @@ class NyvoNetHunterApp(QDialog):
         self.ui.connection_status_label.setMovie(self.ui.no_connection_movie)
         self.ui.no_connection_movie.start()
 
-
     def warning_request_timeout(self) -> None:
         self.ui.responseLabel.setText("Request timed out, please try again.")
 
@@ -306,8 +305,7 @@ class NyvoNetHunterApp(QDialog):
         self.ui.pushButton.setEnabled(True)
         self.ui.pushButton.setText("Examine")
 
-        self.ui.callstatusLabel.setMovie(self.ui.awaiting_movie)
-        self.ui.awaiting_movie.start()
+        self.ui.callstatusLabel.setText("Awaiting Input.")
 
         self.ui.lineEdit.setEnabled(True)
 
@@ -388,12 +386,8 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.received_invalid_response.connect(self.network_manager_thread.exit)
         self.network_manager_worker.received_valid_response.connect(self.network_manager_thread.exit)
 
-        self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
-
         self.setted_examine_attributes.connect(self.network_manager_thread.start)
-
         self.ui.pushButton.clicked.connect(self.get_checked_examine_options)
-
         self.ui.copyButton.clicked.connect(lambda: copy(self.ui.responseLabel.text()))
 
     def initialize_spoofer_logic(self) -> None:
@@ -439,9 +433,12 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.received_valid_response.connect(lambda: self.ui.copyButton.setEnabled(True))
         self.network_manager_worker.received_invalid_response.connect(lambda: self.ui.copyButton.setEnabled(True))
 
+        self.network_manager_worker.failed_to_send.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.network_manager_worker.failed_to_send.connect(self.network_manager_thread.exit)
         self.network_manager_worker.failed_to_send.connect(self.warning_request_timeout)
         self.network_manager_worker.failed_to_send.connect(self.api_responded_animation)
-        self.network_manager_worker.failed_to_send.connect(lambda: self.ui.copyButton.setDisabled(True))
+        self.network_manager_worker.failed_to_send.connect(self.web_view_default_state)
+        self.network_manager_worker.failed_to_send.connect(self.default_query_state)
 
         self.network_manager_worker.request_started.connect(self.examining_state)
         self.network_manager_worker.request_sent.connect(self.default_query_state)
