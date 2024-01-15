@@ -1,0 +1,40 @@
+---- nyvonethunter_project_speech_draft ----
+
+    "Hacking is one of the most prominent skill sets of the 21th century.",
+    while the corresponding sentence may be derived radical, but I corely 
+    believe it is one of the most righteous ones.
+
+    While it is outstanding, and short to register 
+    but becoming a cybersecurity expert is not an easy operation to couple with
+    in your ordinary life.
+
+    The philosophy behind this cherish was marginally recognized by experts after
+    two decades, but never actually handled with a proper solution.
+
+    After a low-lying firm of experience that the writer have gained throughout
+    his short journey contacing experts in the field of Cybersecurity, a conclusion was gained:
+
+    "Everybody must learn to protect themselves, especially in the epoch of technology
+    Where arms and weapons are no longer firearms, but rather keyboards and mouses
+    in tackle with a brain, with the adaptability of thinking and digging solutions, all
+    you then going to require, is time." 
+
+    Time as an invaluable element, is not compatible to waste, especially if you're goals
+    are not even close to the world of technology. Although you can't walk through a battlefield
+    without an arm.
+
+    In order for an arm to be coupled in the path of every human,
+    it shall be easy to learn, to fight back with.
+
+    NyvoStudio recognized this charm by only spending a small chunk of time
+    in the world of the warriors, IT professionals.
+
+    As human beings, and software engineering enthusiastics, we have decided to offer the smallish
+    arm that we could built with the little-to-no experience that we have in this field, NyvoNetHunter.
+
+    A public-IP spoofing tool made to be simple to work with, with the dream of becoming a full
+    security suite, gathering multifarious spoofing operations under only one security tool application,
+    with the injection of the most remarkable feature, ease of learning for ordinary millenials.
+
+
+---- END ----
