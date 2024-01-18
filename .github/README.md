@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src=https://img.shields.io/badge/By-Nima%20Bava%20%7C%20Amirali%20Yazdani%20%7C%20NyvoStudio-black?style=for-the-badge&logo=linux/>
+  <img src=https://img.shields.io/badge/By-Nima%20Bava%20%7C%20Amirali%20Yazdani%20%7C%20NyvoStudio-black?style=for-the-badge&logo=linux />
 
 </p>
 
