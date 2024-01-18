@@ -40,7 +40,7 @@
 
 ## What is the purpose of this project?
 ---
-> **At NyvoStudio, we understand that not all individuals have a technical background in prominent cyber-security tasks; That's why we've designed our user-friendly interface to provide an intuitive and seamless experience, enabling users with varying levels of technical expertise to leverage the power of connection scraping. Our interface is simple to navigate, to help users get started quickly and easily.**
+> **At NyvoStudio, we understand that not all individuals have a technical background in prominent cyber-security tasks, That's why we've designed our user-friendly interface to provide an intuitive and seamless experience, enabling users with varying levels of technical expertise to leverage the power of connection scraping. Our interface is simple to navigate, to help users get started quickly and easily.**
 ---
 
 
