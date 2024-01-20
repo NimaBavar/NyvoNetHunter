@@ -35,4 +35,4 @@ YourChangeCategory:
 <br>
 
 
-> Signed off by: `@CONTRIBUTOR_NAME1, #CN2`
+> Signed off by: `@CONTRIBUTOR_NAME1, #CN2`.
