@@ -9,14 +9,14 @@ Background: The app must be launched at first.
 Rule: The user is unable to use the app features without a valid internet connection.
 
   Example: Ali cannot dig an URL address without internet connection.
-    Given Ali does not have a valid internet connection
+    When Ali does not have a valid internet connection
     Then all the app features will be locked.
     
 
 Rule: The user cannot examine a network endpoint without choosing at least one examine option.
 
   Example: Ali cannot examine an URL address without chosing at least one examine option
-    Given all examine options are unchecked
+    When all examine options are unchecked
     When Ali tries to examine the information of: "https://google.com"
     Then he will be informed with an error message on the response screen.
     
@@ -59,7 +59,7 @@ Scenario: the user can see his/her internet connection status on the main window
     
 Scenario: The user can examine the informations of an IP address.
 
-  Given Ali inputs the IP address: 144.145.146.147
+  When Ali inputs the IP address: 144.145.146.147
   And clicks the examine button
     
   Then the IP information will be visible on the response screen.
@@ -67,7 +67,7 @@ Scenario: The user can examine the informations of an IP address.
   
 Scenario: The user can examine the informations of an URL address.
 
-  Given Ali inputs the URL address: "https://github.com/KhodeNima"
+  When Ali inputs the URL address: "https://github.com/KhodeNima"
   And clicks the examine button
     
   Then the URL information will be visible on the response screen.
@@ -75,7 +75,7 @@ Scenario: The user can examine the informations of an URL address.
 
 Scenario: The user can see the in-map location of the examined endpoint.
   
-  Given Ali input the URL address: "https://google.com"
+  When Ali input the URL address: "https://google.com"
   And he chekcs the examine option: "Show map location"
   And lattitude of the URL is found
   And the longitude of the URL is found
