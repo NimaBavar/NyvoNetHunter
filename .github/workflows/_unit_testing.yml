@@ -23,11 +23,6 @@ jobs:
           architecture: x64
 
 
-      - name: install_dependencies
-        run: |
-          pip install --upgrade pip
-
-
       - name: access_dependencies
         run: source main_program/source/virtual_environment/Scripts/activate
 
