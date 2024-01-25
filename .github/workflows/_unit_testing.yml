@@ -1,5 +1,5 @@
 name: unit_testing_validation
-on: [pull_request]
+on: [pull_request, push]
 
 
 jobs:
@@ -23,8 +23,14 @@ jobs:
           architecture: x64
 
 
+      - name: install_dependencies
+        run: |
+          pip install --upgrade pip
+
+
       - name: access_dependencies
-        run: main_program/source/virtual_environment/Scripts/activate
+        run: source main_program/source/virtual_environment/Scripts/activate
+
 
       - name: run_unittests
         run: |
