@@ -27,7 +27,9 @@ jobs:
         run: main_program/source/virtual_environment/Scripts/activate
 
       - name: run_unittests
-        run: python -m unittest discover main_program/source/coding/unit_tests
+        run: |
+          working_directory: nyvonethunter_project
+          python -m unittest discover main_program/source/coding/unit_tests
 
           
           
