@@ -66,8 +66,8 @@ class MapSpoofer(QObject):
             location=[self.latitude, self.longitude],
             tooltip="Target is in this area.",
             radius=44,
-            color="red",
-            fill_color='red',
+            color="white",
+            fill_color='white',
         )
 
 

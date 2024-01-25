@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-The Graphical User Interface window skeleton class
+The Graphical User Interface window skeleton class.
 """
 
 
@@ -42,17 +42,17 @@ class Ui_Dialog(object):
         icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setWindowOpacity(5.0)
-        self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(430, 530, 211, 81))
+        self.searchButton = QtWidgets.QPushButton(Dialog)
+        self.searchButton.setGeometry(QtCore.QRect(430, 530, 211, 81))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(75)
-        self.pushButton.setFont(font)
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setWhatsThis("")
-        self.pushButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
+        self.searchButton.setFont(font)
+        self.searchButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.searchButton.setWhatsThis("")
+        self.searchButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
 "\n"
 "QPushButton:hover{\n"
 "        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
@@ -94,11 +94,11 @@ class Ui_Dialog(object):
 "}")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/../../../../../../.designer/backup/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton.setIcon(icon1)
-        self.pushButton.setIconSize(QtCore.QSize(35, 35))
-        self.pushButton.setDefault(False)
-        self.pushButton.setFlat(True)
-        self.pushButton.setObjectName("pushButton")
+        self.searchButton.setIcon(icon1)
+        self.searchButton.setIconSize(QtCore.QSize(35, 35))
+        self.searchButton.setDefault(False)
+        self.searchButton.setFlat(True)
+        self.searchButton.setObjectName("pushButton")
         self.lineEdit = QtWidgets.QLineEdit(Dialog)
         self.lineEdit.setGeometry(QtCore.QRect(250, 490, 561, 31))
         self.lineEdit.setAutoFillBackground(False)
@@ -1019,22 +1019,19 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}\n"
 "")
+
+
         self.webView.setUrl(QtCore.QUrl("about:blank"))
         self.webView.setObjectName("webView")
         self.progressBar = QtWidgets.QProgressBar(Dialog)
         self.progressBar.setGeometry(QtCore.QRect(250, 140, 561, 31))
-        self.progressBar.setStyleSheet("QProgressBar { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
-"\n"
-"QProgrssBar:hover{\n"
-"        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
-"}\n"
-"\n"
+        self.progressBar.setFormat("                               %p%")
+        self.progressBar.setStyleSheet("QProgressBar { border: 2px solid black; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
 "QProgrssBar {\n"
 "        border: 1px solid #6593cf;\n"
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
-"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
-"        color: #006aff;\n"
+"        color: black; \n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
 "}\n"
@@ -1048,17 +1045,17 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "\n"
-"QLineEdit:on {\n"
-"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"QProgressBar:on {\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "}\n"
 "\n"
-"QProgressBardisabled {\n"
-"        background: transparent #e5e9ee;\n"
+"QProgressBar:disabled {\n"
 "        padding-top: 2px;        \n"
 "        padding-left: 3px;\n"
-"        color: black;\n"
+"}\n"
+"QProgressBar:chunk {\n"
+"        background-color: #ffffff;\n"
 "}")
         self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar_2")
@@ -1069,7 +1066,46 @@ class Ui_Dialog(object):
         self.callstatusLabel.setGeometry(QtCore.QRect(450, 50, 161, 81))
         self.callstatusLabel.setText("")
         self.callstatusLabel.setObjectName("callstatusLabel")
+        
 
+        self.copyButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
+"\n"
+"QPushButton:hover{\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"        border: 1px solid #6593cf;\n"
+"        border-radius: 2px;\n"
+"        padding: 5px 15px 2px 5px;\n"
+"        color: #000000;\n"
+"        font: bold large \"Arial\";\n"
+"        height: 30px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"QPushButton:pressed {\n"
+"\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"        color: #000000; \n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:on {\n"
+"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"        background: transparent #e5e9ee;\n"
+"        padding-top: 2px;        \n"
+"        padding-left: 3px;\n"
+"        color: #000000;\n"
+"}")
         self.copyButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.no_connection_movie = QtGui.QMovie("main_program/source/ui_design/resources/gifs/no_connection.gif")
@@ -1093,8 +1129,8 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "NyvoNetHunter"))
-        self.pushButton.setToolTip(_translate("Dialog", "<html><head/><body><p>Examine the ENDPOINT!</p></body></html>"))
-        self.pushButton.setText(_translate("Dialog", "Examine"))
+        self.searchButton.setToolTip(_translate("Dialog", "<html><head/><body><p>Examine the ENDPOINT!</p></body></html>"))
+        self.searchButton.setText(_translate("Dialog", "Examine"))
         self.lineEdit.setToolTip(_translate("Dialog", "<html><head/><body><p>IP example: <span style=\" font-style:italic; text-decoration: underline;\">144.145.146.147</span><span style=\" font-weight:400;\">. </span>( IP addresses maximum octet digit is 255 )</p><p>URL example: <span style=\" font-style:italic; text-decoration: underline;\">https://github.com</span> OR <span style=\" font-style:italic; text-decoration: underline;\">https://discord.com</span><span style=\" font-weight:400;\">.</span></p><p><br/></p></body></html>"))
         self.lineEdit.setPlaceholderText(_translate("Dialog", "Enter your desired IP or URL to examine: "))
         self.graphicsView.setToolTip(_translate("Dialog", "<html><head/><body><p>The examine operation outputs will be shown <span style=\" font-style:italic; text-decoration: underline;\">here.</span></p></body></html>"))
@@ -1112,5 +1148,4 @@ class Ui_Dialog(object):
         self.longitudeCheckBox.setToolTip(_translate("Dialog", "<html><head/><body><p>The IP user Internet Service Provider.</p><p><br/></p><p>Examples: Mobin Net Communication Company, SURFnet II c.</p></body></html>"))
         self.longitudeCheckBox.setText(_translate("Dialog", "Longitude"))
         self.label_4.setText(_translate("Dialog", "Connection Status"))
-        self.progressBar.setFormat(_translate("Dialog", "                                                                              %p"))
         self.copyButton.setText(_translate("Dialog", "copy"))

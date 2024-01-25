@@ -13,6 +13,7 @@ from database.workers.api import (
     NyvoNetHunterIpAddress,
     find_endpoint_type,
     NyvoNetHunterUrl,
+    clean_terminal,
     simplify_text,
     is_valid_ipv4,
     is_valid_ipv6,
@@ -268,7 +269,7 @@ class NyvoNetHunterApp(QDialog):
     
         self.ui.lineEdit.clear()
         self.ui.lineEdit.setDisabled(True)
-        self.ui.pushButton.setDisabled(True)
+        self.ui.searchButton.setDisabled(True)
         self.ui.copyButton.setDisabled(True)
 
         self.ui.copyButton.setText("copy")
@@ -284,8 +285,10 @@ class NyvoNetHunterApp(QDialog):
         self.ui.responseLabel.setText("Request timed out, please try again.")
 
     def examining_state(self) -> None:
-        self.ui.pushButton.setDisabled(True)
-        self.ui.pushButton.setText(None)
+        self.ui.searchButton.setDisabled(True)
+        self.ui.searchButton.setText(None)
+
+        self.ui.callstatusLabel.move(470, 60)
 
         self.ui.lineEdit.setDisabled(True)
 
@@ -297,14 +300,15 @@ class NyvoNetHunterApp(QDialog):
             QtGui.QIcon.Normal,
             QtGui.QIcon.On,
         )
-        self.ui.pushButton.setIcon(icon1)
+        self.ui.searchButton.setIcon(icon1)
         self.ui.copyButton.setDisabled(True)
         self.ui.copyButton.setText("copy")
 
     def default_query_state(self) -> None:
-        self.ui.pushButton.setEnabled(True)
-        self.ui.pushButton.setText("Examine")
+        self.ui.searchButton.setEnabled(True)
+        self.ui.searchButton.setText("Examine")
 
+        self.ui.callstatusLabel.move(485, 60)
         self.ui.callstatusLabel.setText("Awaiting Input.")
 
         self.ui.lineEdit.setEnabled(True)
@@ -317,7 +321,7 @@ class NyvoNetHunterApp(QDialog):
             QtGui.QIcon.Normal,
             QtGui.QIcon.On,
         )
-        self.ui.pushButton.setIcon(icon1)
+        self.ui.searchButton.setIcon(icon1)
         self.ui.copyButton.setDisabled(True)
         self.ui.copyButton.setText("copy")
 
@@ -334,8 +338,8 @@ class NyvoNetHunterApp(QDialog):
         
         self.ui.lineEdit.clear()
         self.ui.lineEdit.setEnabled(True)
-        self.ui.pushButton.setEnabled(True)
-        self.ui.pushButton.setEnabled(True)
+        self.ui.searchButton.setEnabled(True)
+        self.ui.searchButton.setEnabled(True)
 
         for check_box in check_boxes:
             eval(f"self.ui.{check_box}.setDisabled(False)")
@@ -344,6 +348,7 @@ class NyvoNetHunterApp(QDialog):
         
         self.ui.connection_status_label.setMovie(self.ui.connected_movie)
         self.ui.connected_movie.start()
+
     def web_view_default_state(self) -> None:
         project_root_directory = Path.cwd()
         self.base_state_html = QtCore.QUrl.fromLocalFile(
@@ -387,7 +392,7 @@ class NyvoNetHunterApp(QDialog):
         self.network_manager_worker.received_valid_response.connect(self.network_manager_thread.exit)
 
         self.setted_examine_attributes.connect(self.network_manager_thread.start)
-        self.ui.pushButton.clicked.connect(self.get_checked_examine_options)
+        self.ui.searchButton.clicked.connect(self.get_checked_examine_options)
 
     def initialize_spoofer_logic(self) -> None:
         self.map_spoofer = MapSpoofer(0, 0)
@@ -463,7 +468,10 @@ class NyvoNetHunterApp(QDialog):
         self.inputted_text = self.ui.lineEdit.text()
         self.simplified_input = simplify_text(self.inputted_text)
         return self.inputted_text
-    
+
+    def closeEvent(self, event):
+            print(f"\33[31mNyvoNetHunter:\33[36m Closed\33[31m.\33[0m")
+
     def __init__(self):
         super().__init__()
         self.ui = Ui_Dialog()
@@ -481,9 +489,8 @@ class NyvoNetHunterApp(QDialog):
 if __name__ == "__main__":
     app = QApplication(sys.argv + ["--no-sandbox"])
     app_window = NyvoNetHunterApp()
-
     app_window.show()
-    cmd_input("clear")
-    print(f"\33[34m Booted.\33[0m")
+    clean_terminal()
 
+    print(f"\33[31mNyvoNetHunter:\33[36m Booted\33[31m.\33[0m")
     sys.exit(app_window.exec_())
