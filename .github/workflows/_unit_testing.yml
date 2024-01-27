@@ -24,8 +24,9 @@ jobs:
 
 
       - name: access_dependencies
-        run: source main_program/source/virtual_environment/Scripts/activate
-
+        run: |
+          source main_program/source/virtual_environment/Scripts/activate
+          echo PATH=$PATH >> $GITHUB_ENV
 
       - name: run_unittests
         run: |
