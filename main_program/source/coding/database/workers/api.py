@@ -82,7 +82,7 @@ class NyvoNetHunterRequestManager(QObject):
 
         super(QObject, self).__init__()
 
-    def fire(self) -> str:
+    def fire(self) -> requests.Response:
         self.request_started.emit()
 
 
@@ -92,7 +92,7 @@ class NyvoNetHunterRequestManager(QObject):
 
         except Exception as e:
             self.failed_to_send.emit()
-            return
+            return self.response
 
         if self.response.ok:
             self.received_valid_response.emit()
@@ -111,7 +111,7 @@ class NyvoNetHunterRequestManager(QObject):
         if not isinstance(_url, str):
             url_argument_type = type(_url).__name__
             raise ValueError(
-                f"Expected argument type passed for the parameter( url ): ( str ) | Not ( {url_argument_type}"
+                f"Expected argument type passed for the parameter( url ): ( str ) | Not ( {url_argument_type}."
             )
 
         url_is_invalid = not is_valid_url(_url)
@@ -337,12 +337,7 @@ def is_valid_url(url: str) -> bool:
     url_has_top_level_domain = bool(extracted_segments_list[2])
 
     url_is_valid = all([url_has_domain_name, url_has_top_level_domain])
-
-    if url_is_valid:
-        return True
-
-    return False
-
+    return url_is_valid
 
 
 def clean_terminal() -> None:
