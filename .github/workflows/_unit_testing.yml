@@ -24,7 +24,7 @@ jobs:
 
       - name: run_unittests
         run: |
-          source main_program/source/virtual_environment/activate
+          source main_program/source/virtual_environment/Scripts/activate
           python -m unittest discover main_program/source/coding/unit_tests
 
           
