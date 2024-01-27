@@ -22,14 +22,9 @@ jobs:
           python-version: ${{ matrix.python-versions }}
           architecture: x64
 
-
-      - name: access_dependencies
-        run: |
-          source main_program/source/virtual_environment/Scripts/activate
-          echo PATH=$PATH >> $GITHUB_ENV
-
       - name: run_unittests
         run: |
+          source main_program/source/virtual_environment/activate
           python -m unittest discover main_program/source/coding/unit_tests
 
           
