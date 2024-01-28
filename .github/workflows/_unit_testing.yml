@@ -22,6 +22,9 @@ jobs:
           python-version: ${{ matrix.python-versions }}
           architecture: x64
 
+      - name: install dependencies
+        run: pip install -r main_program/requirements.txt 
+
       - name: run_unittests
         run: python -m unittest discover main_program/source/coding/test_suite/unit_tests
 
