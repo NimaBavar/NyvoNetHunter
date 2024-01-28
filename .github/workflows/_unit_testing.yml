@@ -1,0 +1,32 @@
+name: unit_testing_validation
+on: [pull_request]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+
+    strategy:
+      matrix:
+        python-versions: [3.11, 3.9]
+
+
+    steps:
+      - uses: actions/checkout@v2
+
+
+      - name: sets_up_python.
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-versions }}
+          architecture: x64
+
+
+      - name: install_dependencies.
+        run: pip install -r main_program/requirements.txt
+
+      - name: run_unittests
+        run: |
+          working_directory: nyvonethunter_project
+          python -m unittest discover main_program/source/coding/unit_tests
