@@ -19,7 +19,6 @@ setup_database_import_path()
 from exceptions.unexpected_argument_type import UnexpectedArgumentTypeError
 from exceptions.direct_run_error import DirectRunError
 from packages import (
-    abstractproperty,
     ConnectionError,
     abstractmethod,
     extract_url,
@@ -43,7 +42,8 @@ class Connectable(ABC):
     def __init__(self, endpoint: str):
         self.endpoint = endpoint
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def endpoint(self) -> str:
         return self._endpoint
 

@@ -7,32 +7,17 @@
 from os import system as cmd_input
 
 
-def _install_dependencies() -> None:
-    """
-    This function is is used for contributors and programmers only.
-    """
-
-    
-    import sys
-
-    installed_pacakges = sys.modules.keys()
-    dependencies= ["PyQt5", "requests", "pyperclip", "folium", "socket", "tldextract"]
-
-    required_packages = [pacakge for pacakge in dependencies if not pacakge in installed_pacakges]
-    for package in required_packages:
-        cmd_input(f"pip install {package}")
-
-
 try:
     from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
     from exceptions.direct_run_error import DirectRunError
-    from abc import ABC, abstractmethod, abstractproperty
+    from abc import ABC, abstractmethod
     from PyQt5.QtWidgets import QApplication, QDialog
     from requests.exceptions import ConnectionError
     from tldextract import extract as extract_url
     from PyQt5.QtCore import QPropertyAnimation
     from requests.exceptions import SSLError
     from PyQt5.QtWidgets import QSizePolicy
+    from abc import ABC, abstractmethod
     from PyQt5 import QtWebEngineWidgets
     from PyQt5.QtCore import QEventLoop
     from PyQt5.QtCore import QByteArray
@@ -61,9 +46,10 @@ try:
     import os
     import io
 
-except Exception as e:
-    cmd_input("echo installing python dependencies...")
-    _install_dependencies()
+except ModuleNotFoundError as e:
+    raise ModuleNotFoundError(
+            "Missing dependencies, install from the requirements file. | pip install -r main_program/requirements.txt"
+    ) from e
 
 
 module_is_runned_directly = __name__ == "__main__"
