@@ -27,6 +27,4 @@ jobs:
         run: pip install -r main_program/requirements.txt
 
       - name: run_unittests
-        run: |
-          working-directory: nyvonethunter_project
-          python -m unittest discover main_program/source/coding/unit_tests
+        run: python -m unittest discover main_program/source/coding/unit_tests
