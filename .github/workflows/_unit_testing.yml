@@ -24,7 +24,9 @@ jobs:
 
 
       - name: install_dependencies.
-        run: pip install -r main_program/requirements.txt
+        run: | 
+          pip install --upgrade pip
+          pip install -r main_program/requirements.txt
 
       - name: run_unittests
         run: python -m unittest discover main_program/source/coding/unit_tests
