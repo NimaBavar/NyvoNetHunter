@@ -28,5 +28,6 @@ jobs:
           pip install --upgrade pip
           pip install -r main_program/requirements.txt
 
+
       - name: run_unittests
-        run: python -m unittest discover main_program/source/coding/unit_tests
+        run: python -m unittest discover main_program/source/coding/test_suite/unit_tests
