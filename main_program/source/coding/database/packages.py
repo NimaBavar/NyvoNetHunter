@@ -4,6 +4,25 @@
 """
 
 
+from os import system as cmd_input
+
+
+def _install_dependencies() -> None:
+    """
+    This function is is used for contributors and programmers only.
+    """
+
+    
+    import sys
+
+    installed_pacakges = sys.modules.keys()
+    dependencies= ["PyQt5", "requests", "pyperclip", "folium", "socket", "tldextract"]
+
+    required_packages = [pacakge for pacakge in dependencies if not pacakge in installed_pacakges]
+    for package in required_packages:
+        cmd_input(f"pip install {package}")
+
+
 try:
     from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
     from exceptions.direct_run_error import DirectRunError
@@ -18,7 +37,6 @@ try:
     from PyQt5.QtCore import QEventLoop
     from PyQt5.QtCore import QByteArray
     from PyQt5.QtCore import pyqtSignal
-    from os import system as cmd_input
     from dataclasses import dataclass
     from ipaddress import ip_address
     from PyQt5.QtCore import QThread
@@ -43,11 +61,9 @@ try:
     import os
     import io
 
-
 except Exception as e:
-    raise ModuleNotFoundError(
-        "Please activate the project main virtual environment in order to access the source code direct execute permission."
-    ) from e
+    cmd_input("echo installing python dependencies...")
+    _install_dependencies()
 
 
 module_is_runned_directly = __name__ == "__main__"
