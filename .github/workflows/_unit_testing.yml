@@ -28,5 +28,5 @@ jobs:
 
       - name: run_unittests
         run: |
-          working_directory: nyvonethunter_project
+          working-directory: nyvonethunter_project
           python -m unittest discover main_program/source/coding/unit_tests
