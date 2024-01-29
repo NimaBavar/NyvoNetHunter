@@ -378,6 +378,8 @@ class NyvoNetHunterApp(QDialog):
 
         self.network_manager_worker.moveToThread(self.network_manager_thread)
         self.network_manager_thread.started.connect(self.network_manager_worker.fire)
+        self.network_manager_worker.request_sent.connect(self.network_manager_worker.check_response_is_valid)
+
         self.examine_options_satisfied.connect(self.generate_user_desired_connectable)
 
         self.connectable_is_generated.connect(lambda: self._set_examine_attributes(self.generated_connectable))

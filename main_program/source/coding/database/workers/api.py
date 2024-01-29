@@ -68,6 +68,7 @@ class NyvoNetHunterRequestManager(QObject):
     received_invalid_response = pyqtSignal()
 
 
+    available_http_methods = ["get", "post", "put", "delete"]
     def __init__(
         self,
         url: str,
@@ -94,13 +95,15 @@ class NyvoNetHunterRequestManager(QObject):
             self.failed_to_send.emit()
             return self.response
 
+
+    def check_response_is_valid(self) -> bool | pyqtSignal:
         if self.response.ok:
             self.received_valid_response.emit()
-
-            return self.response
+            return True
 
         self.received_invalid_response.emit()
-        return self.response
+        return False
+
 
     @property
     def url(self):
@@ -154,7 +157,6 @@ class NyvoNetHunterRequestManager(QObject):
 
     @method.setter
     def method(self, _method):
-        available_http_methods = ["get", "post", "put", "delete"]
 
         if not isinstance(_method, str):
             method_argument_type = type(_method).__name__
@@ -162,7 +164,7 @@ class NyvoNetHunterRequestManager(QObject):
                 f"Expected argument types passed for the parameter ( method ): ( str ) | Not: {method_argument_type}"
             )
 
-        if not _method in available_http_methods:
+        if not _method in self.available_http_methods:
             raise TypeError("That is not a valid http method.")
 
         self._method = _method
@@ -234,7 +236,7 @@ def generate_valid_connectable(endpoint: str) -> Connectable:
     return generated_connectable
 
 
-def find_endpoint_type(connectable: [Connectable, str]) -> Literal["ip", "url"]:
+def find_endpoint_type(connectable: Connectable | str) -> Literal["ip", "str"]:
     """
     Returns:
         str: ( `ip` ), ( `url` )
@@ -325,19 +327,19 @@ def is_valid_url(url: str) -> bool:
             f"Expected argument type passed for the parameter ( url ): (str) | Not: ( {url_argument_type} )"
         )
 
-    url_contains_schema = url.startswith("https://") or url.startswith("http://")
-
-    if not url_contains_schema:
+    url_contains_scheme = url.startswith("https://") or url.startswith("http://")
+    if not url_contains_scheme:
         url = f"http://{url}"
 
-    extracted_url_segments = (extract_url(url))._asdict()
-    extracted_segments_list = [segment for segment in extracted_url_segments.values()]
+    
+    extracted_url_segments = extract_url(url=url)._asdict()
 
-    url_has_domain_name = bool(extracted_segments_list[1])
-    url_has_top_level_domain = bool(extracted_segments_list[2])
-
-    url_is_valid = all([url_has_domain_name, url_has_top_level_domain])
+    url_has_domain = bool(extracted_url_segments["domain"])
+    url_has_top_domain = bool(extracted_url_segments["suffix"])
+    url_is_valid = all([url_has_top_domain, url_has_domain])
+    
     return url_is_valid
+
 
 
 def clean_terminal() -> None:
