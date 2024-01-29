@@ -1,7 +1,7 @@
 <details>
 
 
-  <summary>Changelog</summary>
+  <summary>changelog</summary>
   <br>
 
 
@@ -19,11 +19,11 @@ YourChangeCategory:
 
 
 
-[//]: #OPTIONAL.
+> Optional.
 <details>  
 
 
-  <summary>To-Do</summary>
+  <summary>to_do</summary>
   <br>
 
 
