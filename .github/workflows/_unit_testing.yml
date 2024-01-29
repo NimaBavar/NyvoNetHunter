@@ -21,23 +21,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-versions }}
           architecture: x64
-          
+
 
       - name: install_dependencies.
         run: | 
           pip3.11 install --upgrade pip
-          pip3.11 install -r main_program/requirements.txt
-          
-
-      - name: install_coverage.
-        run: pip3.11 install coverage
+          pip install --force-reinstall -vr main_program/requirements.txt
 
 
-      - name: run_unittests.
-        run: |
-          coverage run -m unittest discover main_program/source/coding/test_suite/unit_tests
-
-
-      - name: report_coverage.
-        run: |
-          coverage report --omit=/usr/*,main_program/source/coding/test_suite/*
+      - name: run_unittests
+        run: python3.11 -m unittest discover main_program/source/coding/test_suite/unit_tests
