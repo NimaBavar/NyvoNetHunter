@@ -1,4 +1,4 @@
-name: unit_testing_validation.
+name: _mutation_testing_validation.
 on: [pull_request]
 
 
@@ -26,8 +26,9 @@ jobs:
       - name: install_dependencies.
         run: | 
           pip3.11 install --upgrade pip
-          pip install --force-reinstall -vr main_program/requirements.txt
+          pip3.11 install --force-reinstall -vr main_program/requirements.txt
+          pip3.11 install mutpy
 
 
       - name: run_unittests
-        run: python3.11 -m unittest discover main_program/source/coding/test_suite/unit_tests
+        run: mut.py --target main_program/source/coding/database/* --unit-test main_program/source/coding/test_suite/unit_tests/*

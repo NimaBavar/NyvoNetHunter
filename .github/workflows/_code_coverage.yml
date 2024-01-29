@@ -1,4 +1,4 @@
-name: unit_testing_validation
+name: code_coverage_check.
 on: [pull_request]
 
 
@@ -40,4 +40,4 @@ jobs:
 
       - name: report_coverage.
         run: |
-          coverage report --omit=/usr/*,main_program/source/coding/test_suite/*
+          coverage report --fail-under=70 --omit=/usr/*,main_program/source/coding/test_suite/*
