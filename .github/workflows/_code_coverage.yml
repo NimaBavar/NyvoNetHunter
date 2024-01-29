@@ -27,7 +27,7 @@ jobs:
         run: | 
           pip3.11 install --upgrade pip
           pip3.11 install -r main_program/requirements.txt
-          pip3.11 install tldextract -U
+          
 
       - name: install_coverage.
         run: pip3.11 install coverage
