@@ -48,7 +48,7 @@ try:
 
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
-            "Missing dependencies, install from the requirements file. | pip install -r main_program/requirements.txt"
+            "Missing dependencies, install from the requirements file. | pip install -r main_program/requirements.txt -> In the project root directory."
     ) from e
 
 

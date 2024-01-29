@@ -2,5 +2,5 @@ PyQt5
 PyQtWebEngine
 requests
 folium
-tldextract
+tldextract=3.1.2
 pyperclip
