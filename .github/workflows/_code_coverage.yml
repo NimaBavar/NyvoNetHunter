@@ -1,5 +1,5 @@
 name: unit_testing_validation
-on: [pull_request, push]
+on: [pull_request]
 
 
 jobs:
