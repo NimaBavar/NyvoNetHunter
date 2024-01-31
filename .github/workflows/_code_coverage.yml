@@ -35,9 +35,9 @@ jobs:
 
       - name: run_unittests.
         run: |
-          coverage run -m unittest discover main_program/source/coding/test_suite/unit_tests
+          coverage run -m unittest discover main_program/source/coding/testing/unit_tests
 
 
       - name: report_coverage.
         run: |
-          coverage report --fail-under=70 --omit=/usr/*,main_program/source/coding/test_suite/*
+          coverage report --fail-under=70 --omit=/usr/*,main_program/source/coding/testing/*

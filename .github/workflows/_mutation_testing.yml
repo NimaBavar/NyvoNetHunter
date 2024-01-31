@@ -31,4 +31,4 @@ jobs:
 
 
       - name: run_mutation_test.
-        run: mut.py --show-mutants --target main_program/source/coding/database/* --unit-test main_program/source/coding/test_suite/unit_tests/*
+        run: mut.py --show-mutants --target main_program/source/coding/database/* --unit-test main_program/source/coding/testing/unit_tests/*

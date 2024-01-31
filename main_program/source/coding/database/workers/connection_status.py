@@ -27,7 +27,7 @@ class ConnectionStatusChecker(QObject):
     spotted_connection = pyqtSignal()
     lost_connection = pyqtSignal()
 
-    def run(self):
+    def start(self):
         """
         Host: 8.8.8.8 (google-public-dns-a.google.com)
         OpenPort: 53/tcp

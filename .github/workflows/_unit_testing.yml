@@ -30,4 +30,4 @@ jobs:
 
 
       - name: run_unittests
-        run: python3.11 -m unittest discover main_program/source/coding/test_suite/unit_tests
+        run: python3.11 -m unittest discover main_program/source/coding/testing/unit_tests
