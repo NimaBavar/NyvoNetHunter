@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-The Graphical User Interface window skeleton class.
+The Graphical User Interface window skeleton class ( Logic not implemented ).
 """
 
 
@@ -16,7 +16,8 @@ def setup_database_import_path() -> None:
 
 setup_database_import_path()
 
-from data import DirectRunError
+
+from database.workers.api import clean_terminal
 from packages import (
     QtWebEngineWidgets,
     QSizePolicy,
@@ -93,7 +94,7 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/../../../../../../.designer/backup/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.searchButton.setIcon(icon1)
         self.searchButton.setIconSize(QtCore.QSize(35, 35))
         self.searchButton.setDefault(False)
@@ -1066,18 +1067,19 @@ class Ui_Dialog(object):
         self.callstatusLabel.setGeometry(QtCore.QRect(450, 50, 161, 81))
         self.callstatusLabel.setText("")
         self.callstatusLabel.setObjectName("callstatusLabel")
-        
 
         self.copyButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
 "\n"
 "QPushButton:hover{\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
 "}\n"
 "\n"
 "QPushButton {\n"
 "        border: 1px solid #6593cf;\n"
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
-"        color: #000000;\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"        color: #006aff;\n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
 "}\n"
@@ -1089,12 +1091,12 @@ class Ui_Dialog(object):
 "\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
-"        color: #000000; \n"
 "\n"
 "}\n"
 "\n"
 "\n"
 "QPushButton:on {\n"
+"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
 "        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
@@ -1104,8 +1106,9 @@ class Ui_Dialog(object):
 "        background: transparent #e5e9ee;\n"
 "        padding-top: 2px;        \n"
 "        padding-left: 3px;\n"
-"        color: #000000;\n"
+"        color: black;\n"
 "}")
+
         self.copyButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.no_connection_movie = QtGui.QMovie("main_program/source/ui_design/resources/gifs/no_connection.gif")
@@ -1117,8 +1120,6 @@ class Ui_Dialog(object):
         self.examining_movie = QtGui.QMovie("main_program/source/ui_design/resources/gifs/examining.gif")
         self.examining_movie.setScaledSize(QtCore.QSize(self.callstatusLabel.width(), self.callstatusLabel.height()))
 
-        self.awaiting_icon = QtGui.QPixmap("main_program/source/ui_design/resources/pictures/awaiting.png")
-        self.awaiting_icon = self.awaiting_icon.scaled(self.callstatusLabel.width(), self.callstatusLabel.height())
 
         self.webviewSettings = self.webView.settings()
         self.webviewSettings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.WebAttribute.JavascriptEnabled, True)

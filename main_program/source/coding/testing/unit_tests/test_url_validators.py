@@ -21,7 +21,7 @@ import unittest
 from unittest import TestCase
 from unittest.result import TestResult
 from database.workers.api import is_valid_url
-from database.data import clean_terminal
+from database.workers.api import clean_terminal
 
 
 class TestUrlValidators(TestCase):
