@@ -19,15 +19,12 @@ setup_database_import_path()
 
 from exceptions.direct_run_error import DirectRunError
 from workers.api import clean_terminal
-from packages import dataclass
 
 
-@dataclass
-class BuildData:
-    __version__ = "16.1.5"
-    __author__ = "KhodeNima ( Nima Bavar )"
-    __designer__ = "Amirali Yazdani"
-    __build_date__ = "2023/11/13"
+__version__ = "16.3.9"
+__author__ = "KhodeNima ( Nima Bavar )"
+__designer__ = "Amirali Yazdani"
+__build_date__ = "2023/11/13"
 
 
 module_is_runned_directly = __name__ == "__main__"

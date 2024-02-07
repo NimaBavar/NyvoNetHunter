@@ -1,13 +1,12 @@
 NyvoStudio algorithm writing style guide:
 
-    1. Important variables are shown with variable sign ( identifier-Value pair ) , do not use excessively: -
-        Variables are not a part of the algorithm
-        
+    1. Class attributes are visualized using the Attribute shape.:
+
     2. Loop starting , finishing , changes in operations will be written In sqaure.
 
     3. Normal logical activites will be written in Milestone plan item ( Not classes , functions , decorators ).
 
-    4. Inputs are shown in Hexagon shape.
+    4. User inputs are shown in Hexagon shape.
 
     5. System decisions and exceptions will be written In Rhombus.
 
@@ -15,27 +14,31 @@ NyvoStudio algorithm writing style guide:
 
     7. Function calls be written In call activity shape ( Yellow Square ).
 
-    8. Connected attributes ( such as additional documentations, ETC ) will be written in Page-refrences shape.
+    8. Connected attributes will be written In Page-refrences shape.
 
-    9. Databases and class connections will be written In Database Shape.
+    9. Class and abstract connections will be visualized in the class shape.
 
-    10. Connections will be refrenced with bullethead Lines.
+    10. Databases are visualized using the Database shape.
 
-    11. Imports, accesses and inherits will be Refrenced With Arrowhead Lines.
+    11. Connections will be refrenced with bullethead Lines.
 
-    12. Partitions will be shown in vertical Lines.
+    12. Imports, accesses and inherits will be Refrenced With Arrowhead Lines.
 
-    13. Partition names will be shown with the Case File item.
+    13. Partitions will be shown in vertical Lines.
 
-    14. Comments will be shown In Comment_Alt shape.
+    14. Partition names will be shown with the Case File item.
 
-    15. Numerical orderings will be written in brackets.
+    15. Comments will be shown In Comment_Alt shape.
 
-    16. Implement indications are designed in ( Implementation event ).
+    16. Numerical orderings will be written in brackets.
 
-    17. All algorithm files ( Excluding the text-based ones ) must contain an Diagram Info object explaining the purpose of -
+    17. Implement indications are designed in ( Implementation event ).
+
+    18. All algorithm files ( Excluding the text-based ones ) must contain an Diagram Info object explaining the purpose of -
         the file.
 
-    18. All algorithms must be visualized in Visual Paradigm.
-    
+    19. The diagram info must contain an ( end ) object, describing the outcome or the exportation of the algorithm.
 
+    20. All textual subjects must be written using the Jetbrains Sans Mono font family.
+
+    21. All algorithms must be visualized in Visual Paradigm.
