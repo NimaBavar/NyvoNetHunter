@@ -59,6 +59,11 @@ Nyvo Studio Project Documentation Style Guide:
 
     30. The pull_request description comment MUST always be the first comment.
 
+    30. The pull_request description comment must contain three sections:
+        - What has changed ( API changes ).
+        - What were the reasons behind the change.
+        - What results are expected.
+
     30. The pull_request description comment must start with a header containing the update name
         - ( this is not the same as the pull_request title, it is any name that you would want to assign )
         - followed by the version ( branch ) name.
