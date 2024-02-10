@@ -54,6 +54,11 @@ Nyvo Studio Project Documentation Style Guide:
 
     23. Pull requests MUST contain a To-Do list in their changelog for new updates to be pushed to the branch.
 
+    29. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
+        - which fully explains the purpose of the changes added and their outcome result on the project code_base.
+
+    30. The pull_request description comment must always be the first comment.
+
     24. All Pull requests should contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
 
     45. pull_requests MUST be a group of ( fix ) tags which generate one MAJOR CHANGE or feat.
@@ -66,9 +71,6 @@ Nyvo Studio Project Documentation Style Guide:
 
     26. All code must be reformatted and pass all the tests given by the GitHub Actions linter before being merged
         - (excluding txt or documentation files).
-
-    29. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
-        - which fully explains the purpose of the changes added and their outcome result on the project code_base.
 
     30. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
 
