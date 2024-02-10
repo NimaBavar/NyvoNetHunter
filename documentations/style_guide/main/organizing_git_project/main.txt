@@ -49,7 +49,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     21. All pull requests MUST have at least one comment before being merged.
 
-    22. Contributors MUST NOT list any of the ( fix ) or ( feat ) in the special comments of a pull request ( i.e: to_do, description ),
+    22. Contributors MUST NOT list any of the ( fix ) or ( feat ) changes in the special comments of a pull request ( i.e: to_do, description ),
         - They shall be self_explanatory in the commit messages.
 
     23. Pull requests MUST contain a To-Do list in their changelog for new updates to be pushed to the branch.
