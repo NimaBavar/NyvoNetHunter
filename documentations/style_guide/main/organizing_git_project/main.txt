@@ -39,10 +39,9 @@ Nyvo Studio Project Documentation Style Guide:
 
     18. Release versioning and development versioning are seperate concepts, do not attempt to use Release versioning while adding updates to the back-end segment of the projects.
 
-    19. The branch names should only refer to the project version number. Example: V-1.0.9.
+    19. The branch names should only refer to the project version number. Example: 1.0.9.
 
-    20. Pull request titles should begin with the name of the project, followed by a '|' character and their version number. 
-        - Example: "NyvoStudio Project | V : 1.0.3".
+    20. Pull request titles should begin with the specifi name of an update, followed by the version number, e.x: "zero: 1.0.0".
 
     21. All pull requests must have at least one comment before being merged.
 
@@ -66,7 +65,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     30. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
 
-    31. Issues naming conventions should follow the corressondig regular expression: `{Issue Title} | N : {Issue Number}`, e.x: Issue Note | N : 1.
+    31. Issues naming conventions should follow the corressondig regular expression: `{Issue Title} | N : {Issue Number}`, e.x: problem(docs): remove harsh rules | N : 1.
 
     32. Issue titles naming follows the same convetions as commit message.
 
