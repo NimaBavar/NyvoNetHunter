@@ -41,7 +41,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     19. The branch names MUST only refer to the project version number. Example: 1.0.9.
 
-    46. Always create a new remote branch and pull request before merging, after you have made all the changes required in the pull_request to_do.
+    46. Always create a new remote branch and pull request before merging, after you have made all the changes required in the to_do.
 
     43. Contributors MUST Always create a pull request and branch before even attempting to add any changes to their local repository.
 
@@ -52,7 +52,7 @@ Nyvo Studio Project Documentation Style Guide:
     22. Contributors MUST NOT list any of the ( fix ) or ( feat ) changes in the special comments of a pull request ( i.e: to_do, description ),
         - They shall be self_explanatory in the commit messages.
 
-    23. Pull requests MUST contain a To-Do list in their changelog for new updates to be pushed to the branch.
+    23. Pull requests may contain a to-do list in as a comment for new updates to be pushed to the branch.
 
     29. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
         - which fully explains the purpose of the changes added and their outcome result on the project code_base.
