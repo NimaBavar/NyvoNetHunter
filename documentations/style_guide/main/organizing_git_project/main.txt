@@ -18,9 +18,9 @@ Nyvo Studio Project Documentation Style Guide:
 
     9. All commits MUST have a branch of their own, discussed and then merged to the main branch.
 
-    12. All versions of the project repository MUST be controlled under semantic ( "https://semver.org/" )
+    12. All versions of the project repository MUST be controlled under semantic ( "https://semver.org/" ).
 
-    13. The version numbering of the project shall be split into to phases: ( Pre-Release phase, Release phase )
+    13. The version numbering of the project shall be split into to phases: ( Pre-Release phase, Release phase ).
 
     14. During the Pre-Release phase all changes in the development procces ( Including added or remover files and directories ) are a part of the version numbering.
 
