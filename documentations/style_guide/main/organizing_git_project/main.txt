@@ -111,5 +111,4 @@ Nyvo Studio Project Documentation Style Guide:
 
     42. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the current task your working on.
         - ( Updating documentations, refactoring source code ):
-        - e.x: merge(fetch): update github docs
-        - .
+        - e.x: merge(fetch): update github docs.
