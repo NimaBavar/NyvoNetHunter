@@ -41,14 +41,14 @@ Nyvo Studio Project Documentation Style Guide:
 
     19. The branch names should only refer to the project version number. Example: 1.0.9.
 
-    20. Pull request titles should begin with the specifi name of an update, followed by the version number, e.x: "zero: 1.0.0".
+    20. Pull request titles naming follows the same convention as commit messages.
 
     21. All pull requests must have at least one comment before being merged.
 
     22. All pull requests should contain a 'changelog' comment that partition new features
         - and numbers them from the most important to the least important.
 
-    23. *Optional* | Pull requests should contain a To-Do list in their changelog comment for the next upcoming sprint.
+    23. *Optional* | Pull requests may contain a To-Do list in their changelog for new updates to be pushed to the branch.
 
     24. All Pull requests should contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
 
@@ -57,11 +57,14 @@ Nyvo Studio Project Documentation Style Guide:
     26. All code must be reformatted and pass all the tests given by the GitHub Actions linter before being merged
         - (excluding txt or documentation files).
 
-    27. The change log comment of the pull request must always be the first comment.
+    27. The change log comment of the pull request must always be the second comment.
 
-    28. If a update has been rejected or/and left undone, The branch related to the update must be deleted and the pull request
+    28. If a update has been rejected or/and left undone, The branch related to the update MUST NOT be deleted, ONLY the pull_request
          - must be closed and labled as ```Rejected``` 
-         - ( The changelog comment must be as it is. )
+         - ( The changelog comment must stay as it is. )
+
+    29. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
+        - which fully explains the purpose of the changes added and their outcome result on the project code_base.
 
     30. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
 
@@ -79,9 +82,21 @@ Nyvo Studio Project Documentation Style Guide:
 
     36. No issue is allowed to be assigned a To-Do list.
 
-    37. Every other asepct in the __details__ comment, should follow the conventions of branches __changelog__ comment.
+    37. Every other asepct in the __details__ comment, should follow the conventions of pull_requests __changelog__ comment.
 
     38. All suspended  ( projects that don't take any new update for a designated period of time ) projects shall be archived and be followed up with
         - a note text at the tail of their README file, elucidating the fact that the project have been archived.
 
     39. The git commit messages are formatted by the https://www.conventionalcommits.org/en/v1.0.0/ conventions.
+
+    40. All Git commit messages should have their branch name at their footer.
+
+    41. In the context of updating local repositories, use merge instead of rebase.
+
+    42. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the current task your working on.
+        - ( Updating documentations, refactoring source code ):
+        - e.x: merge(fetch): update github docs
+        - .
+
+    43. Always create a new remote branch and pull request before merging, after you have made all the changes required to that branch,
+        - a merge is possible.
