@@ -59,6 +59,10 @@ Nyvo Studio Project Documentation Style Guide:
 
     30. The pull_request description comment MUST always be the first comment.
 
+    30. The pull_request description comment must start with a header containing the update name
+        - ( this is not the same as the pull_request title, it is any name that you would want to assign )
+        - followed by the version ( branch ) name.
+        - e.x: considering that I am working on a documentation patch, my description header would be: ( UDock | 1.0.0 ).
 
     24. All Pull requests should contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
 
