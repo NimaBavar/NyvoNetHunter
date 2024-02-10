@@ -41,6 +41,10 @@ Nyvo Studio Project Documentation Style Guide:
 
     19. The branch names should only refer to the project version number. Example: 1.0.9.
 
+    46. Always create a new remote branch and pull request before merging, after you have made all the changes required in the pull_request to_do.
+
+    43. Contributors MUST Always create a pull request and branch before even attempting to add any changes to their local repository.
+
     20. Pull request titles should refer to the feat or MAJOR change commit message which is expected to be the outcome after all the to_do's are finished.
 
     21. All pull requests must have at least one comment before being merged.
@@ -48,20 +52,20 @@ Nyvo Studio Project Documentation Style Guide:
     22. All pull requests should contain a 'changelog' comment that partition new features
         - and numbers them from the most important to the least important.
 
-    23. *Optional* | Pull requests may contain a To-Do list in their changelog for new updates to be pushed to the branch.
+    23. Pull requests MUST contain a To-Do list in their changelog for new updates to be pushed to the branch.
 
     24. All Pull requests should contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
+
+    45. pull_requests MUST be a group of ( fix ) tags which generate one MAJOR CHANGE or feat.
+
+    28. If a update has been rejected or/and left undone, The branch related to the update MUST NOT be deleted, ONLY the pull_request
+         - must be closed and labled as ```Rejected``` 
+         - ( The changelog comment must stay as it is. )
 
     25. The ```signed off by``` section must be at the last section of the comment and refer to the contributors who parted in the update.
 
     26. All code must be reformatted and pass all the tests given by the GitHub Actions linter before being merged
         - (excluding txt or documentation files).
-
-    27. The change log comment of the pull request must always be the second comment.
-
-    28. If a update has been rejected or/and left undone, The branch related to the update MUST NOT be deleted, ONLY the pull_request
-         - must be closed and labled as ```Rejected``` 
-         - ( The changelog comment must stay as it is. )
 
     29. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
         - which fully explains the purpose of the changes added and their outcome result on the project code_base.
@@ -84,6 +88,8 @@ Nyvo Studio Project Documentation Style Guide:
 
     37. Every other asepct in the __details__ comment, should follow the conventions of pull_requests __changelog__ comment.
 
+    44. Push changes as often as possible, all the changes to the project ( including the ones that are rejected or/and aborted ) shall be recorded.
+
     38. All suspended  ( projects that don't take any new update for a designated period of time ) projects shall be archived and be followed up with
         - a note text at the tail of their README file, elucidating the fact that the project have been archived.
 
@@ -97,12 +103,3 @@ Nyvo Studio Project Documentation Style Guide:
         - ( Updating documentations, refactoring source code ):
         - e.x: merge(fetch): update github docs
         - .
-
-    43. Contributors MUST Always create a pull request and branch before even attempting to add any changes.
-
-    44. Use push as often as possible, all the changes must be recorded in the remote repository.
-
-    45. pull_requests MUST be a group of ( fix ) tags generate one MAJOR CHANGE or feat.
-
-    46. Always create a new remote branch and pull request before merging, after you have made all the changes required in the pull_request to_do,
-        - a merge is possible.
