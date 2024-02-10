@@ -1,18 +1,18 @@
 Nyvo Studio Project Documentation Style Guide:
 
-    1. All Nyvo Studio project repositories must contain a 'docs' directory.
+    1. All Nyvo Studio project repositories MUST contain a 'docs' directory.
 
     2. All Nyvo Studio project repositories should have a 'README.md' file 
         - that follows the Markdown formatting and style guidelines.
 
-    3. All Nyvo Studio project repositories must contain a 'Privacy Policy' file.
+    3. All Nyvo Studio project repositories MUST contain a 'Privacy Policy' file.
 
     4. All files referenced in this line : 'Security Policies', 'Code of Conduct', 'Contributing Guidelines', and 'terms of service'
-        - must be located within the 'docs' directory.
+        - MUST be located within the 'docs' directory.
 
     5. Only the 'License' file is permitted to be located in the main directory of the repository.
 
-    6. All Nyvo Studio-owned repositories must be licensed under Creative Commons Zero v1.0 Universal.
+    6. All Nyvo Studio-owned repositories MUST be licensed under Creative Commons Zero v1.0 Universal.
 
     7. No force-commits are allowed in Nyvo Studio repositories.
 
@@ -23,9 +23,9 @@ Nyvo Studio Project Documentation Style Guide:
     10. Commit messages should not refer to the updates applied to the project as convention, 
         - but rather to the main file title with the addition of the word 'Main.'
 
-    11. Commit descriptions must refer to the updates affixed to the file ( No file description should be referred to ).
+    11. Commit descriptions MUST refer to the updates affixed to the file ( No file description should be referred to ).
 
-    12. All versions of the project repository must be controlled under semantic ( "https://semver.org/" )
+    12. All versions of the project repository MUST be controlled under semantic ( "https://semver.org/" )
 
     13. The version numbering of the project shall be split into to phases: ( Pre-Release phase, Release phase )
 
@@ -47,7 +47,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     20. Pull request titles should refer to the feat or MAJOR change commit message which is expected to be the outcome after all the to_do's are finished.
 
-    21. All pull requests must have at least one comment before being merged.
+    21. All pull requests MUST have at least one comment before being merged.
 
     22. Contributors MUST NOT list any of the ( fix ) or ( feat ) in the special comments of a pull request ( i.e: to_do, description ),
         - They shall be self_explanatory in the commit messages.
@@ -57,19 +57,20 @@ Nyvo Studio Project Documentation Style Guide:
     29. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
         - which fully explains the purpose of the changes added and their outcome result on the project code_base.
 
-    30. The pull_request description comment must always be the first comment.
+    30. The pull_request description comment MUST always be the first comment.
+
 
     24. All Pull requests should contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
 
     45. pull_requests MUST be a group of ( fix ) tags which generate one MAJOR CHANGE or feat.
 
     28. If a update has been rejected or/and left undone, The branch related to the update MUST NOT be deleted, ONLY the pull_request
-         - must be closed and labled as ```Rejected``` 
-         - ( The changelog comment must stay as it is. )
+         - MUST be closed and labled as ```Rejected``` 
+         - ( The changelog comment MUST stay as it is. )
 
-    25. The ```signed off by``` section must be at the last section of the comment and refer to the contributors who parted in the update.
+    25. The ```signed off by``` section MUST be at the last section of the comment and refer to the contributors who parted in the update.
 
-    26. All code must be reformatted and pass all the tests given by the GitHub Actions linter before being merged
+    26. All code MUST be reformatted and pass all the tests given by the GitHub Actions linter before being merged
         - (excluding txt or documentation files).
 
     30. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
