@@ -10,13 +10,15 @@ from os import system as cmd_input
 try:
     from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
     from exceptions.direct_run_error import DirectRunError
-    from abc import ABC, abstractmethod
     from PyQt5.QtWidgets import QApplication, QDialog
     from requests.exceptions import ConnectionError
     from tldextract import extract as extract_url
     from PyQt5.QtCore import QPropertyAnimation
     from requests.exceptions import SSLError
     from PyQt5.QtWidgets import QSizePolicy
+    from libnmap.process import NmapProcess
+    from libnmap.objects import NmapReport
+    from libnmap.parser import NmapParser
     from abc import ABC, abstractmethod
     from PyQt5 import QtWebEngineWidgets
     from PyQt5.QtCore import QEventLoop
@@ -43,8 +45,9 @@ try:
     import socket
     import json
     import sys
-    import os
     import io
+    import os
+    import re
 
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(

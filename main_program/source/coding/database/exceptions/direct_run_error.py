@@ -1,5 +1,5 @@
 """
-# The holder module for the direct run errro exception.
+# The storage module for the direct run errro exception.
 """
 
 

@@ -16,7 +16,6 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
-from exceptions.unexpected_argument_type import UnexpectedArgumentTypeError
 from exceptions.direct_run_error import DirectRunError
 from packages import (
     ConnectionError,
@@ -35,6 +34,7 @@ from packages import (
     sleep,
     Dict,
     ABC,
+    re,
 )
 
 
@@ -174,6 +174,43 @@ class NyvoNetHunterIpAddress(Connectable):
     def __init__(self, ip_address: str):
         self.endpoint = ip_address
 
+    def remove_paths(self) -> str:
+        """
+        Removes web paths from a URL.
+
+        Parameters
+        ----------
+        url | str
+            The web Univeral Resource Locator.
+
+        Returns
+        -------
+        str
+            The url with the removed paths.
+        """
+
+        url = self.endpoint
+
+        url_has_suffix = url.startswith("http://") or url.startswith("https://")
+        if url_has_suffix:
+
+            if url.startswith("https://"):
+                mutated_url = url[len("https://"):]
+
+            if url.startswith("http://"):
+                mutated_url = url[len("http://"):]
+
+        if not url_has_suffix:
+            mutated_url = url
+
+        path_removal_pattern = r"/\S*"
+        formatted_url = re.sub(pattern=path_removal_pattern, repl="", string=mutated_url)
+
+        if url_has_suffix:
+            formatted_url = f"http://{formatted_url}"
+        
+        return formatted_url
+
     @property
     def endpoint(self) -> str:
         return self._ip_address
@@ -196,12 +233,61 @@ class NyvoNetHunterUrl(Connectable):
     def __init__(self, endpoint: str):
         self.endpoint = endpoint
 
+    def remove_paths(self, apply_to_endpoint: bool=False) -> str:
+        """
+        Removes web paths from a URL.
+
+        Parameters
+        ----------
+        url | str
+            The web Univeral Resource Locator.
+
+        Returns
+        -------
+        bool, default=False
+            Wether to apply the result on the endpoint.
+        """
+
+        url_has_suffix = False
+        url = self.endpoint
+
+        if url.startswith("https://"):
+            url_has_suffix = True
+            mutated_url = url[len("https://"):]
+
+        if url.startswith("http://"):
+            url_has_suffix = True
+            mutated_url = url[len("http://"):]
+
+        if not url_has_suffix:
+            mutated_url = url
+
+        path_removal_pattern = r"/\S*"
+        formatted_url = re.sub(pattern=path_removal_pattern, repl="", string=mutated_url)
+
+        if url_has_suffix:
+            formatted_url = f"http://{formatted_url}"
+    
+        if apply_to_endpoint:
+            self.endpoint = formatted_url
+
+        return formatted_url
+
+    def remove_suffix(self, apply_to_endpoint=False) -> str:
+        mutated_url = self.endpoint[len("http://"):]
+        mutated_url = self.endpoint[len("https://"):]
+
+        if apply_to_endpoint:
+            self.endpoint = mutated_url
+
+        return mutated_url
+
     @property
     def endpoint(self) -> str:
         return self._endpoint
 
     @endpoint.setter
-    def endpoint(self, _endpoint) -> str:
+    def endpoint(self, _endpoint: str) -> None:
         if not isinstance(_endpoint, str):
             endpoint_argument_type = type(_endpoint).__name__
             raise ValueError(
@@ -362,7 +448,8 @@ def simplify_text(text: str) -> str:
     """
 
     if not isinstance(text, str):
-        raise UnexpectedArgumentTypeError(text, str)
+        argument_type = type(str).__name__
+        raise ValueError(f"Expected argument type passed for the parameter ( text ): ( str ) | Not: ( {argument_type} )")
 
 
     text_lenght = len(text)
