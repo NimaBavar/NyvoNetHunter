@@ -33,6 +33,3 @@ YourChangeCategory:
 
 </details>
 <br>
-
-
-> Signed off by: `@CONTRIBUTOR_NAME1, #CN2`.
