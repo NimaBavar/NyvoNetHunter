@@ -25,7 +25,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     11. Commit descriptions must refer to the updates affixed to the file ( No file description should be referred to ).
 
-    12. All versions of the project repository must be controlled under semantic numbering.
+    12. All versions of the project repository must be controlled under semantic ( "https://semver.org/" )
 
     13. The version numbering of the project shall be split into to phases: ( Pre-Release phase, Release phase )
 
@@ -64,12 +64,11 @@ Nyvo Studio Project Documentation Style Guide:
          - must be closed and labled as ```Rejected``` 
          - ( The changelog comment must be as it is. )
 
-    29. If the changelog of an update contains more than 10 elements, the version semantic numbering principle is considered-
-         - a massive API change.
-
     30. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
 
-    31. Issues naming conventions should follow the corressondig regular expression: `Issue Note | N : {Issue Number}`, e.x: Issue Note | N : 1
+    31. Issues naming conventions should follow the corressondig regular expression: `{Issue Title} | N : {Issue Number}`, e.x: Issue Note | N : 1.
+
+    32. Issue titles naming follows the same convetions as commit message.
 
     32. All issues should contain at least 1 comment.
 
@@ -85,3 +84,5 @@ Nyvo Studio Project Documentation Style Guide:
 
     38. All suspended  ( projects that don't take any new update for a designated period of time ) projects shall be archived and be followed up with
         - a note text at the tail of their README file, elucidating the fact that the project have been archived.
+
+    39. The git commit messages are formatted by the https://www.conventionalcommits.org/en/v1.0.0/ conventions.
