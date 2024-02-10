@@ -3,9 +3,6 @@ The module for NyvoNetHunterTcpScanner suite NoScanHistoryError exception.
 """
 
 
-from logging import error
-
-
 class NoScanHistoryError(Exception):
     def __init__(self, error_message: str="No scan found.") -> None:
         super().__init__(error_message)

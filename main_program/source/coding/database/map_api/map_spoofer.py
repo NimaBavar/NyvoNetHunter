@@ -16,7 +16,6 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
-from exceptions.direct_run_error import DirectRunError
 from packages import (
     pyqtSignal,
     QObject,
@@ -24,6 +23,7 @@ from packages import (
     json,
     io,
 )
+from exceptions.direct_run_error import DirectRunError
 
 
 class MapSpoofer(QObject):
