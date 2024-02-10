@@ -26,6 +26,7 @@ from database.packages import (
 from database.packages import pyqtSignal
 from database.packages import QObject
 from database.workers.api import NyvoNetHunterUrl, NyvoNetHunterIpAddress, Connectable
+from database.exceptions.direct_run_error import DirectRunError
 from database.exceptions.port_scanner_exceptions.no_scan_history import NoScanHistoryError
 
 
@@ -165,3 +166,9 @@ class NyvoNetHunterPortScanner(QObject):
             self._formatted_connectable_endpoint = self._formatted_connectable_endpoint.remove_paths(apply_to_endpoint=False)
         
         self._scanner = NmapProcess(self._formatted_connectable_endpoint)
+
+
+if __name__ == "__main__":
+    raise DirectRunError(
+        "Database modules are not intended to run directly, they are produced for import usage only."
+    )
