@@ -16,14 +16,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     7. No force-commits are allowed in Nyvo Studio repositories.
 
-    8. No commits MUST be signed off and applied to the main branch without being pulled and branched first.
-
     9. All commits MUST have a branch of their own, discussed and then merged to the main branch.
-
-    10. Commit messages MUST not refer to the updates applied to the project as convention, 
-        - but rather to the main file title with the addition of the word 'Main.'
-
-    11. Commit descriptions MUST refer to the updates affixed to the file ( No file description MUST be referred to ).
 
     12. All versions of the project repository MUST be controlled under semantic ( "https://semver.org/" )
 
