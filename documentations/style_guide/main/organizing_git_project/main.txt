@@ -98,11 +98,11 @@ Nyvo Studio Project Documentation Style Guide:
         - e.x: merge(fetch): update github docs
         - .
 
-    42. Contributors MUST Always create a pull request and branch before even attempting to add any changes.
+    43. Contributors MUST Always create a pull request and branch before even attempting to add any changes.
 
-    43. Use push as often as possible, all the changes must be recorded in the remote repository.
+    44. Use push as often as possible, all the changes must be recorded in the remote repository.
 
-    44. pull_requests MUST be a group of ( fix ) tags generate one MAJOR CHANGE or feat.
+    45. pull_requests MUST be a group of ( fix ) tags generate one MAJOR CHANGE or feat.
 
-    43. Always create a new remote branch and pull request before merging, after you have made all the changes required in the pull_request to_do,
+    46. Always create a new remote branch and pull request before merging, after you have made all the changes required in the pull_request to_do,
         - a merge is possible.
