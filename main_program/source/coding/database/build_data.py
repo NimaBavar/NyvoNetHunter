@@ -21,7 +21,7 @@ from exceptions.direct_run_error import DirectRunError
 from workers.api import clean_terminal
 
 
-__version__ = "16.3.9"
+__version__ = "17.0.0"
 __author__ = "KhodeNima ( Nima Bavar )"
 __designer__ = "Amirali Yazdani"
 __build_date__ = "2023/11/13"

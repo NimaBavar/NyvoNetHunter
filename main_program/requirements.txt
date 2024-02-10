@@ -1,6 +1,7 @@
 PyQt5
 PyQtWebEngine
 requests
+python-libnmap==0.7.3
 folium
 tldextract==3.5.0
 pyperclip

@@ -16,7 +16,6 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
-from exceptions.unexpected_argument_type import UnexpectedArgumentTypeError
 from exceptions.direct_run_error import DirectRunError
 from packages import (
     pyqtSignal,
@@ -86,7 +85,8 @@ class MapSpoofer(QObject):
             raise PermissionError("No spoof result to save, please finish the spoofing operation before attempting to save.")
 
         if not isinstance(file_path, str):
-            raise UnexpectedArgumentTypeError(inputted_argument=file_path, expected_argument_type=str)
+            argument_type = type(file_path).__name__
+            raise ValueError(f"Expected argument type passed for the parameter: ( file_path ): ( str ) | Not: {argument_type}")
         
         map_image_geojson = json.loads(self._map_image_html.to_json())
 

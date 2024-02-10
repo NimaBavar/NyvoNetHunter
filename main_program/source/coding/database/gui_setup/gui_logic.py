@@ -32,7 +32,7 @@ from database.workers.api import (
     is_valid_ip,
     Connectable, 
 )
-from database.workers.connection_status import ConnectionStatusChecker
+from database.workers.connection_status_checker import ConnectionStatusChecker
 from database.workers.api import NyvoNetHunterRequestManager
 from database.map_api.map_spoofer import MapSpoofer
 from gui_window_dialog import Ui_Dialog
@@ -299,7 +299,7 @@ class NyvoNetHunterApp(QDialog):
         self.ui.searchButton.setDisabled(True)
         self.ui.searchButton.setText(None)
 
-        self.ui.callstatusLabel.move(470, 60)
+        self.ui.callstatusLabel.move(455, 60)
 
         self.ui.lineEdit.setDisabled(True)
 
@@ -319,7 +319,7 @@ class NyvoNetHunterApp(QDialog):
         self.ui.searchButton.setEnabled(True)
         self.ui.searchButton.setText("Examine")
 
-        self.ui.callstatusLabel.move(485, 60)
+        self.ui.callstatusLabel.move(480, 60)
         self.ui.callstatusLabel.setText("Awaiting Input.")
 
         self.ui.lineEdit.setEnabled(True)

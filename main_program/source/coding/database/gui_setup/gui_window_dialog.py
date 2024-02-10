@@ -1026,7 +1026,7 @@ class Ui_Dialog(object):
         self.webView.setObjectName("webView")
         self.progressBar = QtWidgets.QProgressBar(Dialog)
         self.progressBar.setGeometry(QtCore.QRect(250, 140, 561, 31))
-        self.progressBar.setFormat("                               %p%")
+        self.progressBar.setFormat("                                                       %p%")
         self.progressBar.setStyleSheet("QProgressBar { border: 2px solid black; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
 "QProgrssBar {\n"
 "        border: 1px solid #6593cf;\n"
