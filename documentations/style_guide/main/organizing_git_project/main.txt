@@ -41,7 +41,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     19. The branch names should only refer to the project version number. Example: 1.0.9.
 
-    20. Pull request titles naming follows the same convention as commit messages.
+    20. Pull request titles should refer to the feat or MAJOR change commit message which is expected to be the outcome after all the to_do's are finished.
 
     21. All pull requests must have at least one comment before being merged.
 
@@ -98,5 +98,11 @@ Nyvo Studio Project Documentation Style Guide:
         - e.x: merge(fetch): update github docs
         - .
 
-    43. Always create a new remote branch and pull request before merging, after you have made all the changes required to that branch,
+    42. Contributors MUST Always create a pull request and branch before even attempting to add any changes.
+
+    43. Use push as often as possible, all the changes must be recorded in the remote repository.
+
+    44. pull_requests MUST be a group of ( fix ) tags generate one MAJOR CHANGE or feat.
+
+    43. Always create a new remote branch and pull request before merging, after you have made all the changes required in the pull_request to_do,
         - a merge is possible.
