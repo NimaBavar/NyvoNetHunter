@@ -2,7 +2,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     1. All Nyvo Studio project repositories MUST contain a 'docs' directory.
 
-    2. All Nyvo Studio project repositories should have a 'README.md' file 
+    2. All Nyvo Studio project repositories MUST have a 'README.md' file 
         - that follows the Markdown formatting and style guidelines.
 
     3. All Nyvo Studio project repositories MUST contain a 'Privacy Policy' file.
@@ -16,14 +16,14 @@ Nyvo Studio Project Documentation Style Guide:
 
     7. No force-commits are allowed in Nyvo Studio repositories.
 
-    8. No commits should be signed off and applied to the main branch without being pulled and branched first.
+    8. No commits MUST be signed off and applied to the main branch without being pulled and branched first.
 
-    9. All commits should have a branch of their own, discussed and then merged to the main branch.
+    9. All commits MUST have a branch of their own, discussed and then merged to the main branch.
 
-    10. Commit messages should not refer to the updates applied to the project as convention, 
+    10. Commit messages MUST not refer to the updates applied to the project as convention, 
         - but rather to the main file title with the addition of the word 'Main.'
 
-    11. Commit descriptions MUST refer to the updates affixed to the file ( No file description should be referred to ).
+    11. Commit descriptions MUST refer to the updates affixed to the file ( No file description MUST be referred to ).
 
     12. All versions of the project repository MUST be controlled under semantic ( "https://semver.org/" )
 
@@ -33,19 +33,19 @@ Nyvo Studio Project Documentation Style Guide:
 
     15. During the Release phase, only the user-side features are a part of the version mumbering.
 
-    16. When a project reaches the Release phase, a ( changelog.md ) file should be implemented.
+    16. When a project reaches the Release phase, a ( changelog.md ) file MUST be implemented.
 
     17. The Release phase version numbering is only mentioned in ( the changelog.md ) file.
 
     18. Release versioning and development versioning are seperate concepts, do not attempt to use Release versioning while adding updates to the back-end segment of the projects.
 
-    19. The branch names should only refer to the project version number. Example: 1.0.9.
+    19. The branch names MUST only refer to the project version number. Example: 1.0.9.
 
     46. Always create a new remote branch and pull request before merging, after you have made all the changes required in the pull_request to_do.
 
     43. Contributors MUST Always create a pull request and branch before even attempting to add any changes to their local repository.
 
-    20. Pull request titles should refer to the feat or MAJOR change commit message which is expected to be the outcome after all the to_do's are finished.
+    20. Pull request titles MUST refer to the feat or MAJOR change commit message which is expected to be the outcome after all the to_do's are finished.
 
     21. All pull requests MUST have at least one comment before being merged.
 
@@ -64,7 +64,7 @@ Nyvo Studio Project Documentation Style Guide:
         - followed by the version ( branch ) name.
         - e.x: considering that I am working on a documentation patch, my description header would be: ( UDock | 1.0.0 ).
 
-    24. All Pull requests should contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
+    24. All Pull requests MUST contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
 
     45. pull_requests MUST be a group of ( fix ) tags which generate one MAJOR CHANGE or feat.
 
@@ -79,21 +79,21 @@ Nyvo Studio Project Documentation Style Guide:
 
     30. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
 
-    31. Issues naming conventions should follow the corressondig regular expression: `{Issue Title} | N : {Issue Number}`, e.x: problem(docs): remove harsh rules | N : 1.
+    31. Issues naming conventions MUST follow the corressondig regular expression: `{Issue Title} | N : {Issue Number}`, e.x: problem(docs): remove harsh rules | N : 1.
 
     32. Issue titles naming follows the same convetions as commit message.
 
-    32. All issues should contain at least 1 comment.
+    32. All issues MUST contain at least 1 comment.
 
     33. The first comment of an issue is called the __details__ comment.
 
-    34. The first comment of an issue should be the __details__ comment.
+    34. The first comment of an issue MUST be the __details__ comment.
 
-    35. The __details__ comment should elucidate all of the extant issues in the latest branch.
+    35. The __details__ comment MUST elucidate all of the extant issues in the latest branch.
 
     36. No issue is allowed to be assigned a To-Do list.
 
-    37. Every other asepct in the __details__ comment, should follow the conventions of pull_requests __changelog__ comment.
+    37. Every other asepct in the __details__ comment, MUST follow the conventions of pull_requests __changelog__ comment.
 
     44. Push changes as often as possible, all the changes to the project ( including the ones that are rejected or/and aborted ) shall be recorded.
 
@@ -105,7 +105,7 @@ Nyvo Studio Project Documentation Style Guide:
     40. Git commits MUST be as small and independent as possible, do not mix two possible ( fix(docs) ) together 
         - e.x: ( fix(docs): refactor grammar and add header ruleset ) is a bad commit message.
 
-    40. All Git commit messages should have their branch name at their footer.
+    40. All Git commit messages MUST have their branch name at their footer.
 
     41. In the context of updating local repositories, use merge instead of rebase.
 
