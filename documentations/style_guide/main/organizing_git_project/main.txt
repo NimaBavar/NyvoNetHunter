@@ -100,7 +100,10 @@ Nyvo Studio Project Documentation Style Guide:
     38. All suspended  ( projects that don't take any new update for a designated period of time ) projects shall be archived and be followed up with
         - a note text at the tail of their README file, elucidating the fact that the project have been archived.
 
-    39. The git commit messages are formatted by the https://www.conventionalcommits.org/en/v1.0.0/ conventions.
+    39. The Git commit messages are formatted by the https://www.conventionalcommits.org/en/v1.0.0/ conventions.
+
+    40. Git commits MUST be as small and independent as possible, do not mix two possible ( fix(docs) ) together 
+        - e.x: ( fix(docs): refactor grammar and add header ruleset ) is a bad commit message.
 
     40. All Git commit messages should have their branch name at their footer.
 
