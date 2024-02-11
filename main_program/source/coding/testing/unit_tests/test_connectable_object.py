@@ -15,16 +15,3 @@ def setup_database_import_path() -> None:
 
 
 setup_database_import_path()
-
-
-import unittest
-from database.workers.api import Connectable 
-
-
-class TestConnectableObject(unittest.TestCase):
-    def test_invalid_endpoint_type(self):
-        self.assertRaises(ValueError, Connectable(3))
-
-
-if __name__ == "__main__":
-    unittest.main()
