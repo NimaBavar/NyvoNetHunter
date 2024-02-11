@@ -19,4 +19,4 @@ setup_database_import_path()
 
 import unittest
 from unittest.result import TestResult
-from database.port_scanner_api.tcp_scanner import NyvoNetHunterPortScanner
+from database.port_scanner_api.port_scanner import NyvoNetHunterPortScanner
