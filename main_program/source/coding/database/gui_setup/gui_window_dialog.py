@@ -17,7 +17,6 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
-from database.workers.api import clean_terminal
 from packages import (
     QtWebEngineWidgets,
     QSizePolicy,
@@ -27,6 +26,7 @@ from packages import (
     QtGui,
     Path,
 )
+from database.workers.api import clean_terminal
 
 
 class Ui_Dialog(object):

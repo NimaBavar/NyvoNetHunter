@@ -1,24 +1,6 @@
 <details>
 
 
-  <summary>changelog</summary>
-  <br>
-
-
-YourChangeCategory:
-
-    1. Your first changed element.
-
-    2. Your second changed element.
-
-  ...
-
-
-</details>
-<br>
-
-
-
 > Optional.
 <details>  
 
@@ -27,12 +9,9 @@ YourChangeCategory:
   <br>
 
 
-- [] Your first To-Do element.
-- [] Your second To-Do element.
+- [] type(scope): refactor this
+- [] type(scope): do that
 
 
 </details>
 <br>
-
-
-> Signed off by: `@CONTRIBUTOR_NAME1, #CN2`.

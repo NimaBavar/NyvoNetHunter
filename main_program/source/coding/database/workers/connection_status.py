@@ -15,12 +15,12 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
-from exceptions.direct_run_error import DirectRunError
 from packages import (
     pyqtSignal,
     QObject,
     socket,
 )
+from exceptions.direct_run_error import DirectRunError
 
 
 class ConnectionStatusChecker(QObject):

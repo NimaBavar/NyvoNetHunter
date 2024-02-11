@@ -86,6 +86,7 @@
 >  | psf/black                    | Maintaining the code readability                                                  |
 >  | PyQt5 Package                | Implementing the Graphical User Interface of the project                          |
 >  | Qt Designer Application      | Implementing the Graphical User Interface ofthe project                           |
+>  | Nmap                         | Performing port scanning
 >  | Python Folium package        | Rendering multifarious map objects                                                |
 
 <br>
@@ -102,12 +103,12 @@
 
    >  **By any situation , All the employees of this project must follow the [styling idioms of NyvoStudio](https://github.com/NyvoStudio/StyleGuide/tree/Main.project/styling_guide) which are:**
 
-  > - Filing style.
+  > - Filing structure style.
   > - Text organizing style.
   > - Algorithm designing style.
   > - Markdown language style.
   > - Programming style.
-  > - GitHub Project organizing style.
+  > - Git Project organizing style.
 ---
 
 <br>
@@ -118,7 +119,7 @@
   > **To report any possible security vulnerability, legal concern, harassment, or misguidance of code of conduct by an employee, we kindly request that you reach out to the NyvoStudio team through the following methods:**
 
   > - NyvoStudio mail box : **nyvostudio@gmail.com**
-  > - Reporting on this repository by [**Creating a new issue**](https://github.com/KhodeNima/NyvoNetHunter/security/advisories/new)
-  > - Reporting on nyvostudio discord server : **Coming soon...**
+  > - Reporting on this repository by [**Creating a new issue**](https://github.com/NimaBavar/NyvoNetHunter/security/advisories/new)
+
 
 <br>

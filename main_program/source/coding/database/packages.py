@@ -8,46 +8,46 @@ from os import system as cmd_input
 
 
 try:
+    from dataclasses import dataclass
+    from ipaddress import ip_address
+    from typing import Literal, Dict
+    from abc import ABC, abstractmethod
+    from platform import platform
+    import json
+    import sys
+    import io
+    import os
+    from pathlib import Path
+    from json import loads
+    from time import sleep
+    import inspect
+    import re
     from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
-    from exceptions.direct_run_error import DirectRunError
     from PyQt5.QtWidgets import QApplication, QDialog
     from requests.exceptions import ConnectionError
-    from tldextract import extract as extract_url
     from PyQt5.QtCore import QPropertyAnimation
     from requests.exceptions import SSLError
     from PyQt5.QtWidgets import QSizePolicy
     from libnmap.process import NmapProcess
     from libnmap.objects import NmapReport
     from libnmap.parser import NmapParser
-    from abc import ABC, abstractmethod
     from PyQt5 import QtWebEngineWidgets
     from PyQt5.QtCore import QEventLoop
     from PyQt5.QtCore import QByteArray
     from PyQt5.QtCore import pyqtSignal
-    from dataclasses import dataclass
-    from ipaddress import ip_address
     from PyQt5.QtCore import QThread
     from PyQt5.QtCore import QObject
     from PyQt5.QtGui import QPainter
-    from typing import Literal, Dict
     from PyQt5 import QtCore, QtGui
     from PyQt5.QtTest import QTest
     from PyQt5.QtGui import QIcon
-    from platform import platform
     from PyQt5 import QtWidgets
     from pyperclip import copy
-    from pathlib import Path
-    from json import loads
-    from time import sleep
-    import requests
-    import inspect
-    import folium
+    from tldextract import extract as extract_url
     import socket
-    import json
-    import sys
-    import io
-    import os
-    import re
+    import folium
+    import requests
+    from exceptions.direct_run_error import DirectRunError
 
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
