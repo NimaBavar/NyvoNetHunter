@@ -12,7 +12,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     5. Only the 'License' file is permitted to be located in the main directory of the repository.
 
-    6. All Nyvo Studio-owned repositories MUST be licensed under Creative Commons Zero v1.0 Universal.
+    6. All Nyvo Studio-owned repositories MUST be licensed under ( Creative Commons Zero v1.0 Universal ).
 
     7. No force-commits are allowed in Nyvo Studio repositories.
 
@@ -20,89 +20,87 @@ Nyvo Studio Project Documentation Style Guide:
 
     10. All versions of the project repository MUST be controlled under semantic ( "https://semver.org/" ).
 
-    11. The version numbering of the project shall be split into to phases: ( Pre-Release phase, Release phase ).
+    11. The version numbering of the project shall be split into two phases: ( Pre-Release phase, Release phase ).
 
-    12. During the Pre-Release phase all changes in the development procces ( Including added or remover files and directories ) are a part of the version numbering.
+    12. During the Pre-Release phase all changes in the development procces are a part of the version numbering.
 
     13. During the Release phase, only the user-side features are a part of the version mumbering.
 
-    14. When a project reaches the Release phase, a ( changelog.md ) file MUST be implemented.
+    14. When a project reaches the Release phase, a ( changelog.md ) file MUST be implemented in the repository ( docs ) directory.
 
     15. The Release phase version numbering is only mentioned in ( the changelog.md ) file.
 
     16. Release versioning and development versioning are seperate concepts, do not attempt to use Release versioning while adding updates to the back-end segment of the projects.
 
-    17. remote branches must always have their name set as part of the API they are going to effect,
-        - e.x: I'm currently working on documentations, so I name my branch: ( documentations ),
-        - note that this is not the same as the scope of the commit message.
+    17. remote branches must always have their name set as their update name ( pull_request title ).
 
-    18. Local branches MUST have the same name as their purpose, e.x: fix(docs): add local branch name rule.
 
-    19. Always create a new remote branch and pull request before merging, after you have made all the changes required in the to_do.
+    19. Always create a new remote branch and pull request before merging, after you have made all the changes required to launch a new update title.
 
     20. Contributors MUST Always create a pull request and branch before even attempting to add any changes to their local repository.
 
-    21. Pull request titles MUST refer to the feat or MAJOR change commit message which is expected to be the outcome after all the to_do's are finished.
+    21. Pull request titles MUST refer to the feat or MAJOR change commit message which is expected to be the outcome after all the to_do's are finished,
 
-    22. All pull requests MUST have at least one comment before being merged.
+    22. the convention of naming pull requests is the same as commit messages.
 
-    23. Contributors MUST NOT list any of the ( fix ) or ( feat ) changes in the special comments of a pull request ( i.e: to_do, description ),
+    23. All pull requests MUST have at least one comment before being merged.
+
+    24. Contributors MUST NOT list any of the ( fix ) or ( feat ) changes in the special comments of a pull request ( i.e: to_do, description ),
         - They shall be self_explanatory in the commit messages.
 
-    24. Pull requests may contain a to-do list in as a comment for new updates to be pushed to the branch.
+    25. Pull requests may contain a to-do list in as a comment for new updates to be pushed to the branch.
 
-    25. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
+    26. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
         - which fully explains the purpose of the changes added and their outcome result on the project code_base.
+    27. The pull_request description comment MUST always be the first comment.
 
-    26. The pull_request description comment MUST always be the first comment.
-
-    27. The pull_request description comment must contain three sections:
+    28. The pull_request description comment must contain three sections:
         - What has changed ( API changes ).
         - What were the reasons behind the change.
         - What results are expected.
 
-    28. The pull_request description comment must start with a header containing the update name
+    29. The pull_request description comment must start with a header containing the update name
         - ( this is not the same as the pull_request title, it is any name that you would want to assign )
         - followed by the version ( branch ) name.
         - e.x: considering that I am working on a documentation patch, my description header would be: ( UDock | 1.0.0 ).
 
-    29. All Pull requests MUST contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
+    30. All Pull requests MUST contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
 
-    30. pull_requests MUST be a group of ( fix ) tags which generate one MAJOR CHANGE or feat.
+    31. pull_requests MUST be a group of ( fix ) tags which generate one MAJOR CHANGE or feat.
 
-    31. If a update has been rejected or/and left undone, The branch related to the update MUST NOT be deleted, ONLY the pull_request
+    32. If a update has been rejected or/and left undone, The branch related to the update MUST NOT be deleted, ONLY the pull_request
          - MUST be closed and labled as ```Rejected``` 
          - ( The changelog comment MUST stay as it is. )
 
-    32. The ```signed off by``` section MUST be at the last section of the comment and refer to the contributors who parted in the update.
+    33. The ```signed off by``` section MUST be at the last section of the comment and refer to the contributors who parted in the update.
 
-    33. All code MUST be reformatted and pass all the tests given by the GitHub Actions linter before being merged
+    34. All code MUST be reformatted and pass all the tests given by the GitHub Actions linter before being merged
         - (excluding txt or documentation files).
 
-    34. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
+    35. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
 
-    35. Issues naming conventions MUST follow the corressondig regular expression: `{Issue Title} | N : {Issue Number}`, e.x: problem(docs): remove harsh rules | N : 1.
+    36. Issues naming conventions MUST follow the corressondig regular expression: `{Issue Title} | N : {Issue Number}`, e.x: problem(docs): remove harsh rules | N : 1.
 
-    36. Issue titles naming follows the same convetions as commit message.
+    37. Issue titles naming follows the same convetions as commit message.
 
-    37. All issues MUST contain at least 1 comment.
+    38. All issues MUST contain at least 1 comment.
 
-    38. The first comment of an issue is called the __details__ comment.
+    39. The first comment of an issue is called the __details__ comment.
 
-    39. The first comment of an issue MUST be the __details__ comment.
+    40. The first comment of an issue MUST be the __details__ comment.
 
-    40. The __details__ comment MUST elucidate all of the extant issues in the latest branch.
+    41. The __details__ comment MUST elucidate all of the extant issues in the latest branch.
 
-    41. No issue is allowed to be assigned a To-Do list.
+    42. No issue is allowed to be assigned a To-Do list.
 
-    42. Every other asepct in the __details__ comment, MUST follow the conventions of pull_requests __changelog__ comment.
+    43. Every other asepct in the __details__ comment, MUST follow the conventions of pull_requests __changelog__ comment.
 
-    43. Push changes as often as possible, all the changes to the project ( including the ones that are rejected or/and aborted ) shall be recorded.
+    44. Push changes as often as possible, all the changes to the project ( including the ones that are rejected or/and aborted ) shall be recorded.
 
-    44. All suspended  ( projects that don't take any new update for a designated period of time ) projects shall be archived and be followed up with
+    45. All suspended  ( those that don't take any new update for a designated period of time ) projects shall be archived and be followed up with
         - a note text at the tail of their README file, elucidating the fact that the project have been archived.
 
-    45. The Git commit messages are formatted by the https://www.conventionalcommits.org/en/v1.0.0/ conventions.
+    46. The Git commit messages are formatted by the https://www.conventionalcommits.org/en/v1.0.0/ conventions.
 
     46. Git commits MUST be as small and independent as possible, do not mix two possible ( fix(docs) ) together 
         - e.x: ( fix(docs): refactor grammar and add header ruleset ) is a bad commit message.
@@ -114,4 +112,4 @@ Nyvo Studio Project Documentation Style Guide:
 
     49. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the current task your working on.
         - ( Updating documentations, refactoring source code ):
-        - e.x: merge(fetch): update github docs.
+        - e.x: fetch(merge): update github documentations .
