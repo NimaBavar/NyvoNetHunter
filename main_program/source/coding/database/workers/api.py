@@ -248,10 +248,14 @@ class NyvoNetHunterUrl(Connectable):
         """
 
         url_has_suffix = False
+        url_has_secure_suffix = False
+
         url = self.endpoint
 
         if url.startswith("https://"):
             url_has_suffix = True
+            url_has_secure_suffix = True
+
             mutated_url = url[len("https://"):]
 
         if url.startswith("http://"):
@@ -264,8 +268,12 @@ class NyvoNetHunterUrl(Connectable):
         path_removal_pattern = r"/\S*"
         formatted_url = re.sub(pattern=path_removal_pattern, repl="", string=mutated_url)
 
-        if url_has_suffix:
+        if url_has_secure_suffix:
+            formatted_url = f"https://{formatted_url}"
+
+        if url_has_suffix and not url_has_secure_suffix:
             formatted_url = f"http://{formatted_url}"
+            return formatted_url
     
         if apply_to_endpoint:
             self.endpoint = formatted_url
@@ -273,8 +281,8 @@ class NyvoNetHunterUrl(Connectable):
         return formatted_url
 
     def remove_suffix(self, apply_to_endpoint=False) -> str:
-        mutated_url = self.endpoint[len("http://"):]
-        mutated_url = self.endpoint[len("https://"):]
+        url_suffix_pattern = r"https?://"
+        mutated_url = re.sub(pattern=url_suffix_pattern, repl="", string=self.endpoint)
 
         if apply_to_endpoint:
             self.endpoint = mutated_url
