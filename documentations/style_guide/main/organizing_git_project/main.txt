@@ -116,6 +116,7 @@ NyvoStudio Project Documentation Style Guide:
         - e.x: ( clara: 1.0.0 ).
     50. All Git commit messages MUST have their branch name and the commit number -
         - ( the number of times that you have committed to this branch, not the project )
+        - ( the number of times that you have committed to this branch, not the project ) as their footer
         - e.x: ( style_guide: 3 ).
 
     51. In the context of updating local repositories, use merge instead of rebase.
