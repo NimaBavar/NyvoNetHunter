@@ -23,6 +23,11 @@ jobs:
           architecture: x64
 
 
+      - name: install nmap
+        run: |
+          sudo apt-get install -y nmap
+
+
       - name: install_dependencies.
         run: | 
           pip3.11 install --upgrade pip
