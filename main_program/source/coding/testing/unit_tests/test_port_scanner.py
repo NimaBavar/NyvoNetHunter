@@ -20,3 +20,8 @@ setup_database_import_path()
 import unittest
 from unittest.result import TestResult
 from database.port_scanner_api.port_scanner import NyvoNetHunterPortScanner
+
+
+
+if __name__ == "__main__":
+    unittest.main()
