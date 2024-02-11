@@ -32,6 +32,10 @@ class TestRequestManager(unittest.TestCase):
         with self.assertRaises(TypeError):
             NyvoNetHunterRequestManager(url="I am not a real URL.", data={}, headers={}, method="get")
 
+    def test_invalid_url_type(self) -> TestResult:
+        with self.assertRaises(ValueError):
+            NyvoNetHunterRequestManager(url=3, data={}, headers={}, method="get")
+
     def test_invalid_method(self) -> TestResult:
         with self.assertRaises(ValueError):   
             NyvoNetHunterRequestManager(url="https://github.com", data={}, headers={}, method=3)
