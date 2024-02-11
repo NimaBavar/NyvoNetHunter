@@ -20,7 +20,13 @@ setup_database_import_path()
 import unittest
 from unittest.result import TestResult
 from database.port_scanner_api.port_scanner import NyvoNetHunterPortScanner
+from database.workers.api import NyvoNetHunterUrl, NyvoNetHunterIpAddress
 
+
+class TestPortScanner(unittest.TestCase):
+    def test_invalid_connectable_type(self) -> TestResult:
+        with self.assertRaises(ValueError):
+            NyvoNetHunterPortScanner(connectable=3)
 
 
 if __name__ == "__main__":
