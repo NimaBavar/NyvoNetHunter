@@ -32,7 +32,10 @@ Nyvo Studio Project Documentation Style Guide:
 
     18. Release versioning and development versioning are seperate concepts, do not attempt to use Release versioning while adding updates to the back-end segment of the projects.
 
-    19. The branch names MUST only refer to the project version number. Example: 1.0.9.
+    19. The remote branches must always have the name of their update, e.x: ( Clara is the name of this documentation fixture, which 
+        - is also going to exist the branch name and pull request header ).
+
+    20. Local branches MUST have the same name as their purpose, e.x: fix(docs): add local branch name rule.
 
     46. Always create a new remote branch and pull request before merging, after you have made all the changes required in the to_do.
 
