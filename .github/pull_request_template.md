@@ -1,17 +1,17 @@
-<details>
+# { update title } | { current version }
+---
+
+> ***What has changed?***
+
+---
+
+> ***What were the reasons?***
+
+---
+
+> *** What is the result?
+
+---
 
 
-> Optional.
-<details>  
-
-
-  <summary>to_do</summary>
-  <br>
-
-
-- [] type(scope): refactor this
-- [] type(scope): do that
-
-
-</details>
-<br>
+> signed off by: `contributor1, contributor2`.
