@@ -1,36 +1,36 @@
-Nyvo Studio Project Documentation Style Guide:
+NyvoStudio Project Documentation Style Guide:
 
-    1. All Nyvo Studio project repositories MUST contain a 'docs' directory.
+    1. All NyvoStudio project repositories MUST contain a 'docs' directory.
 
-    2. All Nyvo Studio project repositories MUST have a 'README.md' file 
+    2. All NyvoStudio project repositories MUST have a 'README.md' file 
         - that follows the Markdown formatting and style guidelines.
 
-    3. All Nyvo Studio project repositories MUST contain a 'Privacy Policy' file.
+    3. All NyvoStudio project repositories MUST contain a 'Privacy Policy' file.
 
     4. All of the following segments: 'Security Policies', 'Code of Conduct', 'Contributing Guidelines', and 'terms of service'
         - MUST be located within the 'docs' directory.
 
     5. Only the 'License' file is permitted to be located in the main directory of the repository.
 
-    6. All Nyvo Studio-owned repositories MUST be licensed under ( Creative Commons Zero v1.0 Universal ).
+    6. All NyvoStudio_owned repositories MUST be licensed under ( Creative Commons Zero v1.0 Universal ).
 
-    7. No force-commits are allowed in Nyvo Studio repositories.
+    7. No force_commits are allowed in NyvoStudio repositories.
 
     9. All commits MUST have a branch of their own, discussed and then merged to the main branch.
 
     10. All versions of the project repository MUST be controlled under semantic ( "https://semver.org/" ).
 
-    11. The version numbering of the project shall be split into two phases: ( Pre-Release phase, Release phase ).
+    11. The version numbering of the project shall be split into two phases: ( Pre_release phase, Release phase ).
 
-    12. During the Pre-Release phase all changes in the development procces are a part of the version numbering.
+    12. During the Pre_release phase all changes in the development procces are a part of the version numbering.
 
-    13. During the Release phase, only the user-side features are a part of the version mumbering.
+    13. During the Release phase, only the user_side features are a part of the version mumbering.
 
     14. When a project reaches the Release phase, a ( changelog.md ) file MUST be implemented in the repository ( docs ) directory.
 
     15. The Release phase version numbering is only mentioned in ( the changelog.md ) file.
 
-    16. Release versioning and development versioning are seperate concepts, do not attempt to use Release versioning while adding updates to the back-end segment of the projects.
+    16. Release versioning and development versioning are seperate concepts, do not attempt to use Release versioning while adding updates to the back_end segment of the projects.
 
     17. Remote branches MUST always have their name set as the part of the API they are going to affect.
 
@@ -59,6 +59,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     28. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
         - which fully explains the purpose of the changes added and their outcome result on the project code_base.
+
     29. The pull_request description comment MUST always be the first comment.
 
     30. The pull_request description comment MUST contain three sections:
@@ -112,14 +113,15 @@ Nyvo Studio Project Documentation Style Guide:
     49. Git commits MUST be as small and independent as possible, do not mix two possible ( fix(docs) ) together 
         - e.x: ( fix(docs): refactor grammar and add header ruleset ) is a bad commit message.
 
-    50. All Git commit messages MUST have their pull_request title ( update name ) and their version number as footer.
-        - e.x: ( clara: 1.0.0 ).
+    50. All Git commit messages MUST have their branch name and the commit number -
+        - ( the number of times that you have committed to this branch, not the project ) as their footer
+        - e.x: ( style_guide: 3 ).
 
     51. In the context of updating local repositories, use merge instead of rebase.
 
     52. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the reason behind the commit
         - ( Updating documentations, refactoring source code ):
-        - e.x: fetch(merge): update github documentations .
+        - e.x: fetch(merge): fix conflict with origin Main.Project .
 
     53. All remote repository merge messages MUST be the same as the title of the pull_request.
 
