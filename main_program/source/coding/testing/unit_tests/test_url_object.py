@@ -28,15 +28,20 @@ from database.workers.api import NyvoNetHunterUrl
 class TestNyvoNetHunterUrl(unittest.TestCase):
     def setUp(self) -> None:
         self.valid_url = NyvoNetHunterUrl("https://github.com")
-        self.url_with_path = NyvoNetHunterUrl("https://hello.com/how/are/you.com")
+        self.secure_url_with_path = NyvoNetHunterUrl("https://hello.com/how/are/you")
+
+        self.insecure_url_with_path = NyvoNetHunterUrl("http://hello.com/how/are/you")
 
     def test_invalid_url_type(self) -> TestResult:
         with self.assertRaises(ValueError):
             NyvoNetHunterUrl(3)
 
     def test_path_remover(self) -> None:
-        path_removed_url = self.url_with_path.remove_paths()
-        self.assertEqual(path_removed_url, "https://hello.com")
+        secure_path_removed_url = self.secure_url_with_path.remove_paths()
+        insecure_path_removed_url = self.insecure_url_with_path.remove_paths()
+
+        self.assertEqual(secure_path_removed_url, "https://hello.com")
+        self.assertEqual(insecure_path_removed_url, "http://hello.com")
 
 
 if __name__ == "__main__":
