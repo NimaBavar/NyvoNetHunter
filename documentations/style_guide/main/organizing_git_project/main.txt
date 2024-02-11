@@ -7,7 +7,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     3. All Nyvo Studio project repositories MUST contain a 'Privacy Policy' file.
 
-    4. All files referenced in this line : 'Security Policies', 'Code of Conduct', 'Contributing Guidelines', and 'terms of service'
+    4. All of the following segments: 'Security Policies', 'Code of Conduct', 'Contributing Guidelines', and 'terms of service'
         - MUST be located within the 'docs' directory.
 
     5. Only the 'License' file is permitted to be located in the main directory of the repository.
