@@ -36,7 +36,7 @@ class TestNyvoNetHunterUrl(unittest.TestCase):
         with self.assertRaises(ValueError):
             NyvoNetHunterUrl(3)
 
-    def test_path_remover(self) -> None:
+    def test_path_remover(self) -> TestResult:
         secure_path_removed_url = self.secure_url_with_path.remove_paths()
         insecure_path_removed_url = self.insecure_url_with_path.remove_paths()
 
