@@ -53,74 +53,76 @@ Nyvo Studio Project Documentation Style Guide:
     25. Contributors MUST NOT list any of the ( fix ) or ( feat ) changes in the special comments of a pull request ( i.e: to_do, description ),
         - They shall be self_explanatory in the commit messages.
 
-    26. Pull requests may contain a to-do list in as a comment for new updates to be pushed to the branch.
+    26. pull_requests may contain a to_do list in as a comment for new updates to be pushed to the branch.
 
-    27. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
+    27. pull_request to_do_list writing must adhere to the NyvoStudio to_do_list_formatting_guide.
+
+    28. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
         - which fully explains the purpose of the changes added and their outcome result on the project code_base.
-    28. The pull_request description comment MUST always be the first comment.
+    29. The pull_request description comment MUST always be the first comment.
 
-    29. The pull_request description comment MUST contain three sections:
+    30. The pull_request description comment MUST contain three sections:
         - What has changed ( API changes ).
         - What were the reasons behind the change.
         - What results are expected.
 
-    30. The pull_request description comment MUST start with a header containing the update name
+    31. The pull_request description comment MUST start with a header containing the update name
         - ( this is not the same as the pull_request title, it is any name that you would want to assign )
         - followed by the version number.
         - e.x: considering that I am working on a documentation patch, my description header would be: ( UDock | 1.0.0 ).
 
-    31. All Pull requests MUST contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
+    32. All pull_requests MUST contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
 
-    32. pull_requests MUST be a group of ( fix ) tags which generate one MAJOR CHANGE or feat.
+    33. pull_requests MUST be a group of ( fix ) tags which generate one MAJOR CHANGE or feat.
 
-    33. If a update has been rejected or/and left undone, The branch related to the update be deleted, ONLY the pull_request
+    34. If a update has been rejected or/and left undone, The branch related to the update be deleted, ONLY the pull_request
          - MUST be closed and labled as ```Rejected``` 
          - ( The changelog comment MUST stay as it is. )
 
-    34. The ```signed off by``` section MUST be at the last section of the comment and refer to the contributors who parted in the update.
+    35. The ```signed off by``` section MUST be at the last section of the comment and refer to the contributors who parted in the update.
 
-    35. All code MUST be reformatted and pass all the tests given by the GitHub Actions linter before being merged
-        - (excluding txt or documentation files).
+    36. All code MUST be reformatted and pass all the tests given by the GitHub Actions linter before being merged
+        - (excluding txt or documentation files)
 
-    36. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
+    37. Only compact changes after a merge are allowed to be patched and committed outside of branches by the project manager.
 
-    37. Issues naming conventions MUST follow the corressondig regular expression: `{Issue Title} | N : {Issue Number}`, e.x: problem(docs): remove harsh rules | N : 1.
+    38. Issues naming conventions MUST follow the corressondig regular expression: `{Issue Title} | N : {Issue Number}`, e.x: problem(docs): remove harsh rules | N : 1.
 
-    38. Issue titles naming follows the same convetions as commit message.
+    39. Issue titles naming follows the same convetions as commit message.
 
-    39. All issues MUST contain at least 1 comment.
+    40. All issues MUST contain at least 1 comment.
 
-    40. The first comment of an issue is called the __details__ comment.
+    41. The first comment of an issue is called the __details__ comment.
 
-    41. The first comment of an issue MUST be the __details__ comment.
+    42. The first comment of an issue MUST be the __details__ comment.
 
-    42. The __details__ comment MUST elucidate all of the extant issues in the latest branch.
+    43. The __details__ comment MUST elucidate all of the extant issues in the latest branch.
 
-    43. No issue is allowed to be assigned a To-Do list.
+    44. No issue is allowed to be assigned a to_do list.
 
-    44. Every other asepct in the __details__ comment, MUST follow the conventions of pull_requests __changelog__ comment.
+    45. Every other asepct in the __details__ comment, MUST follow the conventions of pull_requests __changelog__ comment.
 
-    45. Push changes as often as possible, all the changes to the project ( including the ones that are rejected or/and aborted ) shall be recorded.
+    46. Push changes as often as possible, all the changes to the project ( including the ones that are rejected or/and aborted ) shall be recorded.
 
-    46. All suspended  ( those that don't take any new update for a designated period of time ) projects shall be archived and be followed up with
+    47. All suspended  ( those that don't take any new update for a designated period of time ) projects shall be archived and be followed up with
         - a note text at the tail of their README file, elucidating the fact that the project have been archived.
 
-    47. The Git commit messages are formatted by the https://www.conventionalcommits.org/en/v1.0.0/ conventions.
+    48. The Git commit messages are formatted by the https://www.conventionalcommits.org/en/v1.0.0/ conventions.
 
-    48. Git commits MUST be as small and independent as possible, do not mix two possible ( fix(docs) ) together 
+    49. Git commits MUST be as small and independent as possible, do not mix two possible ( fix(docs) ) together 
         - e.x: ( fix(docs): refactor grammar and add header ruleset ) is a bad commit message.
 
-    49. All Git commit messages MUST have their pull_request title ( update name ) and their version number as footer.
+    50. All Git commit messages MUST have their pull_request title ( update name ) and their version number as footer.
         - e.x: ( clara: 1.0.0 ).
 
-    50. In the context of updating local repositories, use merge instead of rebase.
+    51. In the context of updating local repositories, use merge instead of rebase.
 
-    51. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the reason behind the commit
+    52. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the reason behind the commit
         - ( Updating documentations, refactoring source code ):
         - e.x: fetch(merge): update github documentations .
 
-    52. All remote repository merge messages MUST be the same as the title of the pull_request.
+    53. All remote repository merge messages MUST be the same as the title of the pull_request.
 
-    53. All remote repository merge messages MUST have the URL of their pull request at their description section.
+    54. All remote repository merge messages MUST have the URL of their pull request at their description section.
 
-    54. All remote repository pull_requests MUST have the same content as their pull_request title in the footer section.
+    55. All remote repository pull_requests MUST have the same content as their pull_request title in the footer section.
