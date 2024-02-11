@@ -106,7 +106,8 @@ Nyvo Studio Project Documentation Style Guide:
     40. Git commits MUST be as small and independent as possible, do not mix two possible ( fix(docs) ) together 
         - e.x: ( fix(docs): refactor grammar and add header ruleset ) is a bad commit message.
 
-    40. All Git commit messages MUST have their branch name at their footer.
+    40. All Git commit messages MUST have their pull_request title ( update name ) and their version number as footer.
+        - e.x: ( clara: 1.0.0 ).
 
     41. In the context of updating local repositories, use merge instead of rebase.
 
