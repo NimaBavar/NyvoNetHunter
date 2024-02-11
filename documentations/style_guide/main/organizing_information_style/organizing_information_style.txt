@@ -1,25 +1,28 @@
-NyvoStudio info organizing Style guide :
+---- nyvostudio_information_organizing_style_guide ----
 
-    1. The text "Black onion project info organizing Style guide" Is a __TITLE__.
+    1. The text "nyvostudio_information_organizing_style_guide" is a __TITLE__.
 
-    2. __TITLE__ name's should be descriptive and simple , Do not use complexity.
+    2. __TITLE__ names should be descriptive and simple , Do not inject complexity.
    
-    3. The txt written at number 1 , Is a __SUBTITLE__.
+    3. The text written at number 1 , is a __SUBTITLE__.
 
-    4. All __TITLE__'s Must have two blank line's between each other.
+    4. All __TITLE__ Must have two blank line's between each other.
 
-    5. All __SUBTITLE__'s Should be used inside A __TITLE__.
+    5. All __SUBTITLE__s Should be used inside A __TITLE__.
 
-    6. All first __SUBTITLE__'s Inside Should be seperated from the __TITLE__ by one line.
+    6. All first __SUBTITLE__s inside should be seperated from the __TITLE__ by one line.
 
-    7. All __SUBTITLE__'s Should be one line Seperated from each other.
+    7. All __SUBTITLE__s Should be one line Seperated from each other.
 
-    8. All __SUBTITLE__'s Should have four space's at their backside Before their main text.
+    8. All __SUBTITLE__s Should have four spaces at their backside before their main text.
 
-    9. All __SUBTITLE__'s Should have A numbering.
+    9. All __SUBTITLE__s Should have follow a incrementing numbering system.
 
-    10. All __SUBTITLES__'s Number's should be in english numbering.
+    10. All __SUBTITLES__s numbers should be english .
   
-    11. All __SUBTITLE__'s Should have A __Dot__(.) After their numbering.
+    11. All __SUBTITLE__s Should have A __dot__(.) After their numbering.
 
-    12. All __SUBTITLE__'s should have one space between their __dot__ and the main text.
+    12. All __SUBTITLE__s should have one space between their __dot__ and the main text.
+
+
+---- END ----
