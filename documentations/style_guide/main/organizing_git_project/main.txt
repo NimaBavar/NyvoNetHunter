@@ -96,7 +96,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     42. The __details__ comment MUST elucidate all of the extant issues in the latest branch.
 
-    43. No issue is allowed to be assigned a To-Do list.
+    43. No issue is allowed to be assigned a to_do list.
 
     44. Every other asepct in the __details__ comment, MUST follow the conventions of pull_requests __changelog__ comment.
 
