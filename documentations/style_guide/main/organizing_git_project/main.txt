@@ -53,7 +53,7 @@ Nyvo Studio Project Documentation Style Guide:
     25. Contributors MUST NOT list any of the ( fix ) or ( feat ) changes in the special comments of a pull request ( i.e: to_do, description ),
         - They shall be self_explanatory in the commit messages.
 
-    26. Pull requests may contain a to-do list in as a comment for new updates to be pushed to the branch.
+    26. Pull requests may contain a to_do list in as a comment for new updates to be pushed to the branch.
 
     27. All pull reqeusts MUST contain a well_formatted ( The formatting in this case is optional ) description comment,
         - which fully explains the purpose of the changes added and their outcome result on the project code_base.
