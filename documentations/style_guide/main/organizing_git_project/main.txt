@@ -113,9 +113,7 @@ NyvoStudio Project Documentation Style Guide:
     49. Git commits MUST be as small and independent as possible, do not mix two possible ( fix(docs) ) together 
         - e.x: ( fix(docs): refactor grammar and add header ruleset ) is a bad commit message.
 
-        - e.x: ( clara: 1.0.0 ).
     50. All Git commit messages MUST have their branch name and the commit number -
-        - ( the number of times that you have committed to this branch, not the project )
         - ( the number of times that you have committed to this branch, not the project ) as their footer
         - e.x: ( style_guide: 3 ).
 
@@ -123,7 +121,7 @@ NyvoStudio Project Documentation Style Guide:
 
     52. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the reason behind the commit
         - ( Updating documentations, refactoring source code ):
-        - e.x: fetch(merge): update github documentations .
+        - e.x: fetch(merge): fix conflict with origin Main.Project .
 
     53. All remote repository merge messages MUST be the same as the title of the pull_request.
 
