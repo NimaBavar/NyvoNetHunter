@@ -1,0 +1,7 @@
+---- nyvo_studio_to_do_list_style_guide ----
+
+    1. to_do_lists MUST be formatted by adhering to the Neovim note plugin format:
+        - ( https://github.com/gsuuon/note.nvim )
+
+
+---- END ----
