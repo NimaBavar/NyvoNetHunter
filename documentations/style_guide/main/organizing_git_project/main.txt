@@ -32,7 +32,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     16. Release versioning and development versioning are seperate concepts, do not attempt to use Release versioning while adding updates to the back-end segment of the projects.
 
-    17. remote branches must always have their name set as their update name ( pull_request title ).
+    17. remote branches MUST always have their name set as their update name ( pull_request title ).
 
     18. Local branches MUST have their name set as part of the API they are going to affect;
         - e.x: documentations;
@@ -57,12 +57,12 @@ Nyvo Studio Project Documentation Style Guide:
         - which fully explains the purpose of the changes added and their outcome result on the project code_base.
     27. The pull_request description comment MUST always be the first comment.
 
-    28. The pull_request description comment must contain three sections:
+    28. The pull_request description comment MUST contain three sections:
         - What has changed ( API changes ).
         - What were the reasons behind the change.
         - What results are expected.
 
-    29. The pull_request description comment must start with a header containing the update name
+    29. The pull_request description comment MUST start with a header containing the update name
         - ( this is not the same as the pull_request title, it is any name that you would want to assign )
         - followed by the version ( branch ) name.
         - e.x: considering that I am working on a documentation patch, my description header would be: ( UDock | 1.0.0 ).
@@ -116,6 +116,7 @@ Nyvo Studio Project Documentation Style Guide:
     49. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the current task your working on.
         - ( Updating documentations, refactoring source code ):
         - e.x: fetch(merge): update github documentations .
+
     50. All remote repository merge messages MUST be the same as the title of the pull_request.
 
     51. All remote repository merge messages MUST have the URL of their pull request at their description section.
