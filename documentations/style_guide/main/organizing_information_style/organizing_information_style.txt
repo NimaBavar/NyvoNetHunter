@@ -24,5 +24,7 @@
 
     12. All __SUBTITLE__s should have one space between their __dot__ and the main text.
 
+    13. All of the infographical files must end with an ---- END ---- tag.
+
 
 ---- END ----
