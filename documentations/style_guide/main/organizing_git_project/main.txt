@@ -116,3 +116,8 @@ Nyvo Studio Project Documentation Style Guide:
     49. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the current task your working on.
         - ( Updating documentations, refactoring source code ):
         - e.x: fetch(merge): update github documentations .
+    50. All remote repository merge messages MUST be the same as the title of the pull_request.
+
+    51. All remote repository merge messages MUST have the URL of their pull request at their description section.
+
+    52. All remote repository pull_requests MUST have the same content as their pull_request title in the footer section.
