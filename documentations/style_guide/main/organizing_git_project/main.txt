@@ -34,6 +34,9 @@ Nyvo Studio Project Documentation Style Guide:
 
     17. remote branches must always have their name set as their update name ( pull_request title ).
 
+    18. Local branches MUST have their name set as part of the API they are going to affect;
+        - e.x: documentations;
+        - Note that this MAY not be the same as the commits scope.
 
     19. Always create a new remote branch and pull request before merging, after you have made all the changes required to launch a new update title.
 
