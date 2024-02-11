@@ -113,7 +113,7 @@ Nyvo Studio Project Documentation Style Guide:
 
     48. In the context of updating local repositories, use merge instead of rebase.
 
-    49. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the current task your working on.
+    49. While performing any type of merging operation, adhere to the same guidelines as commit messages and provide the reason behind the commit
         - ( Updating documentations, refactoring source code ):
         - e.x: fetch(merge): update github documentations .
 
