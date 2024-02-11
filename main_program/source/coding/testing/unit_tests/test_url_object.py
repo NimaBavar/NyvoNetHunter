@@ -31,6 +31,8 @@ class TestNyvoNetHunterUrl(unittest.TestCase):
         self.secure_url_with_path = NyvoNetHunterUrl("https://hello.com/how/are/you")
         self.insecure_url_with_path = NyvoNetHunterUrl("http://hello.com/how/are/you")
 
+        self.no_suffix_url = NyvoNetHunterUrl("github.com")
+
     def test_invalid_url_type(self) -> TestResult:
         with self.assertRaises(ValueError):
             NyvoNetHunterUrl(3)
@@ -51,6 +53,7 @@ class TestNyvoNetHunterUrl(unittest.TestCase):
         self.assertEqual(secure_suffix_removed_url, "hello.com/how/are/you")
         self.assertEqual(insecure_suffix_removed_url, "hello.com/how/are/you")
 
+        self.assertEqual(self.no_suffix_url.remove_suffix(), "github.com")
 
 
 if __name__ == "__main__":
