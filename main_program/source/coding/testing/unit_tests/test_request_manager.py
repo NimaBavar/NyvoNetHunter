@@ -60,7 +60,6 @@ class TestRequestManager(unittest.TestCase):
         request_manager = NyvoNetHunterRequestManager(url="https://github.com", data={}, headers={}, method="get")
         _mock_failed_to_send_signal.emit = mock.Mock()
 
-
         with mock.patch("database.workers.api.requests.request") as request_mock:
             request_mock.side_effect = AssertionError("Could not connect to service.")
 
