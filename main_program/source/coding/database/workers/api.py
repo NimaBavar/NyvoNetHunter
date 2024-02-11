@@ -281,8 +281,8 @@ class NyvoNetHunterUrl(Connectable):
         return formatted_url
 
     def remove_suffix(self, apply_to_endpoint=False) -> str:
-        mutated_url = self.endpoint[len("http://"):]
-        mutated_url = self.endpoint[len("https://"):]
+        url_suffix_pattern = r"https?://"
+        mutated_url = re.sub(pattern=url_suffix_pattern, repl="", string=self.endpoint)
 
         if apply_to_endpoint:
             self.endpoint = mutated_url
