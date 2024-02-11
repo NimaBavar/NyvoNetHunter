@@ -53,7 +53,7 @@ Nyvo Studio Project Documentation Style Guide:
     25. Contributors MUST NOT list any of the ( fix ) or ( feat ) changes in the special comments of a pull request ( i.e: to_do, description ),
         - They shall be self_explanatory in the commit messages.
 
-    26. Pull requests may contain a to_do list in as a comment for new updates to be pushed to the branch.
+    26. pull_requests may contain a to_do list in as a comment for new updates to be pushed to the branch.
 
     27. pull_request to_do_list writing must adhere to the NyvoStudio to_do_list_formatting_guide.
 
@@ -71,7 +71,7 @@ Nyvo Studio Project Documentation Style Guide:
         - followed by the version number.
         - e.x: considering that I am working on a documentation patch, my description header would be: ( UDock | 1.0.0 ).
 
-    32. All Pull requests MUST contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
+    32. All pull_requests MUST contain a ```signed off by``` section in their first comment, Continued by tagging all the contributers who participate in the update.
 
     33. pull_requests MUST be a group of ( fix ) tags which generate one MAJOR CHANGE or feat.
 
