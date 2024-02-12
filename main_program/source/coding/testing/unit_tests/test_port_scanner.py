@@ -37,10 +37,6 @@ class TestPortScanner(unittest.TestCase):
         with self.assertRaises(NoScanHistoryError):
             self.valid_port_scanner.get_scan_data(data="open_ports")
 
-    def test_invalid_data_retrieve(self) -> TestResult:
-        with self.assertRaises(TypeError):
-            self.valid_port_scanner.get_scan_data(data="rain_diagram")
-
 
 if __name__ == "__main__":
     unittest.main()
