@@ -17,6 +17,7 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
+from PyQt5.QtGui import QMovie
 from packages import (
     QtWebEngineWidgets,
     QSizePolicy,
@@ -27,7 +28,6 @@ from packages import (
     Path,
 )
 from database.workers.api import clean_terminal
-
 
 
 class Ui_Dialog(object):
@@ -44,17 +44,17 @@ class Ui_Dialog(object):
         icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/../../../../../../.designer/backup/resources/pictures/icon.png.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setWindowOpacity(5.0)
-        self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(440, 530, 211, 81))
+        self.searchButton = QtWidgets.QPushButton(Dialog)
+        self.searchButton.setGeometry(QtCore.QRect(440, 530, 211, 81))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(75)
-        self.pushButton.setFont(font)
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setWhatsThis("")
-        self.pushButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
+        self.searchButton.setFont(font)
+        self.searchButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.searchButton.setWhatsThis("")
+        self.searchButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
 "\n"
 "QPushButton:hover{\n"
 "        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
@@ -96,11 +96,11 @@ class Ui_Dialog(object):
 "}")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/../../../../../../.designer/backup/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton.setIcon(icon1)
-        self.pushButton.setIconSize(QtCore.QSize(35, 35))
-        self.pushButton.setDefault(False)
-        self.pushButton.setFlat(True)
-        self.pushButton.setObjectName("pushButton")
+        self.searchButton.setIcon(icon1)
+        self.searchButton.setIconSize(QtCore.QSize(35, 35))
+        self.searchButton.setDefault(False)
+        self.searchButton.setFlat(True)
+        self.searchButton.setObjectName("pushButton")
         self.lineEdit = QtWidgets.QLineEdit(Dialog)
         self.lineEdit.setGeometry(QtCore.QRect(300, 480, 561, 31))
         self.lineEdit.setAutoFillBackground(False)
@@ -975,7 +975,7 @@ class Ui_Dialog(object):
         self.connection_status_label.setGeometry(QtCore.QRect(100, 40, 191, 81))
         self.connection_status_label.setText("")
         self.connection_status_label.setObjectName("connection_status_label")
-        self.webView = QtWebKitWidgets.QWebView(Dialog)
+        self.webView = QtWebEngineWidgets.QWebEngineView(Dialog)
         self.webView.setGeometry(QtCore.QRect(880, 170, 300, 301))
         self.webView.setStyleSheet("QWebView{ border: 2px solid red; background-color: orange }\n"
 "\n"
@@ -1023,9 +1023,9 @@ class Ui_Dialog(object):
 "")
         self.webView.setUrl(QtCore.QUrl("about:blank"))
         self.webView.setObjectName("webView")
-        self.progressBar_2 = QtWidgets.QProgressBar(Dialog)
-        self.progressBar_2.setGeometry(QtCore.QRect(300, 130, 561, 31))
-        self.progressBar_2.setStyleSheet("QProgressBar { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
+        self.progressBar = QtWidgets.QProgressBar(Dialog)
+        self.progressBar.setGeometry(QtCore.QRect(300, 130, 561, 31))
+        self.progressBar.setStyleSheet("QProgressBar { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
 "\n"
 "QProgrssBar:hover{\n"
 "        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
@@ -1062,11 +1062,11 @@ class Ui_Dialog(object):
 "        padding-left: 3px;\n"
 "        color: black;\n"
 "}")
-        self.progressBar_2.setProperty("value", 0)
-        self.progressBar_2.setObjectName("progressBar_2")
-        self.pushButton_2 = QtWidgets.QPushButton(Dialog)
-        self.pushButton_2.setGeometry(QtCore.QRect(880, 480, 301, 31))
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.progressBar.setProperty("value", 0)
+        self.progressBar.setObjectName("progressBar_2")
+        self.copyButton = QtWidgets.QPushButton(Dialog)
+        self.copyButton.setGeometry(QtCore.QRect(880, 480, 301, 31))
+        self.copyButton.setObjectName("searchButton_2")
         self.callstatusLabel = QtWidgets.QLabel(Dialog)
         self.callstatusLabel.setGeometry(QtCore.QRect(450, 50, 161, 81))
         self.callstatusLabel.setText("")
@@ -1226,14 +1226,19 @@ class Ui_Dialog(object):
         self.cancelportscanButton.setFlat(True)
         self.cancelportscanButton.setObjectName("cancelportscanButton")
 
+        self.connected_movie = QMovie("main_program/source/ui_design/resources/gifs/connected.gif")
+        self.no_connection_movie = QMovie("main_program/source/ui_design/resources/gifs/no_connection.gif")
+
+        self.examining_movie = QMovie("main_program/source/ui_design/resources/gifs/examining.gif")
+
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "NyvoNetHunter"))
-        self.pushButton.setToolTip(_translate("Dialog", "<html><head/><body><p>Examine the ENDPOINT!</p></body></html>"))
-        self.pushButton.setText(_translate("Dialog", "Examine"))
+        self.searchButton.setToolTip(_translate("Dialog", "<html><head/><body><p>Examine the ENDPOINT!</p></body></html>"))
+        self.searchButton.setText(_translate("Dialog", "Examine"))
         self.lineEdit.setToolTip(_translate("Dialog", "<html><head/><body><p>IP example: <span style=\" font-style:italic; text-decoration: underline;\">144.145.146.147</span><span style=\" font-weight:400;\">. </span>( IP addresses maximum octet digit is 255 )</p><p>URL example: <span style=\" font-style:italic; text-decoration: underline;\">https://github.com</span> OR <span style=\" font-style:italic; text-decoration: underline;\">https://discord.com</span><span style=\" font-weight:400;\">.</span></p><p><br/></p></body></html>"))
         self.lineEdit.setPlaceholderText(_translate("Dialog", "Enter your desired IP or URL to examine: "))
         self.graphicsView.setToolTip(_translate("Dialog", "<html><head/><body><p>The examine operation outputs will be shown <span style=\" font-style:italic; text-decoration: underline;\">here.</span></p></body></html>"))
@@ -1251,20 +1256,9 @@ class Ui_Dialog(object):
         self.longitudeCheckBox.setToolTip(_translate("Dialog", "<html><head/><body><p>The IP user Internet Service Provider.</p><p><br/></p><p>Examples: Mobin Net Communication Company, SURFnet II c.</p></body></html>"))
         self.longitudeCheckBox.setText(_translate("Dialog", "Longitude"))
         self.label_4.setText(_translate("Dialog", "   Connection Status"))
-        self.progressBar_2.setFormat(_translate("Dialog", "                                                                              %p"))
-        self.pushButton_2.setText(_translate("Dialog", "copy"))
+        self.progressBar.setFormat(_translate("Dialog", "                                                                              %p"))
+        self.copyButton.setText(_translate("Dialog", "copy"))
         self.portscanButton.setToolTip(_translate("Dialog", "<html><head/><body><p>Examine the ENDPOINT!</p></body></html>"))
         self.portscanButton.setText(_translate("Dialog", "Scan ports"))
         self.cancelportscanButton.setToolTip(_translate("Dialog", "<html><head/><body><p>Examine the ENDPOINT!</p></body></html>"))
         self.cancelportscanButton.setText(_translate("Dialog", "cancel scan"))
-from PyQt5 import QtWebKitWidgets
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
