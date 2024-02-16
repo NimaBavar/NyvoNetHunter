@@ -34,6 +34,7 @@ from database.workers.api import (
     Connectable, 
 )
 from database.workers.connection_status_checker import ConnectionStatusChecker
+from database.port_scanner_api.port_scanner import NyvoNetHunterPortScanner
 from database.workers.api import NyvoNetHunterRequestManager
 from database.map_api.map_spoofer import MapSpoofer
 from gui_window_dialog import Ui_Dialog
@@ -435,6 +436,9 @@ class NyvoNetHunterApp(QDialog):
         )
 
         self.map_spoofer.saved_as_html.connect(lambda: self.ui.webView.load(map_location_file_path))
+    
+    def initialize_port_scanner_logic(self) -> None:
+        self.port_scanner = NyvoNetHunterPortScanner(NyvoNetHunterUrl("github.com"))
 
     def initialize_animations_logic(self) -> None:
         self.web_view_default_state()
@@ -497,5 +501,6 @@ class NyvoNetHunterApp(QDialog):
         self.initialize_connection_checker()
         self.initialize_animations_logic()
         self.initialize_spoofer_logic()
+        self.initialize_port_scanner_logic()
         self.initialize_copy_logic()
         self.show()
