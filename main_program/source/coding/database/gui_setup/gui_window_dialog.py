@@ -17,12 +17,13 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
-from PyQt5.QtGui import QMovie
 from packages import (
     QtWebEngineWidgets,
     QSizePolicy,
     QtWidgets,
     QtCore,
+    QMovie,
+    QSize,
     QIcon,
     QtGui,
     Path,
@@ -1229,6 +1230,8 @@ class Ui_Dialog(object):
 
         self.connected_movie = QMovie("main_program/source/ui_design/resources/gifs/connected.gif")
         self.no_connection_movie = QMovie("main_program/source/ui_design/resources/gifs/no_connection.gif")
+        self.connected_movie.setScaledSize(QSize(self.connection_status_label.width(), self.connection_status_label.height()))
+        self.no_connection_movie.setScaledSize(QSize(self.connection_status_label.width(), self.connection_status_label.height()))
 
         self.examining_movie = QMovie("main_program/source/ui_design/resources/gifs/examining.gif")
 
