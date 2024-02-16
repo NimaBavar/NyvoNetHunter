@@ -17,11 +17,13 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
+from ty
 from typing import Literal
 from database.packages import ( 
     NmapParser,
     NmapProcess,
     NmapReport,
+    sleep,
 ) 
 from database.packages import pyqtSignal
 from database.packages import QObject
@@ -54,7 +56,7 @@ class NyvoNetHunterPortScanner(QObject):
 
         super(QObject, self).__init__()
 
-    def scan(self) -> int:
+    def scan(self, timeout: int) -> int:
         """
         Starts the scan and halts until finished.
 
@@ -63,6 +65,14 @@ class NyvoNetHunterPortScanner(QObject):
         int
             The Nmap exceution return code.
         """
+
+        if not isinstance(timeout, int):
+            argument_type = type(timeout).__name__
+            raise ValueError(f"Expected argument type passed for the parameter ( timeout ): ( int ) | Not: ( {argument_type} )")
+        
+        if timeout > 40:
+            raise TypeError("The timeout amount cannot be more than 40.")
+
         self._scan_attempts += 1
 
         self._scanner.run()
