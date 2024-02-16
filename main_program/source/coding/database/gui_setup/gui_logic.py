@@ -479,6 +479,15 @@ class NyvoNetHunterApp(QDialog):
 
         self.ui.copyButton.clicked.connect(lambda: self.ui.copyButton.setText("Result copied to clipboard."))
 
+        self.ui.portscanButton.setDisabled(True)
+        self.ui.cancelportscanButton.setDisabled(True)
+
+        self.user_input_is_empty.connect(lambda: self.ui.portscanButton.setDisabled(True))
+        self.invalid_endpoint_passed.connect(lambda: self.ui.portscanButton.setDisabled(True))
+        self.no_examine_option_found.connect(lambda: self.ui.portscanButton.setDisabled(True))
+
+        self.network_query_finished.connect(lambda: self.ui.portscanButton.setEnabled(True))
+
     def initialize_copy_logic(self) -> None:
         self.ui.copyButton.clicked.connect(lambda: copy(self.ui.responseLabel.text()))
 
