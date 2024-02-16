@@ -29,6 +29,11 @@ jobs:
           pip install --force-reinstall -vr main_program/requirements.txt
           
 
+      - name: install nmap
+        run: |
+          sudo apt-get install -y nmap
+
+
       - name: install_coverage.
         run: pip3.11 install coverage
 
