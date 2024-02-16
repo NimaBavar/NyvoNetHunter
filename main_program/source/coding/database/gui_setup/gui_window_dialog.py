@@ -22,6 +22,8 @@ from packages import (
     QSizePolicy,
     QtWidgets,
     QtCore,
+    QMovie,
+    QSize,
     QIcon,
     QtGui,
     Path,
@@ -32,7 +34,7 @@ from database.workers.api import clean_terminal
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(1192, 685)
+        Dialog.resize(1552, 685)
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -40,11 +42,12 @@ class Ui_Dialog(object):
         Dialog.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         Dialog.setMouseTracking(False)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setWindowOpacity(5.0)
         self.searchButton = QtWidgets.QPushButton(Dialog)
-        self.searchButton.setGeometry(QtCore.QRect(430, 530, 211, 81))
+        self.searchButton.setGeometry(QtCore.QRect(440, 530, 211, 81))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setBold(True)
@@ -94,14 +97,14 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/../../../../../../.designer/backup/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.searchButton.setIcon(icon1)
         self.searchButton.setIconSize(QtCore.QSize(35, 35))
         self.searchButton.setDefault(False)
         self.searchButton.setFlat(True)
         self.searchButton.setObjectName("pushButton")
         self.lineEdit = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit.setGeometry(QtCore.QRect(250, 490, 561, 31))
+        self.lineEdit.setGeometry(QtCore.QRect(300, 480, 561, 31))
         self.lineEdit.setAutoFillBackground(False)
         self.lineEdit.setStyleSheet("QLineEdit { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
 "\n"
@@ -145,7 +148,7 @@ class Ui_Dialog(object):
         self.lineEdit.setClearButtonEnabled(True)
         self.lineEdit.setObjectName("lineEdit")
         self.graphicsView = QtWidgets.QGraphicsView(Dialog)
-        self.graphicsView.setGeometry(QtCore.QRect(250, 180, 561, 301))
+        self.graphicsView.setGeometry(QtCore.QRect(300, 170, 561, 301))
         self.graphicsView.setStyleSheet("QGraphicsView { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
 "\n"
 "QLineEdit:hover{\n"
@@ -185,11 +188,11 @@ class Ui_Dialog(object):
 "}")
         self.graphicsView.setObjectName("graphicsView")
         self.responseLabel = QtWidgets.QLabel(Dialog)
-        self.responseLabel.setGeometry(QtCore.QRect(280, 190, 501, 281))
+        self.responseLabel.setGeometry(QtCore.QRect(340, 180, 491, 281))
         self.responseLabel.setText("")
         self.responseLabel.setObjectName("responseLabel")
         self.graphicsView_2 = QtWidgets.QGraphicsView(Dialog)
-        self.graphicsView_2.setGeometry(QtCore.QRect(50, 180, 191, 301))
+        self.graphicsView_2.setGeometry(QtCore.QRect(100, 170, 191, 301))
         self.graphicsView_2.setStyleSheet("QGraphicsView { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
 "\n"
 "QLineEdit:hover{\n"
@@ -229,7 +232,7 @@ class Ui_Dialog(object):
 "}")
         self.graphicsView_2.setObjectName("graphicsView_2")
         self.countryCheckBox = QtWidgets.QCheckBox(Dialog)
-        self.countryCheckBox.setGeometry(QtCore.QRect(60, 200, 131, 20))
+        self.countryCheckBox.setGeometry(QtCore.QRect(120, 190, 131, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -311,7 +314,7 @@ class Ui_Dialog(object):
 "")
         self.countryCheckBox.setObjectName("countryCheckBox")
         self.label_3 = QtWidgets.QLabel(Dialog)
-        self.label_3.setGeometry(QtCore.QRect(50, 140, 191, 31))
+        self.label_3.setGeometry(QtCore.QRect(100, 130, 191, 31))
         self.label_3.setStyleSheet("QLabel{ border: 2px solid white; background-color: qlineargradient(spread:reflect, x1:0.00947867, y1:1, x2:0.838863, y2:0.222, stop:0.0663507 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "}\n"
 "QLabel:hover{\n"
@@ -354,7 +357,7 @@ class Ui_Dialog(object):
 "}")
         self.label_3.setObjectName("label_3")
         self.regionCheckBox = QtWidgets.QCheckBox(Dialog)
-        self.regionCheckBox.setGeometry(QtCore.QRect(60, 220, 131, 20))
+        self.regionCheckBox.setGeometry(QtCore.QRect(120, 210, 131, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -436,7 +439,7 @@ class Ui_Dialog(object):
 "")
         self.regionCheckBox.setObjectName("regionCheckBox")
         self.cityCheckBox = QtWidgets.QCheckBox(Dialog)
-        self.cityCheckBox.setGeometry(QtCore.QRect(60, 240, 131, 20))
+        self.cityCheckBox.setGeometry(QtCore.QRect(120, 230, 131, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -518,7 +521,7 @@ class Ui_Dialog(object):
 "")
         self.cityCheckBox.setObjectName("cityCheckBox")
         self.zipcodeCheckBox = QtWidgets.QCheckBox(Dialog)
-        self.zipcodeCheckBox.setGeometry(QtCore.QRect(60, 260, 131, 20))
+        self.zipcodeCheckBox.setGeometry(QtCore.QRect(120, 250, 131, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -600,7 +603,7 @@ class Ui_Dialog(object):
 "")
         self.zipcodeCheckBox.setObjectName("zipcodeCheckBox")
         self.timezoneCheckBox = QtWidgets.QCheckBox(Dialog)
-        self.timezoneCheckBox.setGeometry(QtCore.QRect(60, 280, 131, 20))
+        self.timezoneCheckBox.setGeometry(QtCore.QRect(120, 270, 131, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -682,7 +685,7 @@ class Ui_Dialog(object):
 "")
         self.timezoneCheckBox.setObjectName("timezoneCheckBox")
         self.ispCheckBox = QtWidgets.QCheckBox(Dialog)
-        self.ispCheckBox.setGeometry(QtCore.QRect(60, 300, 131, 20))
+        self.ispCheckBox.setGeometry(QtCore.QRect(120, 290, 131, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -764,7 +767,7 @@ class Ui_Dialog(object):
 "")
         self.ispCheckBox.setObjectName("ispCheckBox")
         self.latitudeCheckBox = QtWidgets.QCheckBox(Dialog)
-        self.latitudeCheckBox.setGeometry(QtCore.QRect(60, 330, 131, 20))
+        self.latitudeCheckBox.setGeometry(QtCore.QRect(120, 310, 131, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -846,7 +849,7 @@ class Ui_Dialog(object):
 "")
         self.latitudeCheckBox.setObjectName("latitudeCheckBox")
         self.longitudeCheckBox = QtWidgets.QCheckBox(Dialog)
-        self.longitudeCheckBox.setGeometry(QtCore.QRect(60, 350, 131, 20))
+        self.longitudeCheckBox.setGeometry(QtCore.QRect(120, 330, 131, 20))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -928,7 +931,7 @@ class Ui_Dialog(object):
 "")
         self.longitudeCheckBox.setObjectName("longitudeCheckBox")
         self.label_4 = QtWidgets.QLabel(Dialog)
-        self.label_4.setGeometry(QtCore.QRect(50, 10, 191, 31))
+        self.label_4.setGeometry(QtCore.QRect(100, 0, 191, 31))
         self.label_4.setStyleSheet("QLabel{ border: 2px solid white; background-color: qlineargradient(spread:reflect, x1:0.00947867, y1:1, x2:0.838863, y2:0.222, stop:0.0663507 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "}\n"
 "QLabel:hover{\n"
@@ -971,11 +974,11 @@ class Ui_Dialog(object):
 "}")
         self.label_4.setObjectName("label_4")
         self.connection_status_label = QtWidgets.QLabel(Dialog)
-        self.connection_status_label.setGeometry(QtCore.QRect(50, 50, 191, 81))
+        self.connection_status_label.setGeometry(QtCore.QRect(100, 40, 191, 81))
         self.connection_status_label.setText("")
         self.connection_status_label.setObjectName("connection_status_label")
         self.webView = QtWebEngineWidgets.QWebEngineView(Dialog)
-        self.webView.setGeometry(QtCore.QRect(820, 180, 300, 301))
+        self.webView.setGeometry(QtCore.QRect(880, 170, 300, 301))
         self.webView.setStyleSheet("QWebView{ border: 2px solid red; background-color: orange }\n"
 "\n"
 "QWebView:hover{\n"
@@ -1020,19 +1023,22 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}\n"
 "")
-
-
         self.webView.setUrl(QtCore.QUrl("about:blank"))
         self.webView.setObjectName("webView")
         self.progressBar = QtWidgets.QProgressBar(Dialog)
-        self.progressBar.setGeometry(QtCore.QRect(250, 140, 561, 31))
-        self.progressBar.setFormat("                                                       %p%")
-        self.progressBar.setStyleSheet("QProgressBar { border: 2px solid black; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
+        self.progressBar.setGeometry(QtCore.QRect(300, 130, 561, 31))
+        self.progressBar.setStyleSheet("QProgressBar { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
+"\n"
+"QProgrssBar:hover{\n"
+"        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"}\n"
+"\n"
 "QProgrssBar {\n"
 "        border: 1px solid #6593cf;\n"
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
-"        color: black; \n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"        color: #006aff;\n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
 "}\n"
@@ -1046,28 +1052,23 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "\n"
-"QProgressBar:on {\n"
+"QLineEdit:on {\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "        padding-top: 2px;\n"
 "        padding-left: 3px;\n"
 "}\n"
 "\n"
-"QProgressBar:disabled {\n"
+"QProgressBardisabled {\n"
+"        background: transparent #e5e9ee;\n"
 "        padding-top: 2px;        \n"
 "        padding-left: 3px;\n"
-"}\n"
-"QProgressBar:chunk {\n"
-"        background-color: #ffffff;\n"
+"        color: black;\n"
 "}")
         self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar_2")
         self.copyButton = QtWidgets.QPushButton(Dialog)
-        self.copyButton.setGeometry(QtCore.QRect(820, 487, 301, 31))
-        self.copyButton.setObjectName("copyButton")
-        self.callstatusLabel = QtWidgets.QLabel(Dialog)
-        self.callstatusLabel.setGeometry(QtCore.QRect(450, 50, 161, 81))
-        self.callstatusLabel.setText("")
-        self.callstatusLabel.setObjectName("callstatusLabel")
-
+        self.copyButton.setGeometry(QtCore.QRect(880, 480, 301, 31))
+        self.copyButton.setObjectName("searchButton_2")
         self.copyButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
 "\n"
 "QPushButton:hover{\n"
@@ -1109,20 +1110,172 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}")
 
-        self.copyButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
-        self.no_connection_movie = QtGui.QMovie("main_program/source/ui_design/resources/gifs/no_connection.gif")
-        self.no_connection_movie.setScaledSize(QtCore.QSize(self.connection_status_label.width(), self.connection_status_label.height()))
+        self.callstatusLabel = QtWidgets.QLabel(Dialog)
+        self.callstatusLabel.setGeometry(QtCore.QRect(450, 50, 161, 81))
+        self.callstatusLabel.setText("")
+        self.callstatusLabel.setObjectName("callstatusLabel")
+        self.graphicsView_3 = QtWidgets.QGraphicsView(Dialog)
+        self.graphicsView_3.setGeometry(QtCore.QRect(1190, 170, 256, 301))
+        self.graphicsView_3.setStyleSheet("QGraphicsView { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));  }\n"
+"\n"
+"QLineEdit:hover{\n"
+"        background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"        border: 1px solid #6593cf;\n"
+"        border-radius: 2px;\n"
+"        padding: 5px 15px 2px 5px;\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"        color: #006aff;\n"
+"        font: bold large \"Arial\";\n"
+"        height: 30px;\n"
+"}\n"
+"\n"
+"\n"
+"QLineEdit:pressed {\n"
+"\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"QLineEdit:on {\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"}\n"
+"\n"
+"QGraphicsView:disabled {\n"
+"        background: transparent #e5e9ee;\n"
+"        padding-top: 2px;        \n"
+"        padding-left: 3px;\n"
+"        color: black;\n"
+"}")
+        self.graphicsView_3.setObjectName("graphicsView_3")
+        self.portsLabel = QtWidgets.QLabel(Dialog)
+        self.portsLabel.setGeometry(QtCore.QRect(1200, 180, 231, 281))
+        self.portsLabel.setText("")
+        self.portsLabel.setObjectName("portsLabel")
+        self.portscanButton = QtWidgets.QPushButton(Dialog)
+        self.portscanButton.setGeometry(QtCore.QRect(1190, 480, 121, 31))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.portscanButton.setFont(font)
+        self.portscanButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.portscanButton.setWhatsThis("")
+        self.portscanButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
+"\n"
+"QPushButton:hover{\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"        border: 1px solid #6593cf;\n"
+"        border-radius: 2px;\n"
+"        padding: 5px 15px 2px 5px;\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"        color: #006aff;\n"
+"        font: bold large \"Arial\";\n"
+"        height: 30px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"QPushButton:pressed {\n"
+"\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:on {\n"
+"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
+"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"        background: transparent #e5e9ee;\n"
+"        padding-top: 2px;        \n"
+"        padding-left: 3px;\n"
+"        color: black;\n"
+"}")
+        self.portscanButton.setIcon(icon1)
+        self.portscanButton.setIconSize(QtCore.QSize(35, 35))
+        self.portscanButton.setDefault(False)
+        self.portscanButton.setFlat(True)
+        self.portscanButton.setObjectName("portscanButton")
+        self.cancelportscanButton = QtWidgets.QPushButton(Dialog)
+        self.cancelportscanButton.setGeometry(QtCore.QRect(1320, 480, 131, 31))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.cancelportscanButton.setFont(font)
+        self.cancelportscanButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.cancelportscanButton.setWhatsThis("")
+        self.cancelportscanButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
+"\n"
+"QPushButton:hover{\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"        border: 1px solid #6593cf;\n"
+"        border-radius: 2px;\n"
+"        padding: 5px 15px 2px 5px;\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"        color: #006;\n"
+"        font: bold large \"Arial\";\n"
+"        height: 30px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"QPushButton:pressed {\n"
+"\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:on {\n"
+"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
+"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"        background: transparent #e5e9ee;\n"
+"        padding-top: 2px;        \n"
+"        padding-left: 3px;\n"
+"        color: black;\n"
+"}")
+        self.cancelportscanButton.setIcon(icon1)
+        self.cancelportscanButton.setIconSize(QtCore.QSize(35, 35))
+        self.cancelportscanButton.setDefault(False)
+        self.cancelportscanButton.setFlat(True)
+        self.cancelportscanButton.setObjectName("cancelportscanButton")
 
-        self.connected_movie = QtGui.QMovie("main_program/source/ui_design/resources/gifs/connected.gif")
-        self.connected_movie.setScaledSize(QtCore.QSize(self.connection_status_label.width(), self.connection_status_label.height()))
+        self.connected_movie = QMovie("main_program/source/ui_design/resources/gifs/connected.gif")
+        self.no_connection_movie = QMovie("main_program/source/ui_design/resources/gifs/no_connection.gif")
+        self.connected_movie.setScaledSize(QSize(self.connection_status_label.width(), self.connection_status_label.height()))
+        self.no_connection_movie.setScaledSize(QSize(self.connection_status_label.width(), self.connection_status_label.height()))
 
-        self.examining_movie = QtGui.QMovie("main_program/source/ui_design/resources/gifs/examining.gif")
-        self.examining_movie.setScaledSize(QtCore.QSize(self.callstatusLabel.width(), self.callstatusLabel.height()))
-
-
-        self.webviewSettings = self.webView.settings()
-        self.webviewSettings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.WebAttribute.JavascriptEnabled, True)
+        self.examining_movie = QMovie("main_program/source/ui_design/resources/gifs/examining.gif")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -1137,7 +1290,7 @@ class Ui_Dialog(object):
         self.graphicsView.setToolTip(_translate("Dialog", "<html><head/><body><p>The examine operation outputs will be shown <span style=\" font-style:italic; text-decoration: underline;\">here.</span></p></body></html>"))
         self.graphicsView_2.setToolTip(_translate("Dialog", "<html><head/><body><p>The examine operation outputs will be shown <span style=\" font-style:italic; text-decoration: underline;\">here.</span></p></body></html>"))
         self.countryCheckBox.setText(_translate("Dialog", "Country"))
-        self.label_3.setText(_translate("Dialog", "Examine options"))
+        self.label_3.setText(_translate("Dialog", "     Examine options"))
         self.regionCheckBox.setText(_translate("Dialog", "Region"))
         self.cityCheckBox.setText(_translate("Dialog", "City"))
         self.zipcodeCheckBox.setText(_translate("Dialog", "Zip code"))
@@ -1148,5 +1301,10 @@ class Ui_Dialog(object):
         self.latitudeCheckBox.setText(_translate("Dialog", "latitude"))
         self.longitudeCheckBox.setToolTip(_translate("Dialog", "<html><head/><body><p>The IP user Internet Service Provider.</p><p><br/></p><p>Examples: Mobin Net Communication Company, SURFnet II c.</p></body></html>"))
         self.longitudeCheckBox.setText(_translate("Dialog", "Longitude"))
-        self.label_4.setText(_translate("Dialog", "Connection Status"))
+        self.label_4.setText(_translate("Dialog", "   Connection Status"))
+        self.progressBar.setFormat(_translate("Dialog", "                                                      %p"))
         self.copyButton.setText(_translate("Dialog", "copy"))
+        self.portscanButton.setToolTip(_translate("Dialog", "<html><head/><body><p>Examine the ENDPOINT!</p></body></html>"))
+        self.portscanButton.setText(_translate("Dialog", "Scan ports"))
+        self.cancelportscanButton.setToolTip(_translate("Dialog", "<html><head/><body><p>Examine the ENDPOINT!</p></body></html>"))
+        self.cancelportscanButton.setText(_translate("Dialog", "cancel scan"))

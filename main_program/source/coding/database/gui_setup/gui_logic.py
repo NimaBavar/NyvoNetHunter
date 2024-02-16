@@ -19,6 +19,7 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
+from PyQt5.QtCore import QSize
 from database.workers.api import (
     generate_valid_connectable,
     NyvoNetHunterIpAddress,
@@ -299,7 +300,8 @@ class NyvoNetHunterApp(QDialog):
         self.ui.searchButton.setDisabled(True)
         self.ui.searchButton.setText(None)
 
-        self.ui.callstatusLabel.move(455, 60)
+        self.ui.callstatusLabel.move(485, 60)
+        self.ui.examining_movie.setScaledSize(QSize(self.ui.callstatusLabel.width(), self.ui.callstatusLabel.height()))
 
         self.ui.lineEdit.setDisabled(True)
 
@@ -319,7 +321,7 @@ class NyvoNetHunterApp(QDialog):
         self.ui.searchButton.setEnabled(True)
         self.ui.searchButton.setText("Examine")
 
-        self.ui.callstatusLabel.move(480, 60)
+        self.ui.callstatusLabel.move(510, 60)
         self.ui.callstatusLabel.setText("Awaiting Input.")
 
         self.ui.lineEdit.setEnabled(True)
