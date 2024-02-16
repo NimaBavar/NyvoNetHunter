@@ -339,6 +339,12 @@ class NyvoNetHunterApp(QDialog):
         self.ui.copyButton.setEnabled(True)
         self.ui.copyButton.setText("copy")
 
+    def port_scan_state(self) -> None:
+        self.ui.searchButton.setDisabled(True)
+        self.ui.lineEdit.setDisabled(True)
+
+        self.ui.callstatusLabel.setText("scanning ports...")
+
     def connected_state(self) -> None:  
     
         check_boxes = [
@@ -438,7 +444,24 @@ class NyvoNetHunterApp(QDialog):
         self.map_spoofer.saved_as_html.connect(lambda: self.ui.webView.load(map_location_file_path))
     
     def initialize_port_scanner_logic(self) -> None:
-        self.port_scanner = NyvoNetHunterPortScanner(NyvoNetHunterUrl("github.com"))
+        self.port_scanner_worker = NyvoNetHunterPortScanner(NyvoNetHunterUrl("github.com"))
+        self.port_scanner_thread = QThread()
+
+        self.port_scanner_worker.moveToThread(self.port_scanner_thread)
+
+        self.ui.portscanButton.clicked.connect(self.port_scanner_worker.scan)
+        self.network_query_finished.connect(lambda: self.port_scanner_worker.__setattr__("connectable", self.generated_connectable))
+        self.network_query_finished.connect(lambda: print(self.generated_connectable.endpoint))
+
+        self.ui.portscanButton.clicked.connect(self.port_scanner_thread.start)
+
+        self.port_scanner_worker.scan_finished.connect(self.default_query_state)
+        self.port_scanner_worker.scan_finished.connect(lambda: print(self.port_scanner_worker.get_scan_data("open_ports")))
+
+        self.port_scanner_worker.scan_failed.connect(lambda: print("scan failed."))
+
+        self.port_scanner_worker.scan_started.connect(lambda: print("started scanning."))
+
 
     def initialize_animations_logic(self) -> None:
         self.web_view_default_state()
@@ -480,6 +503,8 @@ class NyvoNetHunterApp(QDialog):
         self.ui.copyButton.clicked.connect(lambda: self.ui.copyButton.setText("Result copied to clipboard."))
 
         self.ui.portscanButton.setDisabled(True)
+        self.ui.portscanButton.clicked.connect(lambda: self.ui.portscanButton.setDisabled(True))
+
         self.ui.cancelportscanButton.setDisabled(True)
 
         self.user_input_is_empty.connect(lambda: self.ui.portscanButton.setDisabled(True))
@@ -487,6 +512,8 @@ class NyvoNetHunterApp(QDialog):
         self.no_examine_option_found.connect(lambda: self.ui.portscanButton.setDisabled(True))
 
         self.network_query_finished.connect(lambda: self.ui.portscanButton.setEnabled(True))
+        
+        self.ui.portscanButton.clicked.connect(self.port_scan_state)
 
     def initialize_copy_logic(self) -> None:
         self.ui.copyButton.clicked.connect(lambda: copy(self.ui.responseLabel.text()))

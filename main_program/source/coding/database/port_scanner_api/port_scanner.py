@@ -65,7 +65,7 @@ class NyvoNetHunterPortScanner(QObject):
         """
         self._scan_attempts += 1
 
-        self._scanner.run_background()
+        self._scanner.run()
         self.scan_started.emit()
 
         while self._scanner.is_running():
