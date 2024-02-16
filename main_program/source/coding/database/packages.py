@@ -24,8 +24,10 @@ try:
     import re
     from PyQt5.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
     from PyQt5.QtWidgets import QApplication, QDialog
+    from PyQt5.QtCore import QSize
     from requests.exceptions import ConnectionError
     from PyQt5.QtCore import QPropertyAnimation
+    from PyQt5.QtGui import QMovie
     from requests.exceptions import SSLError
     from PyQt5.QtWidgets import QSizePolicy
     from libnmap.process import NmapProcess
