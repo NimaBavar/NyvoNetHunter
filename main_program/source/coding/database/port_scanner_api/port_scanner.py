@@ -205,9 +205,3 @@ class NyvoNetHunterPortScanner(QObject):
             self._formatted_connectable_endpoint = self._formatted_connectable_endpoint.remove_paths(apply_to_endpoint=False)
         
         self._scanner = NmapProcess(self._formatted_connectable_endpoint)
-
-
-scanner = NyvoNetHunterPortScanner(NyvoNetHunterUrl("github.com"))
-scanner.scan_started.connect(lambda: print("scan started."))
-
-scanner.scan(timeout=-1)
