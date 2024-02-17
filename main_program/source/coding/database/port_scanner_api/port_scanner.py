@@ -27,6 +27,7 @@ from database.packages import (
 from database.packages import pyqtSignal
 from database.packages import QObject
 from database.workers.api import NyvoNetHunterUrl, NyvoNetHunterIpAddress, Connectable
+from database.workers.connection_status_checker import ConnectionStatusChecker
 from database.exceptions.direct_run_error import DirectRunError
 from database.exceptions.port_scanner_exceptions.no_scan_history import NoScanHistoryError
 from database.exceptions.port_scanner_exceptions.no_running_session import NoRunningSession
@@ -54,11 +55,13 @@ class NyvoNetHunterPortScanner(QObject):
             The connectable that its endpoint is to be scanned.
         """
         self.connectable = connectable
+        self._connection_checker = ConnectionStatusChecker()
+
         self._scan_attempts = 0
 
         super(QObject, self).__init__()
 
-    def scan(self, timeout: int=10) -> int:
+    def scan(self, timeout: int=20) -> int:
         """
         Starts the Nmap scan.
 
@@ -73,6 +76,11 @@ class NyvoNetHunterPortScanner(QObject):
             The Nmap launch code ( error code unless 0 ).
         """
         self._requested_cancel_scan = False
+
+
+        if not self._connection_checker.is_conneted():
+            self.scan_failed.emit()
+            return 1
 
         if not isinstance(timeout, int):
             argument_type = type(timeout).__name__
