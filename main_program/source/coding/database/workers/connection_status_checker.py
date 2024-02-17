@@ -67,7 +67,7 @@ class ConnectionStatusChecker(QObject):
             Wether the client have a valid internet connection.
         """
 
-        NotImplemented()
+        NotImplemented
 
 
 module_is_runned_directly = __name__ == "__main__"
