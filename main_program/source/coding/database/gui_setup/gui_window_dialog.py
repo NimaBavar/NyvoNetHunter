@@ -1257,7 +1257,7 @@ class Ui_Dialog(object):
         self.longitudeCheckBox.setToolTip(_translate("Dialog", "<html><head/><body><p>The IP user Internet Service Provider.</p><p><br/></p><p>Examples: Mobin Net Communication Company, SURFnet II c.</p></body></html>"))
         self.longitudeCheckBox.setText(_translate("Dialog", "Longitude"))
         self.label_4.setText(_translate("Dialog", "   Connection Status"))
-        self.progressBar.setFormat(_translate("Dialog", "                                                      %p"))
+        self.progressBar.setFormat(_translate("Dialog", "                                                              %p"))
         self.copyButton.setText(_translate("Dialog", "copy"))
         self.portscanButton.setToolTip(_translate("Dialog", "<html><head/><body><p>Examine the ENDPOINT!</p></body></html>"))
         self.portscanButton.setText(_translate("Dialog", "Scan ports"))
