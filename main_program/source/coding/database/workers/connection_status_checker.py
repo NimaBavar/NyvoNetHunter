@@ -29,11 +29,8 @@ class ConnectionStatusChecker(QObject):
 
     def start(self):
         """
-        Host: 8.8.8.8 (google-public-dns-a.google.com)
-        OpenPort: 53/tcp
-        Service: domain (DNS/TCP)
+        Starts the connection checker background daemon.
         """
-
         timeout = 3
         host = "8.8.8.8"
         port = 53
