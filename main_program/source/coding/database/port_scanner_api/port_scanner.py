@@ -81,6 +81,9 @@ class NyvoNetHunterPortScanner(QObject):
         if timeout > 40:
             raise TypeError("The timeout amount cannot be more than 40.")
 
+        if timeout < 10:
+            raise TypeError("The timeout amount cannot be less than 10.")
+
         self._scanner.run()
         self.scan_started.emit()
 
