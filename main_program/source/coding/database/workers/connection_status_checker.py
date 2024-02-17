@@ -27,21 +27,22 @@ class ConnectionStatusChecker(QObject):
     spotted_connection = pyqtSignal()
     lost_connection = pyqtSignal()
 
+    _timeout = 3
+    _host = "8.8.8.8"
+    _port = 53
+
     def start(self):
         """
         Starts the connection checker background daemon.
         """
-        timeout = 3
-        host = "8.8.8.8"
-        port = 53
-        connection_is_available = None
 
         self.lost_connection.emit()
+        connection_is_available = None
 
         while True:
             try:
-                socket.setdefaulttimeout(timeout)
-                socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
+                socket.setdefaulttimeout(__class__._timeout)
+                socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((__class__._host, __class__._port))
 
                 if connection_is_available == True:
                     continue
