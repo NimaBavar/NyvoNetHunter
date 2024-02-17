@@ -56,6 +56,19 @@ class ConnectionStatusChecker(QObject):
                 self.lost_connection.emit()
                 connection_is_available = False
 
+    def is_conneted(self) -> bool:
+        """
+        Runs a single connection scan and reports it.
+        ( Does not run in the background. )
+
+        Returns
+        -------
+        bool
+            Wether the client have a valid internet connection.
+        """
+
+        NotImplemented()
+
 
 module_is_runned_directly = __name__ == "__main__"
 if module_is_runned_directly:
