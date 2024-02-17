@@ -530,6 +530,5 @@ class NyvoNetHunterApp(QDialog):
         self.initialize_connection_checker()
         self.initialize_animations_logic()
         self.initialize_spoofer_logic()
-        self.initialize_port_scanner_logic()
         self.initialize_copy_logic()
         self.show()
