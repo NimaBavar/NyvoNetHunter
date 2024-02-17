@@ -17,12 +17,13 @@ def setup_database_import_path() -> None:
 setup_database_import_path()
 
 
-from PyQt5.QtGui import QMovie
 from packages import (
     QtWebEngineWidgets,
     QSizePolicy,
     QtWidgets,
     QtCore,
+    QMovie,
+    QSize,
     QIcon,
     QtGui,
     Path,
@@ -41,7 +42,12 @@ class Ui_Dialog(object):
         Dialog.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         Dialog.setMouseTracking(False)
         icon = QtGui.QIcon()
+<<<<<<< HEAD
         icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+=======
+        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+>>>>>>> 7f8e7038a24b2f7fe50d7eef8848c9b7d0fdba9b
         Dialog.setWindowIcon(icon)
         Dialog.setWindowOpacity(5.0)
         self.searchButton = QtWidgets.QPushButton(Dialog)
@@ -1067,6 +1073,48 @@ class Ui_Dialog(object):
         self.copyButton = QtWidgets.QPushButton(Dialog)
         self.copyButton.setGeometry(QtCore.QRect(880, 480, 301, 31))
         self.copyButton.setObjectName("searchButton_2")
+        self.copyButton.setStyleSheet("QPushButton { border: 2px solid white; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255)) }\n"
+"\n"
+"QPushButton:hover{\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"        border: 1px solid #6593cf;\n"
+"        border-radius: 2px;\n"
+"        padding: 5px 15px 2px 5px;\n"
+"        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"        color: #006aff;\n"
+"        font: bold large \"Arial\";\n"
+"        height: 30px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"QPushButton:pressed {\n"
+"\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:on {\n"
+"        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,\n"
+"        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);\n"
+"        padding-top: 2px;\n"
+"        padding-left: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"        background: transparent #e5e9ee;\n"
+"        padding-top: 2px;        \n"
+"        padding-left: 3px;\n"
+"        color: black;\n"
+"}")
+
+
         self.callstatusLabel = QtWidgets.QLabel(Dialog)
         self.callstatusLabel.setGeometry(QtCore.QRect(450, 50, 161, 81))
         self.callstatusLabel.setText("")
@@ -1191,7 +1239,7 @@ class Ui_Dialog(object):
 "        border-radius: 2px;\n"
 "        padding: 5px 15px 2px 5px;\n"
 "        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
-"        color: #006aff;\n"
+"        color: #006;\n"
 "        font: bold large \"Arial\";\n"
 "        height: 30px;\n"
 "}\n"
@@ -1228,6 +1276,8 @@ class Ui_Dialog(object):
 
         self.connected_movie = QMovie("main_program/source/ui_design/resources/gifs/connected.gif")
         self.no_connection_movie = QMovie("main_program/source/ui_design/resources/gifs/no_connection.gif")
+        self.connected_movie.setScaledSize(QSize(self.connection_status_label.width(), self.connection_status_label.height()))
+        self.no_connection_movie.setScaledSize(QSize(self.connection_status_label.width(), self.connection_status_label.height()))
 
         self.examining_movie = QMovie("main_program/source/ui_design/resources/gifs/examining.gif")
 
