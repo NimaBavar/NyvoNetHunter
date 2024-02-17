@@ -68,7 +68,14 @@ class ConnectionStatusChecker(QObject):
             Wether the client have a valid internet connection.
         """
 
-        NotImplemented
+        try:
+            socket.setdefaulttimeout(__class__._timeout)
+            socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((__class__._host, __class__._port))
+
+            return True
+
+        except socket.error:
+            return False
 
 
 module_is_runned_directly = __name__ == "__main__"
