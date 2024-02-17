@@ -95,7 +95,7 @@ class Ui_Dialog(object):
 "        color: black;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/../../../../../../.designer/backup/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/pushbuttonicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.searchButton.setIcon(icon1)
         self.searchButton.setIconSize(QtCore.QSize(35, 35))
         self.searchButton.setDefault(False)
