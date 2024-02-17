@@ -505,7 +505,7 @@ class NyvoNetHunterApp(QDialog):
         self.ui.portscanButton.setDisabled(True)
         self.ui.cancelportscanButton.setDisabled(True)
 
-        self.ui.portsLabel.setText("Port scanning feature coming soon...")
+        self.ui.portsLabel.setText("Comig soon...")
 
 
     def initialize_copy_logic(self) -> None:
