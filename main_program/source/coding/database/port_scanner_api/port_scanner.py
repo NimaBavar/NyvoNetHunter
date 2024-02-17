@@ -29,6 +29,7 @@ from database.packages import QObject
 from database.workers.api import NyvoNetHunterUrl, NyvoNetHunterIpAddress, Connectable
 from database.exceptions.direct_run_error import DirectRunError
 from database.exceptions.port_scanner_exceptions.no_scan_history import NoScanHistoryError
+from database.exceptions.port_scanner_exceptions.no_running_session import NoRunningSession
 
 
 class NyvoNetHunterPortScanner(QObject):
@@ -117,6 +118,9 @@ class NyvoNetHunterPortScanner(QObject):
         return nmap_return_code
 
     def cancel_scan(self) -> None:
+        if not self._scanner.is_running():
+            raise NoRunningSession("Cannot attempt to cancel a scan while none is running.")
+
         self._requested_cancel_scan = True
 
     def get_scan_data(self, data: Literal["open_ports"]="open_ports") -> list:
