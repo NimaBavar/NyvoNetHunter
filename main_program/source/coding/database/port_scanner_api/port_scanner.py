@@ -22,12 +22,15 @@ from database.packages import (
     NmapParser,
     NmapProcess,
     NmapReport,
+    sleep,
 ) 
 from database.packages import pyqtSignal
 from database.packages import QObject
 from database.workers.api import NyvoNetHunterUrl, NyvoNetHunterIpAddress, Connectable
+from database.workers.connection_status_checker import ConnectionStatusChecker
 from database.exceptions.direct_run_error import DirectRunError
 from database.exceptions.port_scanner_exceptions.no_scan_history import NoScanHistoryError
+from database.exceptions.port_scanner_exceptions.no_running_session import NoRunningSession
 
 
 class NyvoNetHunterPortScanner(QObject):
@@ -38,6 +41,8 @@ class NyvoNetHunterPortScanner(QObject):
     scan_started = pyqtSignal()
     scan_finished = pyqtSignal()
     scan_failed = pyqtSignal()
+
+    scan_stopped = pyqtSignal()
     
 
     def __init__(self, connectable: Connectable):
@@ -50,39 +55,84 @@ class NyvoNetHunterPortScanner(QObject):
             The connectable that its endpoint is to be scanned.
         """
         self.connectable = connectable
+        self._connection_checker = ConnectionStatusChecker()
+
         self._scan_attempts = 0
 
         super(QObject, self).__init__()
 
-    def scan(self) -> int:
+    def scan(self, timeout: int=20) -> int:
         """
-        Starts the scan and halts until finished.
+        Starts the Nmap scan.
+
+        Parameters
+        ----------
+        timeout | int, default = 1
+            The timeout ( seconds ) for the scanner ( Cannot be more than 40 ) to stop o to stop on.
 
         Returns
         -------
         int
-            The Nmap exceution return code.
+            The Nmap launch code ( error code unless 0 ).
         """
-        self._scan_attempts += 1
+        self._requested_cancel_scan = False
 
-        self._scanner.run_background()
+
+        if not self._connection_checker.is_conneted():
+            self.scan_failed.emit()
+            return 1
+
+        if not isinstance(timeout, int):
+            argument_type = type(timeout).__name__
+            raise ValueError(f"Expected argument type passed for the parameter ( timeout ): ( int ) | Not: ( {argument_type} )")
+        
+        if timeout > 40:
+            raise TypeError("The timeout amount cannot be more than 40.")
+
+        if timeout < 10:
+            raise TypeError("The timeout amount cannot be less than 10.")
+
+        self._scanner.run()
         self.scan_started.emit()
 
+        elapsed_seconds = 0
         while self._scanner.is_running():
-            ...
+            if self._requested_cancel_scan:
+                self._scanner.stop()
+
+                self.scan_stopped.emit()
+                return 1
+
+            if elapsed_seconds == timeout:
+                self._scanner.stop()
+
+                self.scan_stopped.emit()
+                return 0
+
+            sleep(1)
+            elapsed_seconds += 1
         
         if self._scanner.has_failed():
             self.scan_failed.emit()
             self.scan_result = self._scanner.summary
+
+
+        self._scan_attempts += 1
         
         self.scan_finished.emit()
         self._unformatted_scan_result = self._scanner.stdout
-        
+      
         self.scan_result = self.__class__._parse_scan_result(self._scanner.stdout)
         self._bool_scan_finished = True
         
         nmap_return_code = self._scanner.rc
         return nmap_return_code
+
+    def cancel_scan(self) -> None:
+        if not self._scanner.is_running():
+            raise NoRunningSession("Cannot attempt to cancel a scan while none is running.")
+
+        self._requested_cancel_scan = True
 
     def get_scan_data(self, data: Literal["open_ports"]="open_ports") -> list:
         """
@@ -166,9 +216,3 @@ class NyvoNetHunterPortScanner(QObject):
             self._formatted_connectable_endpoint = self._formatted_connectable_endpoint.remove_paths(apply_to_endpoint=False)
         
         self._scanner = NmapProcess(self._formatted_connectable_endpoint)
-
-
-if __name__ == "__main__":
-    raise DirectRunError(
-        "Database modules are not intended to run directly, they are produced for import usage only."
-    )

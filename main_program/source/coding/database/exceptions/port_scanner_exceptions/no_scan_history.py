@@ -1,5 +1,5 @@
 """
-The module for NyvoNetHunterTcpScanner suite NoScanHistoryError exception.
+# The module for NyvoNetHunterPortScanner suite NoScanHistoryError exception.
 """
 
 
