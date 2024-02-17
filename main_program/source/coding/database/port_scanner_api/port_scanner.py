@@ -71,6 +71,8 @@ class NyvoNetHunterPortScanner(QObject):
         int
             The Nmap launch code ( error code unless 0 ).
         """
+        self._requested_cancel_scan = False
+
         if not isinstance(timeout, int):
             argument_type = type(timeout).__name__
             raise ValueError(f"Expected argument type passed for the parameter ( timeout ): ( int ) | Not: ( {argument_type} )")
@@ -83,6 +85,12 @@ class NyvoNetHunterPortScanner(QObject):
 
         elapsed_seconds = 0
         while self._scanner.is_running():
+            if self._requested_cancel_scan:
+                self._scanner.stop()
+
+                self.scan_stopped.emit()
+                return 1
+
             if elapsed_seconds == timeout:
                 self._scanner.stop()
 
@@ -101,12 +109,15 @@ class NyvoNetHunterPortScanner(QObject):
         
         self.scan_finished.emit()
         self._unformatted_scan_result = self._scanner.stdout
-        
+      
         self.scan_result = self.__class__._parse_scan_result(self._scanner.stdout)
         self._bool_scan_finished = True
         
         nmap_return_code = self._scanner.rc
         return nmap_return_code
+
+    def cancel_scan(self) -> None:
+        self._requested_cancel_scan = True
 
     def get_scan_data(self, data: Literal["open_ports"]="open_ports") -> list:
         """
