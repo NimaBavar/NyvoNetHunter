@@ -42,12 +42,9 @@ class Ui_Dialog(object):
         Dialog.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         Dialog.setMouseTracking(False)
         icon = QtGui.QIcon()
-<<<<<<< HEAD
         icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-=======
         icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon.addPixmap(QtGui.QPixmap("main_program/source/ui_design/resources/pictures/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
->>>>>>> 7f8e7038a24b2f7fe50d7eef8848c9b7d0fdba9b
         Dialog.setWindowIcon(icon)
         Dialog.setWindowOpacity(5.0)
         self.searchButton = QtWidgets.QPushButton(Dialog)
