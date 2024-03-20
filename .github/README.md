@@ -59,6 +59,14 @@
 ---
 > [!NOTE]
 > ***This project repository is the continued developement version of the [**NyvoNetHunter beta repository**](https://github.com/KhodeNima/NyvoNetHunter)***
+---
+
+
+## Note
+---
+> [!NOTE]
+> ***This project is currently archived due to contributors shortage.***
+---
 
 
 <br>
